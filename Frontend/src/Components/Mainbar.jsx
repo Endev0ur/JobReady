@@ -2,24 +2,21 @@ import React, { useState } from "react";
 import { FiPlusCircle } from "react-icons/fi";
 import { GiSandsOfTime } from "react-icons/gi";
 import { IoPersonOutline } from "react-icons/io5";
-import { useRef } from "react";
 
 const Mainbar = ({
   openForm,
   setOpenForm,
-  summarizerref,
-  generateResumeref,
-  atsCheckref,
+  option ,
+  setOption
 }) => {
   const handleOpenForm = (num) => {
     console.log(openForm);
     if (num == 1) {
-      summarizerref.current = true;
-      console.log(summarizerref.current);
+      setOption("summary");
     } else if (num == 2) {
-      atsCheckref.current = true;
+      setOption("atsCheck");
     } else {
-      generateResumeref.current = true;
+      setOption("generate");
     }
     setOpenForm(!openForm);
   };
