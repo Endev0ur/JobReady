@@ -1,0 +1,54 @@
+import React from 'react'
+import { ImCross } from "react-icons/im";
+import { FaLinkedin } from "react-icons/fa6";
+import { FaSquareInstagram } from "react-icons/fa6";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaFacebookSquare } from "react-icons/fa";
+import { FaArrowRightFromBracket } from "react-icons/fa6";
+
+const AboutUs = ({ openForm, setOpenForm }) => {
+
+  const handleClose = () => {
+    setOpenForm(!openForm);
+  };
+
+  return (
+    <div className="h-screen w-full flex justify-center items-center overflow-scroll no-scrollbar">
+        <div className="h-[95%] w-[95%] md:w-[70%] lg:w-[50%] 2xl:w-[40%] shandow-2xl shadow-black rounded-3xl p-5 2xl:p-10 flex flex-col items-start relative">
+          <h1 className="text-2xl xl:text-5xl 2xl:text-[100px] font-bold text-white">
+            ABOUT US
+          </h1>
+
+          <p className='text-xl xl:text-2xl 2xl:text-4xl font-bold mt-4'> <strong className='text-3xl 2xl:text-5xl'>Welcome To Job Ready</strong> : Your one way to build ATS friendly resume based on Job Description</p>
+
+          <p className='text-lg xl:text-2xl 2xl:text-4xl mt-2 xl:mt-10 font-bold'>Created By : <strong className='text-gray-100 text-3xl'>SHUBHAM RAWAT</strong></p>
+
+          <div className='w-[100%] pl-0 p-4 xl:flex mt-1 xl:mt-10  items-center'>
+            <p className=' text-2xl 2xl:text-3xl font-bold '>Connect With Us : </p>
+            <a href='' className='text-3xl cursor-pointer mr-10 ml-5 inline-block mt-2 xl:mt-0'><FaLinkedin /></a>
+            <a href='' className='text-3xl cursor-pointer mr-10 inline-block mt-2 xl:mt-0'><FaSquareInstagram /></a>
+            <a href='' className='text-3xl cursor-pointer mr-10 inline-block mt-2 xl:mt-0'><FaXTwitter /></a>
+            <a href="" className='text-3xl cursor-pointer xl:mr-10 mt-2 xl:mt-0 inline-block'><FaFacebookSquare /></a>
+          </div>
+
+          <div className=' w-[100%] pl-0 md:p-4 flex flex-col md:flex-row mt-2  md:mt-10 justify-around items-start md:items-center'>
+            <button className='border-2 md:border-4 text-xl md:text-2xl pt-2 md:pt-3 pb-2 md:pb-3 pl-8 pr-8 rounded-2xl font-bold hover:scale-105 transition-all duration-1000 cursor-pointer bg-blue-700 text-white hover:bg-white hover:text-blue-700'>
+              Feedback
+            </button>
+            <button className='border-2 md:border-4 text-xl md:text-2xl pt-2 pb-2 md:pt-3 md:pb-3 pl-8 pr-8 rounded-2xl font-bold hover:scale-105 transition-all duration-1000 cursor-pointer bg-blue-700 text-white hover:bg-white hover:text-blue-700 mt-4 md:mt-0'>
+              Testimonials
+            </button>
+          </div>
+
+
+          <div className='mt-10 text-xl 2xl:text-2xl font-bold pt-2 xl:pt-3 pb-2 xl:pb-3 pr-6 pl-6 bg-red-500 rounded-2xl border-3 flex justify-around items-center cursor-pointer' onClick={handleClose}>
+            <button className='cursor-pointer'>Go Back</button>
+            <FaArrowRightFromBracket className='ml-2'/>
+          </div>
+
+        </div>
+      </div>
+  )
+}
+
+export default AboutUs

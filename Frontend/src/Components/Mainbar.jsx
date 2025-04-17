@@ -15,15 +15,18 @@ const Mainbar = ({
       setOption("summary");
     } else if (num == 2) {
       setOption("atsCheck");
-    } else {
+    } else if(num == 3) {
       setOption("generate");
     }
+    else if(num==4){
+      setOption("aboutus")
+    }
+
     setOpenForm(!openForm);
   };
 
   return (
-    <>
-      <div className="h-15 w-[95%] md:h-20 md:w-[80%] lg:w-[70%] xl:w-[60%] 2xl:w-[40%] border-3 md:border-5 rounded-[100px] bg-blue-500 flex   justify-center items-center shadow-lg shadow-black">
+      <div className="h-15 w-[95%] md:h-20 md:w-[80%] lg:w-[70%] xl:w-[60%] 2xl:w-[40%] border-3 md:border-5 rounded-[100px] bg-blue-500 flex justify-center items-center shadow-lg shadow-black">
         <div
           className="h-[100%] w-[17.5%]  bg-blue-400 hover:bg-blue-300  transition-all duration-500 rounded-l-[100px] flex justify-center items-center cursor-pointer"
           onClick={() => handleOpenForm(1)}
@@ -47,14 +50,13 @@ const Mainbar = ({
             <FiPlusCircle className="text-5xl md:text-7xl xl:text-8xl text-gray-700" />
           </div>
         </div>
-        <div className="h-[100%] w-[17.5%] bg-blue-400 hover:bg-blue-300  transition-all duration-500 flex justify-center items-center cursor-pointer">
+        <div className="h-[100%] w-[17.5%] bg-blue-400 hover:bg-blue-300  transition-all duration-500 flex justify-center items-center cursor-pointer" onClick={() => handleOpenForm(4)}>
           <h1 className="text-xl font-bold xl:text-3xl">US</h1>
         </div>
         <div className="h-[100%] w-[17.5%] bg-blue-400 hover:bg-blue-300  transition-all duration-500 rounded-r-[100px] flex justify-center items-center cursor-pointer">
           <IoPersonOutline className="text-xl xl:text-3xl" />
         </div>
       </div>
-    </>
   );
 };
 

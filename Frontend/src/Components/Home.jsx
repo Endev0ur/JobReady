@@ -2,12 +2,12 @@ import React, { useRef, useState } from "react";
 import Mainbar from "./Mainbar";
 import Summarizer from "./Summarizer";
 import ATScheck from "./ATScheck";
+import AboutUs from './AboutUs'
 
 const Home = () => {
-
   // summary , atscheck , generate
   const [openForm, setOpenForm] = useState(false);
-  const [option , setOption] = useState("");
+  const [option, setOption] = useState("");
 
   return (
     <div className="relative">
@@ -52,17 +52,20 @@ const Home = () => {
             openForm={openForm}
             setOpenForm={setOpenForm}
             option={option}
-            setOption = {setOption}
+            setOption={setOption}
           ></Mainbar>
         </div>
       </div>
       {openForm && (
-        <div className="fixed inset-0 z-50 backdrop-blur-md bg-black/30">
-          {option=="summary" && (
+        <div className="fixed inset-0 z-50 backdrop-blur-lg bg-black/30">
+          {option == "summary" && (
             <Summarizer openForm={openForm} setOpenForm={setOpenForm} />
           )}
-          {option=="atsCheck" && <ATScheck openForm={openForm} setOpenForm={setOpenForm}/>}
-          {option=="generate" && <div>generateresume</div>}
+          {option == "atsCheck" && (
+            <ATScheck openForm={openForm} setOpenForm={setOpenForm} />
+          )}
+          {option == "generate" && <div>generateresume</div>}
+          {option=="aboutus" && <AboutUs openForm={openForm} setOpenForm={setOpenForm}/>}
         </div>
       )}
     </div>
