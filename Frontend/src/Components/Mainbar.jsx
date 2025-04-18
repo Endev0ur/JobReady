@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FiPlusCircle } from "react-icons/fi";
 import { GiSandsOfTime } from "react-icons/gi";
 import { IoPersonOutline } from "react-icons/io5";
+import { useNavigate } from "react-router";
 
 const Mainbar = ({
   openForm,
@@ -9,17 +10,21 @@ const Mainbar = ({
   option ,
   setOption
 }) => {
+  const navigateTo = useNavigate();
   const handleOpenForm = (num) => {
     console.log(openForm);
     if (num == 1) {
-      setOption("summary");
+      navigateTo("/summarizer")
     } else if (num == 2) {
-      setOption("atsCheck");
+      navigateTo("/atscheck")
     } else if(num == 3) {
       setOption("generate");
     }
     else if(num==4){
       setOption("aboutus")
+    }
+    else if(num==5){
+      navigateTo("/profile");
     }
 
     setOpenForm(!openForm);
@@ -53,7 +58,7 @@ const Mainbar = ({
         <div className="h-[100%] w-[17.5%] bg-blue-400 hover:bg-blue-300  transition-all duration-500 flex justify-center items-center cursor-pointer" onClick={() => handleOpenForm(4)}>
           <h1 className="text-xl font-bold xl:text-3xl">US</h1>
         </div>
-        <div className="h-[100%] w-[17.5%] bg-blue-400 hover:bg-blue-300  transition-all duration-500 rounded-r-[100px] flex justify-center items-center cursor-pointer">
+        <div className="h-[100%] w-[17.5%] bg-blue-400 hover:bg-blue-300  transition-all duration-500 rounded-r-[100px] flex justify-center items-center cursor-pointer" onClick={() => handleOpenForm(5)}>
           <IoPersonOutline className="text-xl xl:text-3xl" />
         </div>
       </div>

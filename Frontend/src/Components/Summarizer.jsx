@@ -7,27 +7,27 @@ const Summarizer = ({ openForm, setOpenForm }) => {
   };
 
   return (
-    <form action="">
-      <div className="h-screen w-full flex justify-center items-center">
-        <div className="h-[80%] w-[95%] md:w-[70%] lg:w-[50%] 2xl:w-[40%] bg-gray-900 shandow-2xl shadow-black rounded-3xl p-4 md:p-5 lg:p-7 xl:p-8 flex flex-col items-start relative">
-          <h1 className=" text-2xl xl:text-4xl font-bold text-white mt-6 xl:mt-10">Job Description</h1>
-          <textarea
-            name=""
-            id=""
-            autoComplete="none"
-            placeholder="Copy & Paste the Job Description Here ..."
-            className=" border mt-7 h-[60%] w-[100%] resize-none rounded-2xl p-5 xl:p-10 text-lg font-bold xl:text-2xl outline-none bg-gray-500"
-          ></textarea>
-          <button className="mt-8 h-[60px] w-[200px] border-3 rounded-xl text-xl xl:text-2xl font-bold bg-blue-600 text-gray-300 cursor-pointer hover:bg-gray-300 hover:text-blue-600 transition-all duration-1000">
-            Summarize
-          </button>
-          <ImCross
-            className="text-white absolute top-3 right-4 xl:top-7 xl:right-8 text-lg xl:text-3xl cursor-pointer"
-            onClick={handleClose}
-          />
-        </div>
+    <div className="h-screen bg-white flex justify-center items-center">
+      <div className="bg-gray-800 h-[98%] w-[98%] rounded-2xl p-5 max-w-[690px] max-h-[850px] shadow-2xl shadow-black">
+        <h1 className="text-4xl font-bold text-white">Summarizer</h1>
+        <form action="" className="h-[100%] w-[100%]">
+          <div className="mt-10 h-[70%]  p-2">
+            <p className="text-xl font-bold text-white">Job Description : </p>
+            <textarea
+              name=""
+              id=""
+              autoComplete="none"
+              placeholder="Copy & Paste the Job Description Here ..."
+              className=" border-2 mt-2 h-[95%] w-[100%] resize-none p-3 outline-none rounded-2xl font-bold bg-gray-700 placeholder:text-gray-900 "
+            ></textarea>
+          </div>
+
+          <br />
+          <button className="mt-8 border-3 text-xl pt-2 pb-2 p-4 rounded-xl text-white font-bold bg-blue-700 outline-none">Summarize</button>
+        </form>
+
       </div>
-    </form>
+    </div>
   );
 };
 
