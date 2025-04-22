@@ -6,6 +6,8 @@ import Home from './Components/Home'
 import Profile from './Components/Profile'
 import Summarizer from './Components/Summarizer'
 import ATScheck from './Components/ATScheck'
+import GenerateResumeForm from './Components/GenerateResumeForm'
+import ResumeTemplate from './Components/ResumeTemplate'
 
 function App() {
 
@@ -17,6 +19,8 @@ function App() {
         <Route path='/profile' element={<Profile />}></Route>
         <Route path='/summarizer' element={<Summarizer />}></Route>
         <Route path='/atscheck' element={<ATScheck/>}></Route>
+        <Route path="/generate" element={<GenerateResumeForm />}></Route>
+        <Route path="/resume" element={<ResumeTemplate />}></Route>
       </Routes>
     </>
   )
