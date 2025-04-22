@@ -1,8 +1,6 @@
 import React, { useRef, useState } from "react";
 import Mainbar from "./Mainbar";
-import Summarizer from "./Summarizer";
-import ATScheck from "./ATScheck";
-import AboutUs from './AboutUs'
+import AboutUs from './AboutUs';
 
 const Home = () => {
   // summary , atscheck , generate
@@ -58,13 +56,6 @@ const Home = () => {
       </div>
       {openForm && (
         <div className="fixed inset-0 z-50 backdrop-blur-lg bg-black/30">
-          {option == "summary" && (
-            <Summarizer openForm={openForm} setOpenForm={setOpenForm} />
-          )}
-          {option == "atsCheck" && (
-            <ATScheck openForm={openForm} setOpenForm={setOpenForm} />
-          )}
-          {option == "generate" && <div>generateresume</div>}
           {option=="aboutus" && <AboutUs openForm={openForm} setOpenForm={setOpenForm}/>}
         </div>
       )}

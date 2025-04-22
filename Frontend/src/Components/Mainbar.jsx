@@ -18,7 +18,7 @@ const Mainbar = ({
     } else if (num == 2) {
       navigateTo("/atscheck")
     } else if(num == 3) {
-      setOption("generate");
+      navigateTo("/generate")
     }
     else if(num==4){
       setOption("aboutus")
