@@ -1,5 +1,6 @@
 const User = require("../Models/userModel");
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const signup = async (req , res) => {
   try{
@@ -8,7 +9,7 @@ const signup = async (req , res) => {
 
     /* if any field are missing */
     if(!name || !email || !password){
-      return res.status(201).json({
+      return res.status(401).json({
         success : false,
         message : "All Fields are Mandatory!"
       })
@@ -18,7 +19,7 @@ const signup = async (req , res) => {
       const user = await User.findOne({email});
       /* If user is already present */
       if(user){
-        return res.status(201).json({
+        return res.status(401).json({
           success : false,
           message : "User is already Present",
         })
@@ -46,8 +47,69 @@ const signup = async (req , res) => {
   }
 }
 
+/* Login functionality */
+const login = async (req , res) => {
+  try{
+
+    /* Destructing */
+    const {email , password} = req.body;
+
+    /* if any fields are missing */
+    if(!email || !password){
+      return res.status(401).json({
+        success : false,
+        message : "All Fields are Mandatory!"
+      })
+    }
+    /* check if email is exist or not */
+    const user = await User.findOne({email});
+    /* No user present on this email */
+    if(!user){
+      return res.status(401).json({
+        success : false,
+        message : "Email or Password not exist"
+      })
+    }
+
+    /* if user exist with this email */
+    /* compararison of password */
+    const userPassword = user.password;
+    const isPasswordMatch = await bcrypt.compare(password , userPassword);
+
+    if(!isPasswordMatch){
+      return res.status(401).json({
+        success : false,
+        message : "Email or Password is Incorrect"
+      })
+    }
+
+    /* jwt token creation when out email and password match */
+    const token = jwt.sign({id:user._id} , process.env.SECRET_TOKEN , {expiresIn : '1h'});
+
+    /* stores jwt in cookie */
+    res.cookie('token' , token , {
+      httpOnly:true,
+      secure:false,
+      sameSite:"Strict",
+      maxAge:60*60*1000,
+    })
+
+
+    return res.status(201).json({
+      success : true,
+      message : "Login Successfully ! ",
+    })
+
+
+  }catch(error){
+    res.status(500).json({
+      success : false,
+      message : "Login error",
+      Error : error,
+    })
+  }
+}
 
 
 
-
-module.exports = {signup};
+module.exports = {signup , login};
