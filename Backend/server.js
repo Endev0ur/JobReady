@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
 // this is dotenv
 const dotenv = require('dotenv');
@@ -10,6 +11,7 @@ require('./Models/dbConnection');
 
 const authRouter = require("./Routes/authRouter");
 
+app.use(express.json());
 app.use("/auth" , authRouter);
 
 app.get("/" , (req , res)=>{
