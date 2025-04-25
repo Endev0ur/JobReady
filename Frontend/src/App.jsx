@@ -8,13 +8,16 @@ import Summarizer from './Components/Summarizer'
 import ATScheck from './Components/ATScheck'
 import GenerateResumeForm from './Components/GenerateResumeForm'
 import ResumeTemplate from './Components/ResumeTemplate'
+import Signup from './Components/Signup'
+import Login from './Components/Login'
 
 function App() {
 
   return (
     <>
       <Routes>
-        <Route path='/auth' element={<Auth />}></Route>
+        <Route path="/signup" element= {<Signup/>}></Route>
+        <Route path='/login' element={<Login />}></Route>
         <Route path='/home' element={<Home />}></Route>
         <Route path='/profile' element={<Profile />}></Route>
         <Route path='/summarizer' element={<Summarizer />}></Route>
