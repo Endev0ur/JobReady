@@ -12,6 +12,8 @@ dotenv.config();
 require('./Models/dbConnection');
 
 const authRouter = require("./Routes/authRouter");
+const resumeRouter = require('./Routes/resumeRouter');
+const protect = require('./Middlewares/authMiddleware')
 
 /* this is because we are using cookie in frontend and backend */
 const corsOptions = {
@@ -21,8 +23,10 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(express.text());
 app.use(cookieParser());
 app.use("/auth" , authRouter);
+app.use("/resume" , protect , resumeRouter);
 
 app.get("/" , (req , res)=>{
   res.send("server is running");

@@ -1,8 +1,5 @@
 const jwt = require('jsonwebtoken');
 
-
-
-
 /* a function is created here which is a validation function which checks whether the user is loggedin or not */
 
 const protect = ( req , res ,next )=> {
@@ -36,3 +33,5 @@ const protect = ( req , res ,next )=> {
   }
 
 }
+
+module.exports = protect;
