@@ -79,14 +79,14 @@ const Summarizer = () => {
 
       <div className={`${movingState ? "block" :"hidden"} bg-gray-300 rounded-2xl p-10 h-[90%] w-[55%] transition-all duration-1000 shadow-xl shadow-black overflow-y-scroll no-scrollbar`}>
         <p className="text-4xl font-bold ">Points and Word you can use in you resume that make your resume more <strong className="underline">ATS-Friendly</strong> and <strong className="underline">Attaractive</strong></p>
-        <h1 className="text-3xl font-bold mt-10">Keypoints : </h1>    
+        <h1 className="text-3xl font-bold mt-10">Keywords : </h1>    
         <ol className="ml-10 mt-4 list-decimal">
           {keywords.map((elem , index)=>(
             <li key={index} className="text-xl font-bold text-gray-700">{ elem}</li>
           ))}
         </ol> 
         
-        <h1 className="text-3xl font-bold mt-10">Keywords : </h1>    
+        <h1 className="text-3xl font-bold mt-10">Keypoints : </h1>    
         <ol className="ml-10 mt-4 list-decimal">
           {keypoints.map((elem , index)=>(
             <li key={index} className="text-xl font-bold text-gray-700">{ elem}</li>
