@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors')
+/* m1 : importing multer */
+const multer = require('multer');
 
 // this is dotenv
 const dotenv = require('dotenv');
@@ -23,10 +25,18 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 app.use(express.text());
 app.use(cookieParser());
 app.use("/auth" , authRouter);
-app.use("/resume" , protect , resumeRouter);
+
+/* m2 : creating a in-memory storage engine */
+const storage = multer.memoryStorage();
+
+/* m3 : initialize the multer */
+const upload = multer({storage:storage});
+
+app.use("/resume" , protect , upload.single('resume') , resumeRouter);
 
 app.get("/" , (req , res)=>{
   res.send("server is running");

@@ -1,4 +1,9 @@
 const {GoogleGenAI} = require('@google/genai')
+const pdfParse = require('pdf-parse');
+
+const { PDFDocument } = require('pdf-lib');
+
+
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY});
 
@@ -50,5 +55,336 @@ const jobSummarizer = async (req , res) => {
 
 }
 
+const AtsCheck = async(req , res)=>{ 
 
-module.exports = {jobSummarizer};
+  const jobDescription = req.body.jobDescription;
+  const resumeFile = req.file;
+
+  const bufferResumeFile = resumeFile.buffer;
+  console.log(resumeFile);
+
+  // const text = await extractTextSmart(bufferResumeFile);
+
+  // console.log(text);
+
+  const parsedFile = await pdfParse(bufferResumeFile);
+  // // console.log(jobDescription);
+  // // console.log(resumeFile);
+  
+  console.log(parsedFile);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const prompt = `You are an expert recruiter specializing in Applicant Tracking Systems (ATS) and resume optimization. Your task is to evaluate a resume against a given job description and provide a detailed analysis.
+
+Analyze the following job description and resume, and then provide an ATS compatibility score out of 100. Break down the score into the following categories:
+
+* **Skills Match (0-30):** Assesses the alignment of the candidate's skills with the job requirements, including both hard and soft skills.
+* **Experience Relevance (0-30):** Evaluates how well the candidate's work experience aligns with the job responsibilities and requirements.
+* **Education and Certifications (0-20):** Scores the relevance of the candidate's education, degrees, and certifications to the job.
+* **Keywords and Formatting (0-20):** Evaluates the presence of relevant keywords from the job description in the resume and the overall formatting of the resume for ATS compatibility.
+
+Provide a score for each category, and then provide an overall ATS score.
+
+After providing the scores, give a detailed explanation for each score, justifying why you assigned that particular value. Explain what aspects of the resume contributed to the score and what areas were lacking.
+
+Finally, provide specific and actionable suggestions on how the candidate can improve their resume to better match the job description and increase its ATS compatibility. Suggest specific keywords to add, sections to modify, or formatting changes to implement.
+
+**Input:**
+
+* **Job Description:** \[${jobDescription}]
+* **Resume:** \[
+${parsedFile.text}]
+
+**Output:**
+
+Provide your response in the following format:
+
+{
+// "ATS Compatibility Score": <Overall score out of 100>,
+// "Category Scores": {
+// "Skills Match": <Score out of 30>,
+// "Experience Relevance": <Score out of 30>,
+// "Education and Certifications": <Score out of 20>,
+// "Keywords and Formatting": <Score out of 20>
+// },
+// "Score Explanation": {
+// "Skills Match": "<Detailed explanation of the skills match score>",
+// "Experience Relevance": "<Detailed explanation of the experience relevance score>",
+// "Education and Certifications": "<Detailed explanation of the education and certifications score>",
+// "Keywords and Formatting": "<Detailed explanation of the keywords and formatting score>"
+// },
+// "Resume Improvement Suggestions": [
+// "<Specific and actionable suggestion 1>",
+// "<Specific and actionable suggestion 2>",
+// "...(more suggestions)"
+// ]
+// }
+
+avoid any prembles and fillers
+`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  async function main() {
+    const response = await ai.models.generateContent({
+      model: "gemini-2.0-flash",
+      contents: prompt,
+    });
+    console.log(response.text);
+
+    const responseText = response.text;
+
+    // Step 2: Clean it
+    const cleanedText = responseText
+    .replace(/```json/g, '') // remove starting ```json
+    .replace(/```/g, '')      // remove ending ```
+    .trim();                  // remove extra spaces
+
+    // // Step 3: Parse it
+    const parsedText = JSON.parse(cleanedText);
+
+    console.log(parsedText);
+
+
+
+    res.status(201).json({
+      success : true,
+      message : parsedText,
+    })
+
+  }
+
+  await main();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+} 
+
+
+module.exports = {jobSummarizer , AtsCheck};
