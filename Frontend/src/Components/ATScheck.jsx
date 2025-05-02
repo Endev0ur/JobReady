@@ -1,54 +1,77 @@
 import React, { useRef, useState } from "react";
 import { ImCross } from "react-icons/im";
-import axios from 'axios';
+import axios from "axios";
+import { CircularProgressbar } from "react-circular-progressbar";
+import 'react-circular-progressbar/dist/styles.css';
 
 const ATScheck = () => {
-  
-  const [jobDescription , setJobDescription] = useState("");
-  const [file , setFile] = useState(null);
+  const [jobDescription, setJobDescription] = useState("");
+  const [file, setFile] = useState(null);
 
+  const [movingState, setMovingState] = useState(false);
+
+  /* Now we are going to start result form here */
+
+  const [atsScore , setATSScore] = useState(0);
+  const [categoryScore , setCategoryScore] = useState([]);
+
+
+
+
+  /* =============================================== */
 
   const handleChange = (e) => {
     e.preventDefault();
     console.log("helow");
     setJobDescription(e.target.value);
     console.log(jobDescription);
-  }
+  };
 
   const handleFileChange = (e) => {
     e.preventDefault();
     setFile(e.target.files[0]);
-  }
+  };
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try{
+    setMovingState(true);
 
-      if(!file){
+    try {
+      if (!file) {
         alert("Please Select the file !");
       }
 
       const formData = new FormData();
-      formData.append("jobDescription" , jobDescription);
-      formData.append("resume" , file);
+      formData.append("jobDescription", jobDescription);
+      formData.append("resume", file);
+
+      const response = await axios.post(
+        "http://localhost:3000/resume/ats-check",
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
+
+      console.log(response.data);
+
+      const result = response.data;
+
+      console.log(result.message["ATS Compatibility Score"]);
+
       
-      const url = "http://localhost:3000/resume/ats-check"
-      const response = axios.post(url , formData);
 
-      console.log(response);
-
+      console.log(result);
+    } catch (err) {
+      console.log("Error in ats check frontend", err);
     }
-    catch(err){
-      console.log("Error in ats check frontend" , err);
-    }
-
   };
 
-  return (
+ 
 
-    <div className="h-screen bg-white flex justify-center items-center">
+  return (
+    <div className="h-screen bg-white flex justify-around items-center">
       <div className="bg-gray-800 h-[98%] w-[98%] rounded-2xl p-5 max-w-[690px] max-h-[850px] shadow-2xl shadow-black">
         <h1 className="text-4xl font-bold text-white">ATS Check</h1>
         <form action="" className="h-[100%] w-[100%]" onSubmit={handleSubmit}>
@@ -72,13 +95,72 @@ const ATScheck = () => {
             onChange={handleFileChange}
           />
           <br />
-          <button className="mt-6 border-3 text-xl pt-2 pb-2 p-4 rounded-xl text-white font-bold bg-blue-700 outline-none">Summarize</button>
+          <button className="mt-6 border-3 text-xl pt-2 pb-2 p-4 rounded-xl cursor-pointer text-white font-bold bg-blue-700 outline-none">
+            Check
+          </button>
         </form>
+      </div>
+      <div
+        className={`${
+          movingState ? "block" : "hidden"
+        } bg-gray-300 rounded-2xl p-10 h-[90%] w-[55%] transition-all duration-1000 shadow-xl shadow-black overflow-y-scroll no-scrollbar`}
+      >
+        <h1 className="text-5xl font-bold">YOUR ATS REPORT : </h1>
+        <div className="mt-10  pl-10 flex justify-left items-center">
+          <h3 className="text-4xl font-bold">Your Ats Score : </h3>
+          <div className="inline-block ml-10">
+            <CircularProgressbar className="size-40  inline-block" value={percentage} text={`${percentage}/100`} />
+          </div>
+        </div>
 
+        <div className="mt-10">
+          <h2 className="ml-10 text-3xl font-bold">Category-Wise Score Distribution : </h2>
+
+          <div className="w-full pt-5 border-4 bg-gray-700 grid xl:grid-cols-4 grid-cols-2 mt-5 rounded-xl">
+
+            <div className=" h-[250px] ml-3 mr-3">
+              <div className="w-full h-[70%]  inline-block">
+                <CircularProgressbar value={50} text={`${10}/20`} className="inline-block size-40"/>
+              </div>
+              <div className="flex justify-center items-center h-[30%] font-bold text-3xl text-white">
+                <p>Skills Match</p>
+              </div>
+            </div>
+
+            <div className=" h-[250px]  ml-3 mr-3">
+              <div className="w-full h-[70%]  inline-block">
+                <CircularProgressbar value={50} text={`${10}/20`} className="inline-block size-40"/>
+              </div>
+              <div className="flex justify-center items-center h-[30%] font-bold text-xl text-white">
+                <p>Experience Relevence</p>
+              </div>
+            </div>
+
+            <div className=" h-[250px]  ml-3 mr-3">
+              <div className="w-full h-[70%]  inline-block">
+                <CircularProgressbar value={50} text={`${10}/20`} className="inline-block size-40"/>
+              </div>
+              <div className="flex justify-center items-center h-[30%] font-bold text-3xl text-white">
+                <p>Education</p>
+              </div>
+            </div>
+
+            <div className=" h-[250px] ml-3 mr-3">
+              <div className="w-full h-[70%]  inline-block">
+                <CircularProgressbar value={50} text={`${10}/20`} className="inline-block size-40 "/>
+              </div>
+              <div className="flex justify-center items-center h-[30%] font-bold text-xl text-white">
+                <p>Keywords & Formating</p>
+              </div>
+            </div>
+            
+
+          </div>
+
+        </div>
+        
       </div>
     </div>
-
-    
   );
 };
 

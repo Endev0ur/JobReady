@@ -89,7 +89,7 @@ const AtsCheck = async(req , res)=>{
 
 
 
-
+ 
 
 
 
@@ -153,12 +153,21 @@ Provide your response in the following format:
 // "<Specific and actionable suggestion 1>",
 // "<Specific and actionable suggestion 2>",
 // "...(more suggestions)"
-// ]
+// ],
+
+"Final Suggestion":{
+  "shouldUse":"<answer in yes or no>",
+  "whyuseorwhynot":"<justify you yes or no>",
+  "percentage":"<if you use what percentage of selection>",
+  },
+  
 // }
 
 avoid any prembles and fillers
 `
 
+  
+ 
 
 
 
@@ -178,6 +187,7 @@ avoid any prembles and fillers
 
 
 
+ 
 
 
 
@@ -194,6 +204,10 @@ avoid any prembles and fillers
 
 
 
+ 
+
+
+ 
 
 
 
@@ -205,14 +219,7 @@ avoid any prembles and fillers
 
 
 
-
-
-
-
-
-
-
-
+ 
 
 
 
@@ -387,4 +394,4 @@ avoid any prembles and fillers
 } 
 
 
-module.exports = {jobSummarizer , AtsCheck};
+module.exports = {jobSummarizer , AtsCheck}; 
