@@ -53,13 +53,10 @@ const Summarizer = () => {
   
 
   return (
-    <div className="h-screen w-full bg-white flex justify-around items-center">
-      <div className="h-[50%] w-[40%]">
-
-      </div>
-      <div className={`bg-gray-800 h-[98%] w-[98%] rounded-2xl p-5 max-w-[690px] max-h-[850px] shadow-2xl shadow-black transition-transform duration-1000 absolute ${movingState ? "-translate-x-140":""}`}>
+    <div className="bg-white flex justify-around items-center flex-wrap">
+      <div className={`bg-gray-800 h-screen w-[99%]  rounded-2xl p-5 max-w-[600px] max-h-[850px] shadow-2xl shadow-black mb-10 mt-10`}>
         <h1 className="text-4xl font-bold text-white">Summarizer</h1>
-        <form action="" className="h-[100%] w-[100%]" onSubmit={handleSubmit}>
+        <form className="h-[100%] w-[100%]" onSubmit={handleSubmit}>
           <div className="mt-10 h-[70%]  p-2">
             <p className="text-xl font-bold text-white">Job Description : </p>
             <textarea
@@ -77,8 +74,11 @@ const Summarizer = () => {
         </form>
       </div>
 
-      <div className={`${movingState ? "block" :"hidden"} bg-gray-300 rounded-2xl p-10 h-[90%] w-[55%] transition-all duration-1000 shadow-xl shadow-black overflow-y-scroll no-scrollbar`}>
-        <p className="text-4xl font-bold ">Points and Word you can use in you resume that make your resume more <strong className="underline">ATS-Friendly</strong> and <strong className="underline">Attaractive</strong></p>
+      {/* Summarizer result start from here */}
+      <div className={`${movingState ? "block" :"hidden"} bg-gray-300 rounded-2xl p-5 pt-10 2xl:p-10 h-screen xl:h-[850px] xl:ml-5 mt-10 w-[95%] xl:w-[50%] mb-10 transition-all duration-1000 shadow-xl shadow-black overflow-y-scroll no-scrollbar`}>
+        <p className="text-3xl 2xl:text-4xl font-bold ">Points and Word you can use in you resume that make your resume more <strong className="underline">ATS-Friendly</strong> and <strong className="underline">Attaractive</strong></p>
+
+        {/* Keywords */}
         <h1 className="text-3xl font-bold mt-10">Keywords : </h1>    
         <ol className="ml-10 mt-4 list-decimal">
           {keywords.map((elem , index)=>(
@@ -86,13 +86,14 @@ const Summarizer = () => {
           ))}
         </ol> 
         
+        {/* Keypoints */}
         <h1 className="text-3xl font-bold mt-10">Keypoints : </h1>    
         <ol className="ml-10 mt-4 list-decimal">
           {keypoints.map((elem , index)=>(
             <li key={index} className="text-xl font-bold text-gray-700">{ elem}</li>
           ))}
         </ol> 
-        
+
       </div>
     </div>
   );

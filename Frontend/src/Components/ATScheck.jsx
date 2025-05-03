@@ -100,8 +100,8 @@ const ATScheck = () => {
  
 
   return (
-    <div className="h-screen bg-white flex justify-around items-center">
-      <div className="bg-gray-800 h-[98%] w-[98%] rounded-2xl p-5 max-w-[690px] max-h-[850px] shadow-2xl shadow-black">
+    <div className=" bg-white flex justify-around items-center flex-wrap">
+      <div className="bg-gray-800 h-screen w-[99%]  rounded-2xl p-5 max-w-[600px] max-h-[850px] shadow-2xl shadow-black mb-10 mt-10">
         <h1 className="text-4xl font-bold text-white">ATS Check</h1>
         <form action="" className="h-[100%] w-[100%]" onSubmit={handleSubmit}>
           <div className="mt-6 h-[70%]  p-2">
@@ -111,7 +111,7 @@ const ATScheck = () => {
               id=""
               autoComplete="none"
               placeholder="Copy & Paste the Job Description Here ..."
-              className=" border-2 mt-2 h-[91%] w-[100%] resize-none p-3 outline-none rounded-2xl font-bold bg-gray-700 placeholder:text-gray-900 no-scrollbar"
+              className=" border-2 mt-2 h-[91%] w-[100%] resize-none p-3 outline-none rounded-2xl font-bold bg-gray-700 placeholder:text-gray-900 no-scrollbar text-gray-300"
               onChange={handleChange}
             ></textarea>
           </div>
@@ -129,26 +129,28 @@ const ATScheck = () => {
           </button>
         </form>
       </div>
+
+      {/* ATS REPORT STARTS HERE */}
       <div
         className={`${
           movingState ? "block" : "hidden"
-        } bg-gray-300 rounded-2xl p-10 h-[90%] w-[55%] transition-all duration-1000 shadow-xl shadow-black overflow-y-scroll no-scrollbar`}
+        } bg-gray-300 rounded-2xl p-5 pt-10 2xl:p-10 h-screen xl:h-[900px] xl:mt-10 w-[95%] 2xl:w-[50%] mb-10 transition-all duration-1000 shadow-xl shadow-black overflow-y-scroll no-scrollbar`}
       >
-        <h1 className="text-5xl font-bold">YOUR ATS REPORT : </h1>
+        <h1 className="text-3xl 2xl:text-5xl font-bold">YOUR ATS REPORT : </h1>
 
         {/* Overall Score */}
-        <div className="mt-10  pl-10 flex justify-left items-center">
-          <h3 className="text-4xl font-bold">Your Ats Score : </h3>
-          <div className="inline-block ml-10">
-            <CircularProgressbar className="size-40  inline-block" value={atsScore} text={`${atsScore}/100`} />
+        <div className="mt-10  2xl:pl-10 flex justify-left items-center">
+          <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold">Your Ats Score : </h3>
+          <div className="inline-block ml-4 2xl:ml-10">
+            <CircularProgressbar className="size-20 sm:size-30 xl:size-40  inline-block" value={atsScore} text={`${atsScore}/100`} />
           </div>
         </div>
 
         {/* Category Wise Score Distribution  */}
         <div className="mt-10">
-          <h2 className="ml-10 text-3xl font-bold">Category-Wise Score Distribution : </h2>
+          <h2 className=" 2xl:ml-10 text-2xl 2xl:text-3xl font-bold">Category-Wise Score Distribution : </h2>
 
-          <div className="w-full pt-5 border-4 bg-gray-700 grid xl:grid-cols-4 grid-cols-2 mt-5 rounded-xl">
+          <div className="w-full pt-5 border-4 bg-gray-700 grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 mt-5 rounded-xl">
 
             <div className=" h-[250px] ml-3 mr-3">
               <div className="w-full h-[70%]  inline-block">
@@ -188,9 +190,10 @@ const ATScheck = () => {
           </div>
         </div>
 
+        {/* Score Explanation */}
         <div className="mt-10">
           <h2 className="text-3xl font-bold">Score Explanation : </h2>
-          <div className="p-10 bg-gray-700 mt-5 rounded-xl">
+          <div className="p-3 sm:p-4 md:p-5 lg:p-6 xl:p-10 bg-gray-700 mt-5 rounded-xl">
             {Object.entries(scoreExplanation).map(([key, value]) => {
               return <div key={key} className="border p-2 mb-2 rounded-xl bg-gray-400">
                 <h4 className="text-2xl font-bold">{key}</h4>
@@ -200,13 +203,13 @@ const ATScheck = () => {
           </div>
         </div>
 
-
+        {/* Suggestion to improvement */}
         <div className="mt-10">
           <h2 className="text-3xl font-bold">Suggestion to Improvement: </h2>
-          <div className="p-10 bg-gray-700 mt-5 rounded-xl">
+          <div className="p-3 2xl:p-10 bg-gray-700 mt-5 rounded-xl">
             <ol className="list-decimal">
               {resumeImprovmentSuggestion.map((element , index) => {
-                return <div key={index} className="border pl-3 pr-3 pt-2 pb-2 mb-2 rounded-xl bg-gray-400 flex justify-left items-center">
+                return <div key={index} className="border pl-3 pr-3 pt-2 pb-2 mb-2 md:text-lg 2xl:text-xl rounded-xl bg-gray-400 flex justify-left items-center">
                   <li className="ml-4 font-bold">{element}</li>
                 </div>
               })}
@@ -215,9 +218,10 @@ const ATScheck = () => {
         </div>
 
 
+        {/* Final Verdict */}
         <div className="mt-10">
           <h2 className="text-3xl font-bold">Final Verdict: </h2>
-          <div className="p-10 bg-gray-700 mt-5 rounded-xl">
+          <div className="p-3 2xl:p-10 bg-gray-700 mt-5 rounded-xl">
             <div className="border pl-3 pr-3 pt-2 pb-2 mb-2 rounded-xl bg-gray-400 ">
               <h5 className="font-bold text-xl">Should you use this resume for this job : </h5>
               <p className="font-bold text-blue-900 text-xl ml-2">{finalSuggestion['shouldUse']}</p>

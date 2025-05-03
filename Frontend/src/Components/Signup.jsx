@@ -63,10 +63,10 @@ const Signup = () => {
 
   return (
     <div className={`h-screen w-full bg-black flex justify-center items-center`}>
-      <div className="h-[600px] w-[350px] xl:h-[750px] xl:w-[550px] bg-white p-10 rounded-xl flex flex-col items-center ">
+      <div className="h-[600px] w-[350px] md:w-[400px] lg:w-[500px] xl:h-[750px] xl:w-[550px] bg-white p-5 xl:p-10 rounded-xl flex flex-col items-center ">
         <h1 className="text-3xl xl:text-5xl font-bold mb-2 xl:mb-4 ">Sign Up </h1>
         <form  onSubmit={handleSubmit}>
-          <div className="p-2 h-[120px] w-[100%] rounded-xl mt-2 xl:mt-3 ">
+          <div className="p-2 h-[120px] w-[100%] rounded-xl mt-1 xl:mt-3 ">
             <h2 className="text-xl xl:text-2xl font-bold">Name</h2>
             <input
               type="text"
@@ -77,7 +77,7 @@ const Signup = () => {
             />
           </div>
 
-          <div className="p-2 h-[120px] w-[100%] rounded-xl mt-2 xl:mt-3 ">
+          <div className="p-2 h-[120px] w-[100%] rounded-xl mt-1 xl:mt-3 ">
             <h2 className="text-xl xl:text-2xl font-bold">Email</h2>
             <input
               type="email"
@@ -101,13 +101,13 @@ const Signup = () => {
 
           
 
-          <button className="text-xl xl:text-2xl mt-5 p-2 xl:p-4 h-[60px] w-[70%] rounded-2xl  font-bold cursor-pointer bg-black  hover:scale-105 duration-500 text-white flex justify-center items-center" type="submit">
+          <button className="text-xl ml-3 xl:text-2xl mt-3 p-2 xl:p-4 h-[60px] w-[70%] rounded-2xl  font-bold cursor-pointer bg-black  hover:scale-105 duration-500 text-white flex justify-center items-center" type="submit">
             Signup
           </button>
           
         </form>
 
-        <div className="mt-10 h-[70px] w-[100%] flex items-center">
+        <div className="mt-5 ml-3 xl:mt-10 h-[70px] w-[100%] flex items-center">
           <h2 className="text-md xl:text-2xl font-bold">Already Have an account ? </h2>
           <span
             className="ml-2 text-xl xl:text-2xl font-bold text-blue-500 underline cursor-pointer"
