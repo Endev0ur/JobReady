@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios'
 import { useNavigate } from "react-router";
+import {toast} from 'react-toastify';
 
 const Signup = () => {
 
@@ -32,6 +33,14 @@ const Signup = () => {
     e.preventDefault();
 
     try{
+      
+      const {name , email , password} = input;
+
+      if(!name || !email || !password){
+        toast.error("All fields are mandatory !");
+        return;
+      }
+
       const response = await axios.post("http://localhost:3000/auth/signup" , input , {
         headers : {
           'Content-Type':"application/json",
@@ -45,9 +54,11 @@ const Signup = () => {
 
       if(success){
         navigateTo("/login");
+        toast.success("Sign Up Successfully")
       }
       else{
         console.log("Error in signup");
+        toast.error("Email or password is incorrect");
       }
 
     }

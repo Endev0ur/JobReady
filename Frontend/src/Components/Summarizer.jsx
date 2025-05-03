@@ -1,8 +1,12 @@
 import React , {useState} from "react";
 import { ImCross } from "react-icons/im";
 import axios from 'axios';
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const Summarizer = () => {
+
+  const navigateTo = useNavigate();
 
   const [movingState , setMovingState] = useState(false);
 
@@ -22,11 +26,17 @@ const Summarizer = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setMovingState(true);
 
     console.log(jobDescription);
 
     try{
+
+      if(!jobDescription){
+        toast.error("Job Description is mandatory!");
+        return;
+      }
+
+      setMovingState(true);
 
       const response = await axios.post("http://localhost:3000/resume/job-summarizer" , jobDescription , {
         headers : {
@@ -40,10 +50,18 @@ const Summarizer = () => {
       setKeyWords(response.data.message.keywords);
       setKeypoints(response.data.message.keypoints);
 
+      toast.success("Result come Successfully!");
+
       // console.log("hellow" , response.data.message.keywords);
 
-    }catch(error){
+    }catch(err){
       console.log("error in summarization of job description" , error);
+      if(err.response.data.message==="No token is there!"){
+        toast.error("Please Login first !");
+        navigateTo("/login");
+        return;
+      }
+      toast.error(" Error occur from our end , Please try again later !");
     }
   }
 

@@ -73,10 +73,18 @@ const AtsCheck = async(req , res)=>{
   // console.log(text);
 
   const parsedFile = await pdfParse(bufferResumeFile);
+
+  const isOnlyNewlines = /^[\n\r]*$/.test(parsedFile.text); // Checks if text consists of only newlines and/or carriage returns
+    if (isOnlyNewlines) {
+      return res.status(400).json({
+        success: false,
+        message: 'The resume content seems invalid (only contains newlines), please provide a valid resume.',
+      });
+    }
   // // console.log(jobDescription);
   // // console.log(resumeFile);
   
-  console.log(parsedFile);
+  console.log("parsed file is : " , parsedFile.text);
 
 
 
@@ -106,7 +114,7 @@ ${parsedFile.text}]
 Provide your response in the following format:
 
 {
-"ATS Compatibility Score": <Overall score out of 100>,
+"ATS Compatibility Score": Overall score out of 100,
 "Category Scores": {
 "Skills Match": Score out of 30,
 "Experience Relevance": Score out of 30,
@@ -124,12 +132,11 @@ Provide your response in the following format:
 "Specific and actionable suggestion 2",
 "...(more suggestions)"
 ],
-
-"Final Suggestion":[
+"Final Suggestion":{
   "shouldUse":"answer in YES or NO",
   "whyuseorwhynot":"justify you yes or no",
   "percentage":"if you use what percentage of selection"
-]
+}
   
 }
 
@@ -157,7 +164,7 @@ avoid any prembles and fillers and stritly return a valid json object
 
     console.log(parsedText);
 
-
+    
 
     res.status(201).json({
       success : true,

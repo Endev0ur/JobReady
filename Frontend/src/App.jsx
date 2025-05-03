@@ -1,6 +1,7 @@
 
 import './App.css'
-import { Routes , Route } from 'react-router'
+import { Routes , Route ,Navigate} from 'react-router'
+import { ToastContainer } from 'react-toastify'
 import Auth from './Components/Auth'
 import Home from './Components/Home'
 import Profile from './Components/Profile'
@@ -16,6 +17,7 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/signup" element= {<Signup/>}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/home' element={<Home />}></Route>
@@ -25,6 +27,11 @@ function App() {
         <Route path="/generate" element={<GenerateResumeForm />}></Route>
         <Route path="/resume" element={<ResumeTemplate />}></Route>
       </Routes>
+      <ToastContainer 
+          position="top-right"
+          autoClose={3000}
+          theme="colored"
+        />
     </>
   )
 }

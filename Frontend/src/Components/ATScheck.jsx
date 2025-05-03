@@ -3,10 +3,14 @@ import { ImCross } from "react-icons/im";
 import axios from "axios";
 import { CircularProgressbar } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const ATScheck = () => {
   const [jobDescription, setJobDescription] = useState("");
   const [file, setFile] = useState(null);
+
+  const navigateTo = useNavigate();
 
   const [movingState, setMovingState] = useState(false);
 
@@ -39,7 +43,13 @@ const ATScheck = () => {
 
     try {
       if (!file) {
-        alert("Please Select the file !");
+        toast.error("Please Select the file !");
+        return;
+      }
+
+      if(!jobDescription){
+        toast.error("Please Provide the jobDescription");
+        return;
       }
 
       const formData = new FormData();
@@ -91,9 +101,20 @@ const ATScheck = () => {
       setFinalSuggestion(conclusion);
      
 
-      console.log(result);
+      // console.log(result);
+      toast.success("Report Generated Successfully!")
     } catch (err) {
       console.log("Error in ats check frontend", err);
+      if(err.response.data.message==="The resume content seems invalid (only contains newlines), please provide a valid resume."){
+        toast.error("Please Provide the Text Based Pdf");
+        return;
+      }
+      else if(err.response.data.message==="No token is there!"){
+        toast.error("Please Login first !");
+        navigateTo("/login");
+        return;
+      }
+      toast.error("Error Occur from our end , Please try again later !");
     }
   };
 
