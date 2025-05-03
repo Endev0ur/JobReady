@@ -36,7 +36,6 @@ const Summarizer = () => {
         return;
       }
 
-      setMovingState(true);
 
       const response = await axios.post("http://localhost:3000/resume/job-summarizer" , jobDescription , {
         headers : {
@@ -52,10 +51,12 @@ const Summarizer = () => {
 
       toast.success("Result come Successfully!");
 
+       setMovingState(true);
+
       // console.log("hellow" , response.data.message.keywords);
 
     }catch(err){
-      console.log("error in summarization of job description" , error);
+      console.log("error in summarization of job description" , err);
       if(err.response.data.message==="No token is there!"){
         toast.error("Please Login first !");
         navigateTo("/login");

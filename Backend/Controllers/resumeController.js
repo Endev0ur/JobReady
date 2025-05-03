@@ -132,10 +132,10 @@ Provide your response in the following format:
 "Specific and actionable suggestion 2",
 "...(more suggestions)"
 ],
-"Final Suggestion":{
-  "shouldUse":"answer in YES or NO",
-  "whyuseorwhynot":"justify you yes or no",
-  "percentage":"if you use what percentage of selection"
+"Final_Suggestion": {
+  "shouldUse": "YES or NO",
+  "whyUseOrWhyNot": "Provide a justification for why or why not the resume should be used.",
+  "selectionProbability": "Estimated percentage chance of being selected for the role based on this resume.(% sign is mandatory)"
 }
   
 }

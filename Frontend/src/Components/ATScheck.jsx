@@ -39,8 +39,6 @@ const ATScheck = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setMovingState(true);
-
     try {
       if (!file) {
         toast.error("Please Select the file !");
@@ -97,9 +95,10 @@ const ATScheck = () => {
 
       /* Now, Final Suggestion */
 
-      const conclusion = result.message['Final Suggestion'];
+      const conclusion = result.message['Final_Suggestion'];
       setFinalSuggestion(conclusion);
-     
+      console.log(finalSuggestion);
+      setMovingState(true);
 
       // console.log(result);
       toast.success("Report Generated Successfully!")
@@ -155,7 +154,7 @@ const ATScheck = () => {
       <div
         className={`${
           movingState ? "block" : "hidden"
-        } bg-gray-300 rounded-2xl p-5 pt-10 2xl:p-10 h-screen xl:h-[900px] xl:mt-10 w-[95%] 2xl:w-[50%] mb-10 transition-all duration-1000 shadow-xl shadow-black overflow-y-scroll no-scrollbar`}
+        } bg-gray-300 rounded-2xl p-5 pt-10 2xl:p-10 h-screen xl:h-[900px] xl:mt-10 w-[95%] 2xl:w-[55%] mb-10 transition-all duration-1000 shadow-xl shadow-black overflow-y-scroll no-scrollbar`}
       >
         <h1 className="text-3xl 2xl:text-5xl font-bold">YOUR ATS REPORT : </h1>
 
@@ -231,7 +230,7 @@ const ATScheck = () => {
             <ol className="list-decimal">
               {resumeImprovmentSuggestion.map((element , index) => {
                 return <div key={index} className="border pl-3 pr-3 pt-2 pb-2 mb-2 md:text-lg 2xl:text-xl rounded-xl bg-gray-400 flex justify-left items-center">
-                  <li className="ml-4 font-bold">{element}</li>
+                  <li className="ml-6 font-bold">{element}</li>
                 </div>
               })}
             </ol>
@@ -250,12 +249,12 @@ const ATScheck = () => {
 
             <div className="border pl-3 pr-3 pt-2 pb-2 mb-2 rounded-xl bg-gray-400 ">
               <h5 className="font-bold text-xl">why ? : </h5>
-              <p className="font-bold text-blue-900 text-xl ml-2">{finalSuggestion['whyuseorwhynot']}</p>
+              <p className="font-bold text-blue-900 text-xl ml-2">{finalSuggestion['whyUseOrWhyNot']}</p>
             </div>
 
             <div className="border pl-3 pr-3 pt-2 pb-2 mb-2 rounded-xl bg-gray-400">
               <h5 className="font-bold text-xl block">Chances of Selection : </h5>
-              <p className="font-bold text-blue-900 text-xl ml-2">{finalSuggestion['percentage']}</p>
+              <p className="font-bold text-blue-900 text-xl ml-2">{finalSuggestion['selectionProbability']}</p>
             </div>
           </div>
         </div>
