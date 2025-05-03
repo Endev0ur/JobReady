@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ProfileRightBlock from "./ProfileRightBlock";
 
 const GenerateResumeForm = () => {
+
+  const [done , setDone] = useState(false);
+
   return (
-    <div className="h-screen w-full hidden md:flex justify-around bg-gray-500 p-7">
+    <>
+      {done ? (<div className="h-screen w-full hidden md:flex justify-around bg-gray-500 p-7">
       <div className='w-[25%] h-full  rounded-2xl'>
         <div className='w-full p-10 h-[50%] bg-red-500 rounded-2xl shadow-xl shadow-black'>
           <p className='text-lg font-bold'>Job Description : </p> 
@@ -24,7 +28,9 @@ const GenerateResumeForm = () => {
 
       </div>
       <ProfileRightBlock />
-    </div>
+    </div>) : (<div className="h-screen text-2xl font-bold flex justify-center items-center">Under Making .........</div>)}
+    </>
+    
   )
 }
 
