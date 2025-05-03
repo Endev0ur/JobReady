@@ -55,6 +55,17 @@ const jobSummarizer = async (req , res) => {
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
 const AtsCheck = async(req , res)=>{ 
 
   const jobDescription = req.body.jobDescription;
@@ -136,39 +147,39 @@ ${parsedFile.text}]
 Provide your response in the following format:
 
 {
-// "ATS Compatibility Score": <Overall score out of 100>,
-// "Category Scores": {
-// "Skills Match": <Score out of 30>,
-// "Experience Relevance": <Score out of 30>,
-// "Education and Certifications": <Score out of 20>,
-// "Keywords and Formatting": <Score out of 20>
-// },
-// "Score Explanation": {
-// "Skills Match": "<Detailed explanation of the skills match score>",
-// "Experience Relevance": "<Detailed explanation of the experience relevance score>",
-// "Education and Certifications": "<Detailed explanation of the education and certifications score>",
-// "Keywords and Formatting": "<Detailed explanation of the keywords and formatting score>"
-// },
-// "Resume Improvement Suggestions": [
-// "<Specific and actionable suggestion 1>",
-// "<Specific and actionable suggestion 2>",
-// "...(more suggestions)"
-// ],
+"ATS Compatibility Score": <Overall score out of 100>,
+"Category Scores": {
+"Skills Match": <Score out of 30>,
+"Experience Relevance": <Score out of 30>,
+"Education and Certifications": <Score out of 20>,
+"Keywords and Formatting": <Score out of 20>
+},
+"Score Explanation": {
+"Skills Match": "<Detailed explanation of the skills match score within 15-20 words>",
+"Experience Relevance": "<Detailed explanation of the experience relevance score within 15-20 words>",
+"Education and Certifications": "<Detailed explanation of the education and certifications score within 15-20 words>",
+"Keywords and Formatting": "<Detailed explanation of the keywords and formatting score within 15-20 words>"
+},
+"Resume Improvement Suggestions": [
+"<Specific and actionable suggestion 1>",
+"<Specific and actionable suggestion 2>",
+"...(more suggestions)"
+],
 
-"Final Suggestion":{
+"Final Suggestion":[
   "shouldUse":"<answer in yes or no>",
   "whyuseorwhynot":"<justify you yes or no>",
-  "percentage":"<if you use what percentage of selection>",
-  },
+  "percentage":<if you use what percentage of selection>
+]
   
-// }
+}
 
-avoid any prembles and fillers
+avoid any prembles and fillers and stritly return a valid json object
 `
 
   
  
-
+ 
 
 
 
@@ -190,21 +201,21 @@ avoid any prembles and fillers
  
 
 
-
-
-
-
-
-
-
-
-
-
-
+   
 
 
 
  
+
+ 
+
+ 
+ 
+ 
+
+
+
+   
 
 
  
