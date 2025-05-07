@@ -12,6 +12,7 @@ const Skills = () => {
                 <input
                   type="text"
                   className="bg-white p-2  pl-5 pr-5 rounded-xl outline-none ml-5 w-[80%]"
+                  placeholder='Enter your skills here ....'
                 />
               </div> 
             </div>

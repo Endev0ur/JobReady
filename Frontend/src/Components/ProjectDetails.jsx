@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 
-const ProjectDetails = () => {
+const ProjectDetails = ({uniq , projects , setProjects , name}) => {
 
   
   const [arr, setArr] = useState([]);
@@ -11,7 +11,7 @@ const ProjectDetails = () => {
   const [editpoint, setEditPoint] = useState("");
   const [index, setIndex] = useState(-1);
 
-  console.log(arr.length);
+  // console.log(arr.length);
 
   const handleAddBtn = () => {
     setAdd(!add);
@@ -60,7 +60,7 @@ const ProjectDetails = () => {
     setIndex(-1);
     setEditPoint("");
     console.log(arr);
-    console.log("index is is in best form : ", index);
+    // console.log("index is is in best form : ", index);
   };
 
   const handleCancel = (e) => {
@@ -83,8 +83,19 @@ const ProjectDetails = () => {
 
     setArr(finalarr);
 
-    console.log(finalarr);
+    // console.log(finalarr);
 
+  }
+
+  const handleDeleteProject = (e) => {
+    console.log("project id is : " , e.target.parentElement.id);
+    const index = e.target.parentElement.id;
+    const arrX = [...projects];
+    
+
+    console.log(finalarr);
+    // console.log(arr);
+    setProjects(finalarr);
   }
 
   useEffect(()=>{
@@ -100,12 +111,13 @@ const ProjectDetails = () => {
     <>
     {/* Project Details */}
 
-      <div className="bg-gray-300 p-5 width-[100%] border rounded-2xl mt-10">
-          <h2 className="text-2xl font-bold">Project2 Details : </h2>
+      <div className="bg-gray-300 p-5 width-[100%] border rounded-2xl mt-10" id={uniq} name={name}>
+          <h2 className="text-2xl font-bold ">Project Details : </h2>
+          {/* <button className="border p-2 rounded-lg ml-3" onClick={handleDeleteProject}>Delete This Project</button> */}
           <form className="mt-3">
             <div className="flex justify-around items-center text-xl font-bold w-[100%]  flex-wrap">
               <div className=" w-full">
-                <span className="text-xl">Name of the Project2 : </span>
+                <span className="text-xl">Name of the Project : </span>
                 <input
                   type="text"
                   className="bg-white p-2  pl-5 pr-5 rounded-xl outline-none ml-5 w-[75%]"
@@ -184,15 +196,16 @@ const ProjectDetails = () => {
                   ))}
                 </ol>
                 {add ? (
-                  <button onClick={handleAddBtn} className="border-2 mr-10 pt-2 pb-2 pl-10 pr-10 mt-5 rounded-xl ">add+1</button>
+                  <button onClick={handleAddBtn} className="border-2 mr-10 pt-2 pb-2 pl-10 pr-10 mt-5 rounded-xl cursor-pointer">Add</button>
                 ) : (
                   <div>
                     <input
                       type="text"
-                      className="border rounded-xl mt-3 mr-5 pt-2 pb-2 pl-10 pr-10 outline-none"
+                      className="border rounded-lg mt-3 mr-5 pt-2 pb-2 pl-3 pr-3 outline-none"
+                      placeholder="Enter the point"
                       onChange={handleAddPointChange}
                     />
-                    <button className="border-3 pl-7 pr-7 pt-2 pb-2 rounded-xl " onClick={handleSavePoint}>
+                    <button className="border-3 pl-7 pr-7 pt-2 pb-2 rounded-lg cursor-pointer" onClick={handleSavePoint}>
                       Save
                     </button>
                   </div>

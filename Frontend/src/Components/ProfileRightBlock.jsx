@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import ProjectDetails from "./ProjectDetails";
 import Education from "./Education";
 import Experience from "./Experience";
 import Achievement from "./Achievements";
 import Skills from "./Skills";
 const ProfileRightBlock = () => {
+
+  const [projects , setProjects] = useState([{}]);
+
+  const handleClick = () => {
+    const size = projects.length;
+    const arr = [...projects];
+    arr.push({id:size , value:`project${size}`});
+    setProjects(arr);
+
+    // console.log(projects.size());
+  }
   
   return (
     <div className="h-[100%] w-[70%] bg-white rounded-2xl shadow-2xl shadow-black p-10">
@@ -14,12 +25,14 @@ const ProfileRightBlock = () => {
 
         <Education></Education>
 
-        {/* Project1 Details :  */}
+        {/* Project1 Details * 2  */}
 
         <ProjectDetails></ProjectDetails>
+        <ProjectDetails></ProjectDetails>
 
-        {/* Experience Section */}
+        {/* Experience Section * 2 */}
 
+        <Experience></Experience>
         <Experience></Experience>
 
         {/* Achievement section */}

@@ -149,21 +149,20 @@ const Achievement = () => {
                   ))}
                 </ol>
                 {add ? (
-                  <button onClick={handleAddBtn} className="border-2 mr-10 pt-2 pb-2 pl-10 pr-10 mt-5 rounded-xl ">add+1</button>
+                  <button onClick={handleAddBtn} className="border-2 mr-10 pt-2 pb-2 pl-10 pr-10 mt-5 rounded-xl cursor-pointer">Add+1</button>
                 ) : (
                   <div>
                     <input
                       type="text"
-                      className="border rounded-xl mt-3 mr-5 pt-2 pb-2 pl-10 pr-10 outline-none"
+                      className="border rounded-lg mt-3 mr-5 pt-2 pb-2 pl-3 pr-10 outline-none"
                       onChange={handleAddPointChange}
                     />
-                    <button className="border-3 pl-7 pr-7 pt-2 pb-2 rounded-xl " onClick={handleSavePoint}>
+                    <button className="border-3 pl-7 pr-7 pt-2 pb-2 rounded-lg " onClick={handleSavePoint}>
                       Save
                     </button>
                   </div>
                 )}
               </div>
-              
             </div>
           </form>
         </div>
