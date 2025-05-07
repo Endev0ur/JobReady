@@ -1,7 +1,6 @@
 const {GoogleGenAI} = require('@google/genai')
 const pdfParse = require('pdf-parse');
-
-const { PDFDocument } = require('pdf-lib');
+const resumeModel = require('../Models/resumeModel');
 
 
 
@@ -176,6 +175,10 @@ avoid any prembles and fillers and stritly return a valid json object
   await main();
 
 } 
+
+
+/* Feature 3 : Generate Resume */
+
 
 
 module.exports = {jobSummarizer , AtsCheck}; 
