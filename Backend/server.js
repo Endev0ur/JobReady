@@ -16,6 +16,7 @@ require('./Models/dbConnection');
 const authRouter = require("./Routes/authRouter");
 const resumeRouter = require('./Routes/resumeRouter');
 const profileRouter = require("./Routes/profileRouter");
+const generateRouter = require("./Routes/generateRouter");
 const protect = require('./Middlewares/authMiddleware');
 
 /* this is because we are using cookie in frontend and backend */
@@ -39,6 +40,7 @@ const upload = multer({storage:storage});
 app.use("/auth" , authRouter);
 app.use("/resume" , protect , upload.single('resume') , resumeRouter);
 app.use("/profile" , protect , profileRouter);
+app.use("/generate" , protect , generateRouter);
 
 app.get("/" , (req , res)=>{
   res.send("server is running");

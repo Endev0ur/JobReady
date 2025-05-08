@@ -1,6 +1,7 @@
 const {GoogleGenAI} = require('@google/genai')
 const pdfParse = require('pdf-parse');
-const resumeModel = require('../Models/resumeModel');
+const resumeDetails = require('../Models/resumeModel');
+const jwt = require("jsonwebtoken");
 
 
 
@@ -179,6 +180,163 @@ avoid any prembles and fillers and stritly return a valid json object
 
 /* Feature 3 : Generate Resume */
 
+const generateResume = async(req , res) => {
+  try{
+
+    /* Extract the userId from the token */
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token , process.env.SECRET_TOKEN);
+    const userId = decoded.id;
+
+    console.log("User id is : " , userId);
+    
+    /* With the help of userId , Find the userDetails */
+    const userDetails = await resumeDetails.findOne({userId});
+
+    console.log(userDetails);
+
+    /* Job Description comes here */
+    const jobDescription = req.body;
+
+    // console.log(jobDescription);
+
+    /* My Prompts Comes here */
+    const prompt = `You are a professional resume generator. Based on the user's complete profile and the given job description, generate a one-page, ATS-optimized resume tailored specifically to that role.
+
+    Instructions:
+    1. Analyze all experiences, projects, and achievements.
+    2. Select only the **top 3 most relevant** items based on the job description. Choose from:
+      - Up to 2 work experiences
+      - Up to 2 projects
+      - achievement array
+      (total: 3 items)
+    3. Rephrase and rewrite using **keywords and terminology from the job description** to align with ATS and hiring manager expectations.
+    4. Format bullet points for clarity:
+      - Experience → bullets (max 4),
+      - Project → features (max 4),
+      - Achievement → points (max 5),
+
+    Return strictly in the following JSON format:
+
+    {
+      "userDetails": {
+        "name": "Full Name",
+        "email": "email@example.com",
+        "phone": "+91-XXXXXXXXXX",
+        "linkedin": "https://linkedin.com/in/username",
+        "github": "https://github.com/username"
+      },
+      "summary": "A concise, impactful professional summary reworded to match the job description.",
+      "skills": ["Keyword-optimized Skill1", "Skill2", "Skill3", "..."],
+      "highlights": [
+        "how many experience you are using":"no of experience you are using",
+        "how many projects you are using":"no of project you are using",
+        "experience":[ 
+          {
+            "position": "Job Title",
+            "company": "Company Name",
+            "duration": "Start Date - End Date",
+            "bullets": [
+              "Bullet 1 rephrased to match job requirements.",
+              "Bullet 2...",
+              "Max 4 bullets."
+            ]
+          }
+        ],
+        "projects":[
+          {
+            "name": "Project Title",
+            "features": [
+              "Implemented feature 1 using relevant stack/tech.",
+              "Added functionality for X using Y.",
+              "Max 4 features."
+            ]
+          }
+        ],
+        "achievements":[
+          {
+            "title": "Achievement or Award Name",
+            "points": [
+              "Rephrased achievement point 1 related to the job.",
+              "Point 2...",
+              "Max 5 points.",
+            ]
+          }
+        ],
+      ],
+      "education": [
+        {
+          "Degree": "Degree Name",
+          "Overall GPA":"overall GPA",
+          "institution": "Institution Name",
+          "startYear": "start Year",
+          "endYear:"end Year"
+        }
+      ]
+    }
+
+    USER_PROFILE:
+    ${userDetails};
+
+    JOB_DESCRIPTION:
+    ${jobDescription};
+
+    Only return a valid JSON object. Do not include markdown, explanation, or extra formatting. Avoid any fillers and prembles.
+    `
+
+  console.log(prompt);
 
 
-module.exports = {jobSummarizer , AtsCheck}; 
+    /* From Here , The Result (AI) function Starts from here ..... */
+
+    async function main() {
+      const response = await ai.models.generateContent({
+        model: "gemini-2.0-flash",
+        contents: prompt,
+      });
+      console.log(response.text);
+  
+      const responseText = response.text;
+
+      // // Step 2: Clean it
+      const cleanedText = responseText
+      .replace(/```json/g, '') // remove starting ```json
+      .replace(/```/g, '')      // remove ending ```
+      .trim();                  // remove extra spaces
+  
+      // // // Step 3: Parse it
+      const parsedText = JSON.parse(cleanedText);
+  
+      // console.log(parsedText);
+  
+      
+  
+      res.status(201).json({
+        success : true,
+        message : parsedText,
+      })
+  
+    }
+    console.log("Hello world");
+    await main();
+
+
+
+    // res.status(201).json({
+    //   success : true,
+    //   message : "User Details Found Successfully!",
+    //   userDetails : userDetails,
+    // });
+
+  }
+  catch(err){
+    res.status(500).json({
+      message : "Server Error in resumeController",
+      error : err,
+    })
+  }
+
+}
+
+
+module.exports = {jobSummarizer , AtsCheck , generateResume}; 

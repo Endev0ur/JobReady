@@ -55,6 +55,12 @@ const resumeSchema = new mongoose.Schema({
     },
     overallGPA:{
       type:Number,
+    },
+    startDate:{
+      type:Date,
+    },
+    endDate:{
+      type:Date,
     }
   },
 
