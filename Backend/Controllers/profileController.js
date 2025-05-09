@@ -50,4 +50,34 @@ const profileSave = async (req, res) => {
 
 };
 
-module.exports = {profileSave};
+
+const getDetails = async(req , res) => {
+  try{
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token , process.env.SECRET_TOKEN);
+    const userId = decoded.id;
+
+    const existingResume = await Resume.findOne({userId});
+
+    if(existingResume){
+      return res.status(201).json({
+        success:true,
+        message:"Resume details found in database",
+        resume:existingResume,
+      })
+    }
+
+    res.status(201).json({
+      success:false,
+      message:"Resume details not found in database",
+    })
+  }
+  catch(err){
+    res.status(500).json({
+      success : false,
+      message:"Error in getting details of the user",
+    })
+  }
+}
+
+module.exports = {profileSave , getDetails};
