@@ -4,7 +4,7 @@ import ProfileRightBlock from "./ProfileRightBlock";
 
 const Profile = () => {
 
-  const [done , setDone] = useState(false);
+  const [done , setDone] = useState(true);
 
   return (
      <>
