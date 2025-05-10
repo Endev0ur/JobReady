@@ -77,9 +77,9 @@ const ProfileRightBlock = () => {
 
         {/* Project1 Details * 2  */}
 
-        <ProjectDetails  projectDetails={resumeDetails.project[0]} setProjectDetails={setResumeDetails}></ProjectDetails>
+        <ProjectDetails  projectDetails={resumeDetails.project[0]} setProjectDetails={setResumeDetails} index={0}></ProjectDetails>
 
-        <ProjectDetails></ProjectDetails>
+        <ProjectDetails projectDetails={resumeDetails.project[1]} setProjectDetails={setResumeDetails} index={1}></ProjectDetails>
 
 
         {/* Experience Section * 2 */}

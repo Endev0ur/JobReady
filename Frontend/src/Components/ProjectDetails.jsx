@@ -1,118 +1,154 @@
 
 import React, { useEffect, useState } from "react";
+import { RxCross2 } from "react-icons/rx";
 
-const ProjectDetails = ({uniq , projects , setProjects , name}) => {
+const ProjectDetails = ({ projectDetails , setProjectDetails , index}) => {
 
-  
-  const [arr, setArr] = useState([]);
-  const [add, setAdd] = useState(true);
-  const [addPoint, setAddPoint] = useState("");
-  const [edit, setEdit] = useState(false);
-  const [editpoint, setEditPoint] = useState("");
-  const [index, setIndex] = useState(-1);
+  const [addNewTechStack , setAddNewTechStack] = useState("");
 
-  // console.log(arr.length);
+  console.log(projectDetails)
+  const [userProjectDetails , setUserProjectDetails] = useState({
+    projectName:"",
+    projectDescription:"",
+    techStack:[],
+    links:[],
+    briefPoints:[],
+  });
 
-  const handleAddBtn = () => {
-    setAdd(!add);
-  };
-
-  const handleAddPointChange = (e) => {
-    setAddPoint(e.target.value);
-    console.log(addPoint);
-  };
-
-  const handleSavePoint = (e) => {
-    e.preventDefault();
-    if (addPoint !== "") {
-      arr.push(addPoint);
-      setAdd(!add);
-      setAddPoint("");
-    }
-  };
-
-  const handleEdit = (e) => {
-    console.log("edit pr click karte hi chala");
-    e.preventDefault();
-    // setIndex(e.target.parentElement.id);
-    console.log(e.target.parentElement);
-    console.log(e.target.parentElement.id);
-    let ind = e.target.parentElement.id;
-    // console.log("index is : ", ind);
-    setEdit(!edit);
-    setIndex(ind);
-    // console.log("ind is  , ", index);
-  };
-
-  const handleEditChange = (e) => {
-    e.preventDefault();
-    // setEditPoint(arr[index]);
-    setEditPoint(e.target.value);
-    console.log("edit change will be : => ", editpoint);
-  };
-
-  const handleUpdate = (e) => {
-    e.preventDefault();
-    const newArr = [...arr];
-    newArr[index] = editpoint;
-    setArr(newArr);
-    setEdit(!edit);
-    setIndex(-1);
-    setEditPoint("");
-    console.log(arr);
-    // console.log("index is is in best form : ", index);
-  };
-
-  const handleCancel = (e) => {
-    e.preventDefault();
-    setEdit(!edit);
-    setIndex(-1);
-    let newArr = [...arr];
-    setArr(newArr);
-  };
-
-  const handleDelete = (e) => {
-    e.preventDefault();
-
-    let delArr = [...arr];
-    const indi = e.target.parentElement.id;
-
-    const finalarr = delArr.filter((elem , indexi) => {
-      return indexi!=indi;
-    })
-
-    setArr(finalarr);
-
-    // console.log(finalarr);
-
-  }
-
-  const handleDeleteProject = (e) => {
-    console.log("project id is : " , e.target.parentElement.id);
-    const index = e.target.parentElement.id;
-    const arrX = [...projects];
-    
-
-    console.log(finalarr);
-    // console.log(arr);
-    setProjects(finalarr);
-  }
-
-  useEffect(()=>{
-
-  } , [arr]);
+  const [showSaveBtn , setShowSaveBtn] = useState(false);
 
   useEffect(() => {
-    setEditPoint(arr[index]);
-  }, [index, add , edit]);
+    if (projectDetails) {
+      setUserProjectDetails({
+        projectName: projectDetails.projectName || '',
+        projectDescription: projectDetails.projectDescription || '',
+        techStack: projectDetails.techStack || [],
+        links: projectDetails.links || [],
+        briefPoints: projectDetails.briefPoints || [],
+      });
+    }
+  }, [projectDetails]);
+
+  // console.log("projectdetails are : " , userProjectDetails);
+
+  // let techStackArray;
+
+  const handleChange = (e) => {
+
+    const {name , value} = e.target;
+
+    setUserProjectDetails((prev)=>({
+      ...prev,
+      [name]:value,
+    }))
+
+    setShowSaveBtn(true);
+
+  }
+
+  const handleBriefPointsChange = (e , index) => {
+    const updatedBriefPoints = [...userProjectDetails.briefPoints];
+    updatedBriefPoints[index] = e.target.value;
+
+    setUserProjectDetails((prev)=>({
+      ...prev,
+      briefPoints:updatedBriefPoints,
+    }));
+
+    setShowSaveBtn(true);
+  }
+
+  
+
+  const handleSaveChanges = () => {
+    setShowSaveBtn(false);
+    setProjectDetails((prev) => {
+      const updatedProjectArray = [...prev.project];
+      updatedProjectArray[index] = userProjectDetails;
+  
+      return {
+        ...prev,
+        project: updatedProjectArray,
+      };
+    });
+
+    
+  }
+
+  const handleTechStackChange = (e) => {
+    const {name , value} = e.target;
+
+    setAddNewTechStack(value);
+    console.log("Add new Tech Stack si : " , addNewTechStack);
+
+  }
+  const handleAddTechStack = (e) => {
+    e.preventDefault();
+
+    setShowSaveBtn(true);
+
+    if(addNewTechStack===""){
+      console.log("Atleast write something");
+    }
+
+    const techStackArray = [...userProjectDetails.techStack];
+    const findTechStack = techStackArray.find((item)=>{
+      return item===addNewTechStack;
+    })
+
+    console.log("findTechStackIs" , findTechStack);
+    if(findTechStack===undefined){
+      techStackArray.push(addNewTechStack);
+
+      setUserProjectDetails((prev)=>({
+        ...prev,
+        techStack:techStackArray,
+      }));
+
+      // console.log("userProjectDetails techstack is" , userProjectDetails.techStack);
+
+      setAddNewTechStack("");
+    }
+    else{
+      console.log("It is already Present , return ")
+    }
+
+  }
+
+  const handleDeleteTechStack = (e) => {
+
+    e.preventDefault();
+
+    showSaveBtn(true);
+
+    const index = e.target.parentElement.id;
+
+    console.log("index is : " , index);
+
+    const techStackArray = [...userProjectDetails.techStack];
+    const updatedTechStackArray = techStackArray.filter((item , ind) => {
+      return ind!=index;
+    })
+
+    console.log("updatedTechstack is : " , updatedTechStackArray);
+    setUserProjectDetails((prev)=>({
+      ...prev,
+      techStack:updatedTechStackArray,
+    }));
+
+    // console.log("userProjectDetails techstack is" , userProjectDetails.techStack);
+
+  }
+
 
 
   return (
     <>
     {/* Project Details */}
 
-      <div className="bg-gray-300 p-5 width-[100%] border rounded-2xl mt-10" id={uniq} name={name}>
-          <h2 className="text-2xl font-bold ">Project Details : </h2>
+      <div className="bg-gray-300 p-5 width-[100%] border rounded-2xl mt-10">
+          <h2 className="text-2xl font-bold inline-bold inline-block">Project Details : </h2>
+          <button className={`border p-2 pl-5 pr-5 rounded-md ml-5 ${showSaveBtn ? "inline-block" : "hidden"}`} onClick={handleSaveChanges}>Save Changes</button>
           {/* <button className="border p-2 rounded-lg ml-3" onClick={handleDeleteProject}>Delete This Project</button> */}
           <form className="mt-3">
             <div className="flex justify-around items-center text-xl font-bold w-[100%]  flex-wrap">
@@ -120,96 +156,104 @@ const ProjectDetails = ({uniq , projects , setProjects , name}) => {
                 <span className="text-xl">Name of the Project : </span>
                 <input
                   type="text"
+                  value={userProjectDetails.projectName}
+                  name="projectName"
                   className="bg-white p-2  pl-5 pr-5 rounded-xl outline-none ml-5 w-[75%]"
+                  onChange={handleChange}
                 />
               </div>
 
               <textarea
-                name=""
+                name="projectDescription"
                 id=""
-                className="w-[100%] mt-6 bg-gray-500 h-[100px] resize-none p-5 rounded-xl"
+                value={userProjectDetails.projectDescription}
+                className="w-[100%] mt-6 bg-gray-500 h-[100px] resize-none p-5 rounded-xl no-scrollbar"
                 placeholder="Write Something about project "
+                onChange={handleChange}
               ></textarea>
 
               <div className=" w-full mt-5">
                 <span className="text-xl">Tech Stack Used : </span>
-                <input
-                  type="text"
-                  className="bg-white p-2  pl-5 pr-5 rounded-xl outline-none ml-5 w-[75%]"
-                  placeholder="Write Tech stack you used in comma saparated ( , ) fashion"
-                />
+                <div className="w-[100%] grid grid-cols-5">
+                  {userProjectDetails.techStack.map((item , index)=> {
+                    return <div key={index} id={index} className="border m-2 flex justify-center items-center relative rounded-lg">
+                      {item}
+                      <button className=" h-[100%] w-[20%] absolute right-0 flex justify-center items-center bg-red-500 rounded-r-lg cursor-pointer" onClick={handleDeleteTechStack}>
+                        <RxCross2 className="text-white"></RxCross2>
+                      </button>
+                    </div>
+                  })} 
+                </div>
+
+                <div className="flex w-[50%] h-[50px] items-center mt-5 border">
+                  <input className="m-2 border w-[70%] h-[100%]" name="addSkills" onChange={handleTechStackChange} value={addNewTechStack}/>
+                  <button className="border w-[25%] h-[100%]"
+                  onClick={handleAddTechStack}>ADD</button>
+                </div>
+                
               </div>
 
-              <div className="h-[50px] w-[100%] ml-3 mt-5 flex items-center justify-start">
-                <h1>Links : </h1>
-                <a href="" target="_blank" className="underline ml-10">Deployment</a>
-                <a href="" target="_blank" className="underline ml-10">
-                  Github
-                </a>
+
+
+
+              <div className=" w-full mt-5 flex justify-around items-center">
+              <div className="w-full">
+                <span className="text-xl">Github : </span>
+                <input
+                  type="text"
+                  name="github"
+                  value={userProjectDetails.github}
+                  className="bg-white p-2 rounded-xl outline-none ml-1 w-[75%]"
+                  placeholder="Project Github Link"
+                  onChange={handleChange}
+                />
               </div>
+              <div className="w-full">
+                <span className="text-xl">Deployed : </span>
+                <input
+                  type="text"
+                  name = "phoneNo"
+                  value={userProjectDetails.deployed}
+                  className="bg-white p-2 rounded-xl outline-none ml-1 w-[75%]"
+                  placeholder="Project Deployed Link"
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
 
               <div className=" w-full mt-5">
                 <h1 className="block">Brifely About Project (pointwize) : </h1>
-                <ol className="list-decimal ml-5 mr-3">
-                  {arr.map((elem, ind) => (
-                    <div>
-                      {index != ind ? (
-                        <li kye={ind} id={ind}>
-                          <input
-                            type="text"
-                            className="mr-10 p-2 ml-5 mt-5 rounded-xl w-[70%] border-2 border-black text-gray-200 bg-gray-700"
-                            value={elem}
-                          />
-                          <button
-                            className=" cursor-pointer border-2 border-black bg-lime-500 text-gray-800 p-1 pl-7 pr-7 rounded-xl"
-                            onClick={handleEdit}
-                          >
-                            Edit
-                          </button>
-                          <button className="cursor-pointer ml-2 border-2 border-black bg-red-500 text-gray-800 p-1 pl-7 pr-7 rounded-xl" onClick={handleDelete}>
-                            Delete
-                          </button>
-                        </li>
-                      ) : (
-                        <li key={ind} id={ind}>
-                          <input
-                            type="text"
-                            className="mr-10 p-2 ml-5 mt-5 rounded-xl w-[70%] border-2 border-black text-gray-200 bg-gray-700"
-                            onChange={handleEditChange}
-                            value={editpoint}
-                          />
-                          <button
-                            className="cursor-pointer border-2 border-black bg-green-500 text-gray-800 p-1 pl-7 pr-7 rounded-xl mr-2"
-                            onClick={handleUpdate}
-                          >
-                            Update
-                          </button>
-                          <button
-                            className="cursor-pointer border-2 border-black bg-red-500 text-gray-800 p-1 pl-7 pr-7 rounded-xl ml-2"
-                            onClick={handleCancel}
-                          >
-                            Cancel
-                          </button>
-                        </li>
-                      )}
-                    </div>
-                  ))}
-                </ol>
-                {add ? (
-                  <button onClick={handleAddBtn} className="border-2 mr-10 pt-2 pb-2 pl-10 pr-10 mt-5 rounded-xl cursor-pointer">Add</button>
-                ) : (
-                  <div>
-                    <input
-                      type="text"
-                      className="border rounded-lg mt-3 mr-5 pt-2 pb-2 pl-3 pr-3 outline-none"
-                      placeholder="Enter the point"
-                      onChange={handleAddPointChange}
-                    />
-                    <button className="border-3 pl-7 pr-7 pt-2 pb-2 rounded-lg cursor-pointer" onClick={handleSavePoint}>
-                      Save
-                    </button>
-                  </div>
-                )}
+                <textarea
+                name="briefPoints[0]"
+                value={userProjectDetails.briefPoints[0]}
+                className="w-[100%] mt-6 bg-gray-500 h-[100px] resize-none p-5 rounded-xl no-scrollbar"
+                placeholder="Write Something about project "
+                onChange={(e)=>handleBriefPointsChange(e , 0)}
+              ></textarea>
+
+              <textarea
+                name="briefPoints[1]"
+                value={userProjectDetails.briefPoints[1]}
+                className="w-[100%] mt-6 bg-gray-500 h-[100px] resize-none p-5 rounded-xl no-scrollbar"
+                placeholder="Write Something about project "
+                onChange={(e)=>handleBriefPointsChange(e , 1)}
+              ></textarea>
+
+              <textarea
+                name="briefPoints[2]"
+                value={userProjectDetails.briefPoints[2]}
+                className="w-[100%] mt-6 bg-gray-500 h-[100px] resize-none p-5 rounded-xl no-scrollbar"
+                placeholder="Write Something about project "
+                onChange={(e)=>handleBriefPointsChange(e , 2)}
+              ></textarea>
+
+              <textarea
+                name="briefPoints[3]"
+                value={userProjectDetails.briefPoints[3]}
+                className="w-[100%] mt-6 bg-gray-500 h-[100px] resize-none p-5 rounded-xl no-scrollbar"
+                placeholder="Write Something about project "
+                onChange={(e)=>handleBriefPointsChange(e , 3)}
+              ></textarea>
               </div>
             </div>
           </form>

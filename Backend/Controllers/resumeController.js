@@ -213,7 +213,7 @@ const generateResume = async(req , res) => {
     3. Rephrase and rewrite using **keywords and terminology from the job description** to align with ATS and hiring manager expectations.
     4. Format bullet points for clarity:
       - Experience → bullets (max 4),
-      - Project → features (max 4),
+      - Project → features (max 4), add links in project which is given in userDetails;
       - Achievement → points (max 5),
 
     Return strictly in the following JSON format:
@@ -240,18 +240,23 @@ const generateResume = async(req , res) => {
               "Bullet 1 rephrased to match job requirements.",
               "Bullet 2...",
               "Max 4 bullets."
-            ]
+            ],
+            
           }
         ],
         "projects":[
           {
             "name": "Project Title",
+            "description":"project Description",
             "features": [
               "Implemented feature 1 using relevant stack/tech.",
               "Added functionality for X using Y.",
               "Max 4 features."
-            ]
+            ],
+            "github":"github link provied by user",
+            "deployed":"deployed link provied by user",
           }
+
         ],
         "achievements":[
           {
