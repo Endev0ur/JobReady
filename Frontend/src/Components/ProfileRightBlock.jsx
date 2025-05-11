@@ -60,6 +60,7 @@ const ProfileRightBlock = () => {
   } , [resumeDetails])
 
 
+  console.log("user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is :" , resumeDetails.achievements);
 
   return (
     <div className="h-[100%] w-[70%] bg-white rounded-2xl shadow-2xl shadow-black p-10">
@@ -91,7 +92,7 @@ const ProfileRightBlock = () => {
 
         {/* Achievement section */}
 
-        <Achievement></Achievement>
+        <Achievement achievementDetails= {resumeDetails.achievements} setAchievementsDetails = {setResumeDetails}></Achievement>
 
 
         {/* Skills */}
