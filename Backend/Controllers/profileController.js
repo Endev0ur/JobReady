@@ -11,7 +11,7 @@ const profileSave = async (req, res) => {
   console.log("id is : " , userId);
 
   /* this is for any required condition can't be empty */
-  if(!userDetails?.name || !userDetails?.email || !userDetails?.phoneNo || !userDetails?.linkedIn || !userDetails?.github ||!project[0]?.projectName ||!project[0]?.projectDescription || !project[0]?.techStack?.length || !project[0]?.links || !project[0]?.briefPoints?.length || !project[1]?.projectName ||!project[1]?.projectDescription || !project[1]?.techStack?.length || !project[1]?.links || !project[1]?.briefPoints?.length ){
+  if(!userDetails?.name || !userDetails?.email || !userDetails?.phoneNo || !userDetails?.linkedIn || !userDetails?.github ||!project[0]?.projectName ||!project[0]?.projectDescription || !project[0]?.techStack?.length || !project[0]?.github || !project[1]?.github || !project[0]?.briefPoints?.length || !project[1]?.projectName ||!project[1]?.projectDescription || !project[1]?.techStack?.length || !project[0]?.deployed ||!project[1]?.deployed || !project[1]?.briefPoints?.length ){
     return res.status(401).json({
       success : false,
       message : "userDetail Should be filled , exactly 2 projectDetails should be filled",

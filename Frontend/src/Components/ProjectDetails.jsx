@@ -4,6 +4,7 @@ import { RxCross2 } from "react-icons/rx";
 
 const ProjectDetails = ({ projectDetails , setProjectDetails , index}) => {
 
+  console.log("project details are " , projectDetails);
   const [addNewTechStack , setAddNewTechStack] = useState("");
 
   console.log(projectDetails)
@@ -11,7 +12,8 @@ const ProjectDetails = ({ projectDetails , setProjectDetails , index}) => {
     projectName:"",
     projectDescription:"",
     techStack:[],
-    links:[],
+    github:"",
+    deployed:"",
     briefPoints:[],
   });
 
@@ -23,13 +25,14 @@ const ProjectDetails = ({ projectDetails , setProjectDetails , index}) => {
         projectName: projectDetails.projectName || '',
         projectDescription: projectDetails.projectDescription || '',
         techStack: projectDetails.techStack || [],
-        links: projectDetails.links || [],
+        github: projectDetails.github || "",
+        deployed:projectDetails.deployed || "",
         briefPoints: projectDetails.briefPoints || [],
       });
     }
   }, [projectDetails]);
 
-  // console.log("projectdetails are : " , userProjectDetails);
+  console.log("projectdetails are : " , userProjectDetails);
 
   // let techStackArray;
 
@@ -119,7 +122,7 @@ const ProjectDetails = ({ projectDetails , setProjectDetails , index}) => {
 
     e.preventDefault();
 
-    showSaveBtn(true);
+    setShowSaveBtn(true);
 
     const index = e.target.parentElement.id;
 
@@ -212,7 +215,7 @@ const ProjectDetails = ({ projectDetails , setProjectDetails , index}) => {
                 <span className="text-xl">Deployed : </span>
                 <input
                   type="text"
-                  name = "phoneNo"
+                  name = "deployed"
                   value={userProjectDetails.deployed}
                   className="bg-white p-2 rounded-xl outline-none ml-1 w-[75%]"
                   placeholder="Project Deployed Link"

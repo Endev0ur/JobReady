@@ -78,15 +78,13 @@ const resumeSchema = new mongoose.Schema({
       type:[String],
       required:true,
     },
-    links:{
-      github:{
-        type:String,
-        required:true,
-      },
-      deployed:{
-        type:String,
-        required:true,
-      }
+    github:{
+      type:String,
+      required:true,
+    },
+    deployed:{
+      type:String,
+      required:true,
     },
     briefPoints:{
       type:[String], 

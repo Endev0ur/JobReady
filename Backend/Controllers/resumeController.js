@@ -205,17 +205,19 @@ const generateResume = async(req , res) => {
 
     Instructions:
     1. Analyze all experiences, projects, and achievements.
-    2. Select only the **top 3 most relevant** items based on the job description. Choose from:
-      - Up to 2 work experiences
-      - Up to 2 projects
+    2. Select only the **exactly 3 most relevant** items based on the job description. Choose from:
+      - Up to 2 work experiences(prioritize over project and achievements if experience is very reputed among that field)
+      - Up to 2 projects (first project should be most impressive or based on today's relevent skills)
       - achievement array
-      (total: 3 items)
-    3. Rephrase and rewrite using **keywords and terminology from the job description** to align with ATS and hiring manager expectations.
+
+      most Important = Total = **exactly 3 items**. Prioritize by relevance with deep analysis of jobDescription and userDetails.
+
+    3. Rephrase and rewrite using **keywords and terminology from the job description** to align with ATS and hiring manager expectations,
     4. Format bullet points for clarity:
-      - Experience → bullets (max 4),
-      - Project → features (max 4), add links in project which is given in userDetails;
+      - Experience → bullets (max 4), + + For each selected project, match its "projectName" with the original project array and extract the exact "links.github" and "links.deployed" URLs. Do NOT create your own URLs.
       - Achievement → points (max 5),
 
+      Note : Give me exactly top 3 most relevent;
     Return strictly in the following JSON format:
 
     {
@@ -227,7 +229,7 @@ const generateResume = async(req , res) => {
         "github": "https://github.com/username"
       },
       "summary": "A concise, impactful professional summary reworded to match the job description.",
-      "skills": ["Keyword-optimized Skill1", "Skill2", "Skill3", "..."],
+      "skills": [just write same as ${userDetails.skills}],
       "highlights": [
         "how many experience you are using":"no of experience you are using",
         "how many projects you are using":"no of project you are using",
@@ -248,25 +250,19 @@ const generateResume = async(req , res) => {
           {
             "name": "Project Title",
             "description":"project Description",
+            "techStack":[${userDetails.techStack}]
             "features": [
-              "Implemented feature 1 using relevant stack/tech.",
+              "Implemented feature 1 using relevant stack/tech.(meaning should be the same but only formatting , keywords should be different",
               "Added functionality for X using Y.",
               "Max 4 features."
             ],
-            "github":"github link provied by user",
-            "deployed":"deployed link provied by user",
+            "github": "Match the Project Title with ${userDetails.project} and then give me the github link",
+            "deployed": ""
           }
 
         ],
         "achievements":[
-          {
-            "title": "Achievement or Award Name",
-            "points": [
-              "Rephrased achievement point 1 related to the job.",
-              "Point 2...",
-              "Max 5 points.",
-            ]
-          }
+          All the achievement which are in ${userDetails.achievements}
         ],
       ],
       "education": [
@@ -276,6 +272,16 @@ const generateResume = async(req , res) => {
           "institution": "Institution Name",
           "startYear": "start Year",
           "endYear:"end Year"
+        }
+      ],
+      "why you don't choose other":[
+        {
+          "Name of the Thing":"reason",
+        }
+      ],
+      "why you choose these only":[
+        {
+          "Name of the Thing":"reason",
         }
       ]
     }
@@ -289,8 +295,9 @@ const generateResume = async(req , res) => {
     Only return a valid JSON object. Do not include markdown, explanation, or extra formatting. Avoid any fillers and prembles.
     `
 
-  console.log(prompt);
+  // console.log(prompt);
 
+  // const prompt = `${userDetails} can you extract any links present in this`;
 
     /* From Here , The Result (AI) function Starts from here ..... */
 
