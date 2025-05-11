@@ -97,7 +97,7 @@ const ProfileRightBlock = () => {
 
         {/* Skills */}
 
-        <Skills></Skills>
+        <Skills skillsDetails = {resumeDetails.skills} setSkillsDetails = {setResumeDetails}></Skills>
 
       </div>
     </div>
