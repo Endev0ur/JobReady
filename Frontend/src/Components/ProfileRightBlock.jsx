@@ -1,5 +1,5 @@
-import React, {useEffect, useState } from "react";
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import ProjectDetails from "./ProjectDetails";
 import Education from "./Education";
 import Experience from "./Experience";
@@ -7,60 +7,55 @@ import Achievement from "./Achievements";
 import Skills from "./Skills";
 import UserDetails from "./UserDetails";
 const ProfileRightBlock = () => {
-  
-  let [resumeDetails , setResumeDetails] = useState({
-    userDetails:{},
-    education:{},
-    project:[],
-    experience:[],
-    skills:[],
-    achievements:[],
-  })
+  let [resumeDetails, setResumeDetails] = useState({
+    userDetails: {},
+    education: {},
+    project: [],
+    experience: [],
+    skills: [],
+    achievements: [],
+  });
 
   /* This is for when profile page will load then it will fetch the user detail if possible */
-  useEffect(()=>{
-
-    const getDetails = async() => {
+  useEffect(() => {
+    const getDetails = async () => {
       let url = "http://localhost:3000/profile/get-details";
-      const response = await axios.get(url , {
-        withCredentials:true,
+      const response = await axios.get(url, {
+        withCredentials: true,
       });
 
       console.log(response);
       const result = response.data;
-      const {success} = result;
-      if(success){
-        const {resume} = result;
-        
-        setResumeDetails((res)=>({
-          ...res,
-          userDetails:resume.userDetails,
-          education:resume.education,
-          project:resume.project,
-          experience : resume.experience,
-          skills:resume.skills,
-          achievements : resume.achievements
-        }))
+      const { success } = result;
+      if (success) {
+        const { resume } = result;
 
-        console.log("resumeDetails are : " , resumeDetails);
-      }
-      else{
+        setResumeDetails((res) => ({
+          ...res,
+          userDetails: resume.userDetails,
+          education: resume.education,
+          project: resume.project,
+          experience: resume.experience,
+          skills: resume.skills,
+          achievements: resume.achievements,
+        }));
+
+        // console.log("resumeDetails are : " , resumeDetails);
+      } else {
         console.log("user details are not here");
       }
-    }
+    };
 
     getDetails();
-    
-
-  } , []);
+  }, []);
 
   /* this below useEffect is just for knowing that is my resumeDetails filled successfully or not */
-  useEffect(()=>{
-    console.log("resumeDetails are : " , resumeDetails);
-  } , [resumeDetails])
+  useEffect(() => {
+    // console.log("resumeDetails are : ", resumeDetails.experience[0]);
+  }, [resumeDetails]);
 
 
-  console.log("user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is :" , resumeDetails.achievements);
+  // console.log("user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is :" , resumeDetails.achievements);
 
   return (
     <div className="h-[100%] w-[70%] bg-white rounded-2xl shadow-2xl shadow-black p-10">
@@ -68,37 +63,57 @@ const ProfileRightBlock = () => {
       <div className="h-[94%] w-[100%] border mt-4 rounded-3xl p-5 overflow-scroll no-scrollbar">
         {/* User Details */}
 
-        <UserDetails basicDetails = {resumeDetails.userDetails} setBasicDetails = {setResumeDetails}></UserDetails>
-
+        <UserDetails
+          basicDetails={resumeDetails.userDetails}
+          setBasicDetails={setResumeDetails}
+        ></UserDetails>
 
         {/* EDUCATION QUALIFICATION */}
 
-        <Education educationDetails = {resumeDetails.education} setEducationDetails = {setResumeDetails}></Education>
-
+        <Education
+          educationDetails={resumeDetails.education}
+          setEducationDetails={setResumeDetails}
+        ></Education>
 
         {/* Project1 Details * 2  */}
 
-        <ProjectDetails  projectDetails={resumeDetails.project[0]} setProjectDetails={setResumeDetails} index={0}></ProjectDetails>
+        <ProjectDetails
+          projectDetails={resumeDetails.project[0]}
+          setProjectDetails={setResumeDetails}
+          index={0}
+        ></ProjectDetails>
 
-        <ProjectDetails projectDetails={resumeDetails.project[1]} setProjectDetails={setResumeDetails} index={1}></ProjectDetails>
-
+        <ProjectDetails
+          projectDetails={resumeDetails.project[1]}
+          setProjectDetails={setResumeDetails}
+          index={1}
+        ></ProjectDetails>
 
         {/* Experience Section * 2 */}
 
-        <Experience></Experience>
+        <Experience
+          experienceDetails={resumeDetails.experience[0]}
+          setExperienceDetails={setResumeDetails}
+          index={0}
+        ></Experience>
 
-        <Experience></Experience>
-
+        <Experience experienceDetails={resumeDetails.experience[1]}
+          setExperienceDetails={setResumeDetails}
+          index={1}></Experience>
 
         {/* Achievement section */}
 
-        <Achievement achievementDetails= {resumeDetails.achievements} setAchievementsDetails = {setResumeDetails}></Achievement>
-
+        <Achievement
+          achievementDetails={resumeDetails.achievements}
+          setAchievementsDetails={setResumeDetails}
+        ></Achievement>
 
         {/* Skills */}
 
-        <Skills skillsDetails = {resumeDetails.skills} setSkillsDetails = {setResumeDetails}></Skills>
-
+        <Skills
+          skillsDetails={resumeDetails.skills}
+          setSkillsDetails={setResumeDetails}
+        ></Skills>
       </div>
     </div>
   );

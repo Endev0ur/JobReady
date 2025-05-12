@@ -54,7 +54,7 @@ const Skills = ({skillsDetails , setSkillsDetails}) => {
 
     const index = e.target.parentElement.id;
 
-    console.log("index is in skills : " , index);
+    // console.log("index is in skills : " , index);
 
     const skillsArray = [...userSkills];
 
@@ -86,7 +86,7 @@ const Skills = ({skillsDetails , setSkillsDetails}) => {
       <div className="bg-gray-300 p-5 width-[100%] border rounded-2xl mt-10">
           <h2 className="text-2xl font-bold inline-block">Skills</h2>
           <button className={`border p-2 pl-5 pr-5 rounded-md ml-5 ${showSaveBtn ? "inline-block" : "hidden"}`} onClick={handleSaveChanges}>Save Changes</button>
-          <form className="mt-3">
+          <div className="mt-3">
             <div className="flex justify-around items-center text-xl font-bold w-[100%]  flex-wrap">
             <div className="w-[100%] grid grid-cols-5">
                   {userSkills.map((item , index)=> {
@@ -99,13 +99,13 @@ const Skills = ({skillsDetails , setSkillsDetails}) => {
                   })} 
                 </div>
 
-                <form className="flex w-[50%] h-[50px] items-center mt-5 border">
+                <div className="flex w-[50%] h-[50px] items-center mt-5 border">
                   <input className="m-2 border w-[70%] h-[100%]" onChange={handleNewSkillChange} value={addNewSkill}/>
                   <button className="border w-[25%] h-[100%]"
                   onClick={handleAddNewSkill}>ADD</button>
-                </form>
+                </div>
             </div>
-          </form>
+          </div>
         </div>
     </>
   )

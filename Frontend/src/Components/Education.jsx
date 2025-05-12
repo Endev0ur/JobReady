@@ -33,9 +33,9 @@ const Education = ({educationDetails , setEducationDetails}) => {
       });
     }
   }, [educationDetails]);
-  console.log("user education details sins : " , userEducationDetails);
+  // console.log("user education details sins : " , userEducationDetails);
   
-  console.log("basic education Details are : " , educationDetails);
+  // console.log("basic education Details are : " , educationDetails);
 
   const handleChange = (e) => {
 
@@ -118,7 +118,7 @@ const Education = ({educationDetails , setEducationDetails}) => {
                     <input
                       type="text"
                       name='backlogs'
-                      value={educationDetails.backlogs}
+                      value={educationDetails.backlogs || 0}
                       className="bg-white p-2 rounded-xl outline-none ml-1 w-[50%]"
                       onChange={handleChange}
                     />

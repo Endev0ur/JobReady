@@ -17,10 +17,10 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="/home" element={<Navigate to="/" replace />} />
         <Route path="/signup" element= {<Signup/>}></Route>
         <Route path='/login' element={<Login />}></Route>
-        <Route path='/home' element={<Home />}></Route>
+        <Route path='/' element={<Home />}></Route>
         <Route path='/profile' element={<Profile />}></Route>
         <Route path='/summarizer' element={<Summarizer />}></Route>
         <Route path='/atscheck' element={<ATScheck/>}></Route>

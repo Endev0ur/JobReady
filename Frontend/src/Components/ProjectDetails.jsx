@@ -4,10 +4,10 @@ import { RxCross2 } from "react-icons/rx";
 
 const ProjectDetails = ({ projectDetails , setProjectDetails , index}) => {
 
-  console.log("project details are " , projectDetails);
+  // console.log("project details are " , projectDetails);
   const [addNewTechStack , setAddNewTechStack] = useState("");
 
-  console.log(projectDetails)
+  // console.log(projectDetails)
   const [userProjectDetails , setUserProjectDetails] = useState({
     projectName:"",
     projectDescription:"",
@@ -32,7 +32,7 @@ const ProjectDetails = ({ projectDetails , setProjectDetails , index}) => {
     }
   }, [projectDetails]);
 
-  console.log("projectdetails are : " , userProjectDetails);
+  // console.log("projectdetails are : " , userProjectDetails);
 
   // let techStackArray;
 
@@ -82,7 +82,7 @@ const ProjectDetails = ({ projectDetails , setProjectDetails , index}) => {
     const {name , value} = e.target;
 
     setAddNewTechStack(value);
-    console.log("Add new Tech Stack si : " , addNewTechStack);
+    // console.log("Add new Tech Stack si : " , addNewTechStack);
 
   }
   const handleAddTechStack = (e) => {
@@ -99,7 +99,7 @@ const ProjectDetails = ({ projectDetails , setProjectDetails , index}) => {
       return item===addNewTechStack;
     })
 
-    console.log("findTechStackIs" , findTechStack);
+    // console.log("findTechStackIs" , findTechStack);
     if(findTechStack===undefined){
       techStackArray.push(addNewTechStack);
 
@@ -126,14 +126,14 @@ const ProjectDetails = ({ projectDetails , setProjectDetails , index}) => {
 
     const index = e.target.parentElement.id;
 
-    console.log("index is : " , index);
+    // console.log("index is : " , index);
 
     const techStackArray = [...userProjectDetails.techStack];
     const updatedTechStackArray = techStackArray.filter((item , ind) => {
       return ind!=index;
     })
 
-    console.log("updatedTechstack is : " , updatedTechStackArray);
+    // console.log("updatedTechstack is : " , updatedTechStackArray);
     setUserProjectDetails((prev)=>({
       ...prev,
       techStack:updatedTechStackArray,

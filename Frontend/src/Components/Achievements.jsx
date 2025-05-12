@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const Achievement = ({achievementDetails , setAchievementsDetails}) => {
 
-  console.log("he he he h eh ehehehe ehhe e" , achievementDetails);
+  // console.log("he he he h eh ehehehe ehhe e" , achievementDetails);
 
   const [userAchievementDetails , setUserAchievementDetails] = useState([]);
 
@@ -16,7 +16,7 @@ const Achievement = ({achievementDetails , setAchievementsDetails}) => {
     }
   } , [achievementDetails])
 
-  console.log("achievements are : " , userAchievementDetails);
+  // console.log("achievements are : " , userAchievementDetails);
 
   const handleNewAchievementChange = (e) => {
     const {value} = e.target;
@@ -34,7 +34,7 @@ const Achievement = ({achievementDetails , setAchievementsDetails}) => {
   const handleAddNewAchievement = (e) => {
     e.preventDefault();
 
-    console.log("new achievemtn si : " , addNewAchievement);
+    // console.log("new achievemtn si : " , addNewAchievement);
 
     if(addNewAchievement===""){
       alert("write something")
@@ -86,7 +86,7 @@ const Achievement = ({achievementDetails , setAchievementsDetails}) => {
       <div className="bg-gray-300 p-5 width-[100%] border rounded-2xl mt-10">
           <h2 className="text-2xl font-bold">Achievements (Optional)</h2>
           <button className={`border p-2 pl-5 pr-5 rounded-md ml-5 ${showSaveBtn ? "inline-block" : "hidden"}`} onClick={handleSaveChanges}>Save Changes</button>
-          <form className="mt-3">
+          <div className="mt-3">
             <div className="flex justify-around items-center text-xl font-bold w-[100%]  flex-wrap">
               <div className=" w-full mt-5">
                 <h1 className="block">Describe Your Achievements : </h1>
@@ -102,14 +102,14 @@ const Achievement = ({achievementDetails , setAchievementsDetails}) => {
                   })} 
                 </div>
 
-                <form className="flex w-[50%] h-[50px] items-center mt-5 border">
+                <div className="flex w-[50%] h-[50px] items-center mt-5 border">
                   <input className="m-2 border w-[70%] h-[100%]" onChange={handleNewAchievementChange} value={addNewAchievement}/>
                   <button className="border w-[25%] h-[100%]" type="submit"
                   onClick={handleAddNewAchievement}>ADD</button>
-                </form>
+                </div>
               </div>
             </div>
-          </form>
+          </div>
         </div>
     </>
   )
