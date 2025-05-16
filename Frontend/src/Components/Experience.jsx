@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Experience = ({experienceDetails , setExperienceDetails , index}) => {
+const Experience = ({experienceDetails , setExperienceDetails , index , setSaveToBackend}) => {
 
   console.log("experience Details are : " , experienceDetails)
 
@@ -44,6 +44,7 @@ const Experience = ({experienceDetails , setExperienceDetails , index}) => {
 
   const handleSaveChanges = (e) => {
     setShowSaveBtn(false);
+    setSaveToBackend(true);
     setExperienceDetails((prev) => {
       const updatedExperienceArray = [...prev.experience];
       updatedExperienceArray[index] = userExperienceDetails;

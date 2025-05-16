@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 
-const ProjectDetails = ({ projectDetails , setProjectDetails , index}) => {
+const ProjectDetails = ({ projectDetails , setProjectDetails , index , setSaveToBackend}) => {
 
   // console.log("project details are " , projectDetails);
   const [addNewTechStack , setAddNewTechStack] = useState("");
@@ -65,6 +65,7 @@ const ProjectDetails = ({ projectDetails , setProjectDetails , index}) => {
 
   const handleSaveChanges = () => {
     setShowSaveBtn(false);
+    setSaveToBackend(true);
     setProjectDetails((prev) => {
       const updatedProjectArray = [...prev.project];
       updatedProjectArray[index] = userProjectDetails;

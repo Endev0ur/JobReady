@@ -1,6 +1,6 @@
 import React , {useState , useEffect} from 'react'
 
-const Education = ({educationDetails , setEducationDetails}) => {
+const Education = ({educationDetails , setEducationDetails , setSaveToBackend}) => {
 
   // console.log(educationDetails);
 
@@ -57,6 +57,7 @@ const Education = ({educationDetails , setEducationDetails}) => {
     }))
 
     setShowSaveBtn(false);
+    setSaveToBackend(true);
   }
 
   return (

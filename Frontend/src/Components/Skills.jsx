@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const Skills = ({skillsDetails , setSkillsDetails}) => {
+const Skills = ({skillsDetails , setSkillsDetails , setSaveToBackend}) => {
 
   const [userSkills , setUserSkills] = useState([]);
 
@@ -71,6 +71,7 @@ const Skills = ({skillsDetails , setSkillsDetails}) => {
   const handleSaveChanges = (e) => {
 
     setShowSaveBtn(false);
+    setSaveToBackend(true);
     setSkillsDetails((prev)=>({
       ...prev,
       skills:userSkills,

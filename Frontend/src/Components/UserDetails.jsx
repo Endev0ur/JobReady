@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const UserDetails = ({basicDetails , setBasicDetails}) => {
+const UserDetails = ({basicDetails , setBasicDetails , setSaveToBackend}) => {
 
   // console.log(basicDetails.name);
 
@@ -49,6 +49,7 @@ const UserDetails = ({basicDetails , setBasicDetails}) => {
     }))
 
     setShowSaveBtn(false);
+    setSaveToBackend(true);
   }
 
   return (

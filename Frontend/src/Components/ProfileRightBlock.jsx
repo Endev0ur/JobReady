@@ -6,6 +6,8 @@ import Experience from "./Experience";
 import Achievement from "./Achievements";
 import Skills from "./Skills";
 import UserDetails from "./UserDetails";
+import { toast } from "react-toastify";
+
 const ProfileRightBlock = () => {
   let [resumeDetails, setResumeDetails] = useState({
     userDetails: {},
@@ -15,6 +17,8 @@ const ProfileRightBlock = () => {
     skills: [],
     achievements: [],
   });
+
+  const [saveToBackend , setSaveToBackend] = useState(false);
 
   /* This is for when profile page will load then it will fetch the user detail if possible */
   useEffect(() => {
@@ -52,20 +56,44 @@ const ProfileRightBlock = () => {
   /* this below useEffect is just for knowing that is my resumeDetails filled successfully or not */
   useEffect(() => {
     // console.log("resumeDetails are : ", resumeDetails.experience[0]);
-  }, [resumeDetails]);
+  }, [UserDetails , saveToBackend]);
 
 
-  // console.log("user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is : user is is is is is is si si si sis is :" , resumeDetails.achievements);
+  const handleFinalSave = async(e) => {
+    e.preventDefault();
+
+    setSaveToBackend(false);
+
+    const url = "http://localhost:3000/profile/save";
+    const response = await axios.post(url , resumeDetails , {
+      withCredentials:true
+    });
+
+    // console.log(response);
+    const result = response.data;
+    // console.log(data);
+
+    const {success , message} = result;
+
+    if(success){
+      toast.success(`${message}`);
+    }else{
+      toast.error(`${message}`);
+    }
+
+  }
 
   return (
     <div className="h-[100%] w-[70%] bg-white rounded-2xl shadow-2xl shadow-black p-10">
       <h1 className="text-4xl font-bold inline-block">DETAILS : </h1>
+      {saveToBackend && <button className="pl-5 pr-5 p-2 border rounded-lg ml-10" onClick={handleFinalSave}>Final Save</button>}
       <div className="h-[94%] w-[100%] border mt-4 rounded-3xl p-5 overflow-scroll no-scrollbar">
         {/* User Details */}
 
         <UserDetails
           basicDetails={resumeDetails.userDetails}
           setBasicDetails={setResumeDetails}
+          setSaveToBackend={setSaveToBackend}
         ></UserDetails>
 
         {/* EDUCATION QUALIFICATION */}
@@ -73,6 +101,7 @@ const ProfileRightBlock = () => {
         <Education
           educationDetails={resumeDetails.education}
           setEducationDetails={setResumeDetails}
+          setSaveToBackend={setSaveToBackend}
         ></Education>
 
         {/* Project1 Details * 2  */}
@@ -80,12 +109,14 @@ const ProfileRightBlock = () => {
         <ProjectDetails
           projectDetails={resumeDetails.project[0]}
           setProjectDetails={setResumeDetails}
+          setSaveToBackend={setSaveToBackend}
           index={0}
         ></ProjectDetails>
 
         <ProjectDetails
           projectDetails={resumeDetails.project[1]}
           setProjectDetails={setResumeDetails}
+          setSaveToBackend={setSaveToBackend}
           index={1}
         ></ProjectDetails>
 
@@ -94,11 +125,13 @@ const ProfileRightBlock = () => {
         <Experience
           experienceDetails={resumeDetails.experience[0]}
           setExperienceDetails={setResumeDetails}
+          setSaveToBackend={setSaveToBackend}
           index={0}
         ></Experience>
 
         <Experience experienceDetails={resumeDetails.experience[1]}
           setExperienceDetails={setResumeDetails}
+          setSaveToBackend={setSaveToBackend}
           index={1}></Experience>
 
         {/* Achievement section */}
@@ -106,6 +139,7 @@ const ProfileRightBlock = () => {
         <Achievement
           achievementDetails={resumeDetails.achievements}
           setAchievementsDetails={setResumeDetails}
+          setSaveToBackend={setSaveToBackend}
         ></Achievement>
 
         {/* Skills */}
@@ -113,6 +147,7 @@ const ProfileRightBlock = () => {
         <Skills
           skillsDetails={resumeDetails.skills}
           setSkillsDetails={setResumeDetails}
+          setSaveToBackend={setSaveToBackend}
         ></Skills>
       </div>
     </div>

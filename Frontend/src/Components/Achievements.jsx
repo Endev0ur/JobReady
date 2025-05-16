@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Achievement = ({achievementDetails , setAchievementsDetails}) => {
+const Achievement = ({achievementDetails , setAchievementsDetails , setSaveToBackend}) => {
 
   // console.log("he he he h eh ehehehe ehhe e" , achievementDetails);
 
@@ -74,6 +74,7 @@ const Achievement = ({achievementDetails , setAchievementsDetails}) => {
   const handleSaveChanges = (e) => {
 
     setShowSaveBtn(false);
+    setSaveToBackend(true);
     setAchievementsDetails((prev)=>({
       ...prev,
       achievements:userAchievementDetails,
