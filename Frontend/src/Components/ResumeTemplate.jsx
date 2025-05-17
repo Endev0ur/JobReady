@@ -1,249 +1,166 @@
-import React, { useRef } from "react";
-import html2pdf from "html2pdf.js";
+import React from 'react';
+import { Page, Text, View, Document, StyleSheet , Link } from '@react-pdf/renderer';
+import { PDFViewer } from '@react-pdf/renderer';
+
+// Create styles
+const styles = StyleSheet.create({
+  page: {
+    backgroundColor: 'white',
+    padding:10,
+    fontFamily:"Times-Roman",
+  },
+  section: {
+    margin: 10,
+    padding: 10,
+    // flexGrow: 1
+  },
+  header:{
+    alignItems:"center"
+  },
+  pName:{
+    fontSize:"25",
+    fontFamily:"Times-Roman",
+    fontWeight:"bold"
+  },
+  extras:{
+    fontSize:"12",
+  },
+  projectContainer:{
+
+  },
+  projects:{
+    fontSize:16,
+    fontWeight:"bold",
+    alignItems:"flex-start"
+  },
+  horizontalLine: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#999',
+    marginVertical: 10,
+    width: '100%',
+  },
+  projectName:{
+    fontSize:15,
+    fontWeight:"bold",
+    flexDirection:"row"
+  },
+  links:{
+    fontSize:12,
+  },
+  techStack:{
+    fontSize:12,
+    marginBottom:3
+  },
+  description:{
+    fontSize:15,
+    fontWeight:"bold",
+    marginLeft:5,
+  },
+  bulletPoints:{
+    fontSize:15,
+    marginLeft:10,
+  },
+  experiences:{
+    fontSize:16,
+    fontWeight:"bold",
+    alignItems:"flex-start"
+  }
+
+});
+
+/* Dummy Data */
+
+const projects = [
+  {
+    projectName: "Job Ready",
+    techStack: ["React", "Node.js", 'MongoDB', 'Tailwind CSS', 'Gemini API'],
+    description: "An AI-powered resume analyzer and generator tailored for job descriptions.",
+    briefPoints: [
+      "Developed AI-powered web application designed to create ATS-friendly resumes using NLP techniques.",
+      "Implemented algorithms to ensure resume compatibility with Applicant Tracking Systems (ATS).",
+      "Utilized AI models to generate resumes tailored to specific job descriptions.",
+      "Integrated Gemini API to improve overall system responsiveness and functionality."
+    ],
+    github:"github",
+    linkedin:"linkedin"
+  },
+  {
+    projectName: "E-Commerce Platform",
+    techStack: ["React", "Node.js", 'MongoDB', 'Tailwind CSS', 'Gemini API'],
+    description: "A full-stack e-commerce application for seamless online shopping.",
+    briefPoints: [
+            "Developed AI-powered web application designed to create ATS-friendly resumes using NLP techniques.",
+            "Implemented algorithms to ensure resume compatibility with Applicant Tracking Systems (ATS).",
+            "Utilized AI models to generate resumes tailored to specific job descriptions.",
+            "Integrated Gemini API to improve overall system responsiveness and functionality."
+          ],
+    github:"github",
+    linkedin:"linkedin"
+  }
+];
+
+const Experience = [];
+
+
+
+
+const MyDocument = () => (
+  <Document>
+    <Page size="A4" style={styles.page}>
+      <View style={[styles.section , styles.header]}>
+        <Text style={styles.pName}>SHUBHAM RAWAT</Text>
+        <Text style={styles.extras}>New Delhi , India || (+91)-7982083324 || <Link src="https://google.com">Linkedin</Link> || <Link src="https://google.com">Linkedin</Link></Text>
+      </View>
+
+
+      {Experience.length=== 0 && <View style={styles.experienceContainer}>
+          <Text style={styles.experiences}>EXPERIENCE</Text>
+          <View style={styles.horizontalLine} />
+          <View>
+          {projects.map((project, index) => (
+            <View key={index} style={{ marginBottom: 10 }}>
+              <Text style={styles.projectName}>{project.projectName} : <Text style={styles.links}><Link>Github</Link> | <Link>Deployed</Link></Text></Text>
+              <Text style={styles.techStack}>({project.techStack.map(tech => tech.trim()).join(' , ')})</Text>
+              <Text style={styles.description}>{project.description}</Text>
+              {project.briefPoints.map((point, i) => (
+                <Text key={i} style={styles.bulletPoints}>• {point}</Text>
+              ))}
+            </View>
+          ))}
+          </View>
+      </View>}
+
+      {projects.length!==0 && <View style={styles.projectContainer}>
+          <Text style={styles.projects}>PROJECTS</Text>
+          <View style={styles.horizontalLine} />
+          <View>
+          {projects.map((project, index) => (
+            <View key={index} style={{ marginBottom: 10 }}>
+              <Text style={styles.projectName}>{project.projectName} : <Text style={styles.links}><Link>Github</Link> | <Link>Deployed</Link></Text></Text>
+              <Text style={styles.techStack}>({project.techStack.map(tech => tech.trim()).join(' , ')})</Text>
+              <Text style={styles.description}>{project.description}</Text>
+              {project.briefPoints.map((point, i) => (
+                <Text key={i} style={styles.bulletPoints}>• {point}</Text>
+              ))}
+            </View>
+          ))}
+          </View>
+      </View>}
+
+      
+    </Page>
+  </Document>
+);
 
 const ResumeTemplate = () => {
-  const resumeRef = useRef();
-
-  const handleDownloadPDF = () => {
-    const element = resumeRef.current;
-
-    // Wait for the DOM to settle with latest updates
-    setTimeout(() => {
-      const opt = {
-        margin: [10, 10, 10, 10], // Apply margins
-        filename: "resume.pdf",
-        image: { type: "jpeg", quality: 0.98 },
-        html2canvas: {
-          scale: 3, // Increase scale for better resolution
-          useCORS: true,
-        },
-        jsPDF: {
-          unit: "mm",
-          format: "a4",
-          orientation: "portrait",
-        },
-      };
-
-      // Log to check if the PDF generation is triggered
-      console.log("Starting PDF creation...");
-
-      // Ensure this is working correctly
-      html2pdf()
-        .set(opt)
-        .from(element)
-        .save()
-        .then(() => {
-          console.log("PDF downloaded successfully!");
-        })
-        .catch((error) => {
-          console.error("Error while generating PDF: ", error);
-        });
-    }, 500); // 500ms delay ensures the latest DOM is ready
-  };
 
   return (
-    <div className="min-h-screen w-full flex justify-center items-center flex-col">
-      <button
-        onClick={handleDownloadPDF}
-        className="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 cursor-pointer"
-      >
-        Download as PDF
-      </button>
-
-      <div
-        ref={resumeRef}
-        className="pt-2 p-3 max-w-[230mm] border w-full mx-auto overflow-hidden flex justify-center items-center flex-col"
-      >
-        <h1 className="text-[30px] font-bold">JOHN DOEx</h1>
-        <p className="font-bold text-lg">
-          244-A Nyay Khand-3 Indirapuram Ghaziabad
-        </p>
-        <div className="mt-1">
-          <a href="" className="mr-30  text-lg font-bold underline">
-            Linkedin
-          </a>
-          <a href="" className="mr-30 text-lg font-bold underline">
-            Github
-          </a>
-          <a href="" className="mr-30 text-lg font-bold underline">
-            email
-          </a>
-          <a href="" className="mt-30 text-lg font-bold underline">
-            Phone
-          </a>
-        </div>
-
-        <hr className="w-full mt-3" />
-        <div className="w-full flex justify-start flex-col">
-          <h2 className="text-2xl font-bold">Experience : </h2>
-
-          {/* belowe text can be copied for another company */}
-          <div className="ml-6 mt-2 flex justify-between flex-col">
-            <div className="w-full flex justify-between">
-              <p className="font-bold">ABC Compnay</p>
-              <p>startdate-enddate</p>
-            </div>
-            <div className="w-full flex justify-between">
-              <p className="">Software Engineer</p>
-              <p>city , state</p>
-            </div>
-
-            <div className="ml-10 mt-1">
-              <ul className="list-disc">
-                <li>
-                  Hello kaise hain aap tabahi macha de kya warna rage mode one
-                  is the Lorem ipsum dolor sit amet.
-                </li>
-                <li>
-                  badia hain Lorem ipsum dolor sit amet consectetur adipisicing
-                  elit. Non, tempora?
-                </li>
-                <li>
-                  aap kaise hain Lorem ipsum dolor sit amet consectetur
-                  adipisicing.
-                </li>
-                <li>ham bahut badiya hain Lorem ipsum dolor sit amet.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="ml-6 mt-2 flex justify-between flex-col">
-            <div className="w-full flex justify-between">
-              <p className="font-bold">ABC Compnay</p>
-              <p>startdate-enddate</p>
-            </div>
-            <div className="w-full flex justify-between">
-              <p className="">Software Engineer</p>
-              <p>city , state</p>
-            </div>
-
-            <div className="ml-10 mt-1">
-              <ul className="list-disc">
-                <li>
-                  Hello kaise hain aap tabahi macha de kya warna rage mode one
-                  is the Lorem ipsum dolor sit amet.
-                </li>
-                <li>
-                  badia hain Lorem ipsum dolor sit amet consectetur adipisicing
-                  elit. Non, tempora?
-                </li>
-                <li>
-                  aap kaise hain Lorem ipsum dolor sit amet consectetur
-                  adipisicing.
-                </li>
-                <li>ham bahut badiya hain Lorem ipsum dolor sit amet.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* project section start here */}
-        <hr className="w-full mt-3 mb-1" />
-
-        <div className="w-full flex justify-start flex-col">
-          <h2 className="text-2xl font-bold">Experience : </h2>
-
-          {/* belowe text can be copied for another company */}
-          <div className="ml-6 mt-2 flex justify-between flex-col">
-            <div className="w-full flex justify-between">
-              <p className="font-bold text-lg">Job Ready</p>
-              <p>January 2021</p>
-            </div>
-            <div className="w-full flex ">
-              <p className="">
-                Javascript , Reactjs , Nodejs , MongoDb , GeminiApi
-              </p>
-            </div>
-
-            <div className="ml-10 mt-1">
-              <ul className="list-disc">
-                <li>
-                  Hello kaise hain aap tabahi macha de kya warna rage mode one
-                  is the Lorem ipsum dolor sit amet.
-                </li>
-                <li>
-                  badia hain Lorem ipsum dolor sit amet consectetur adipisicing
-                  elit. Non, tempora?
-                </li>
-                <li>
-                  aap kaise hain Lorem ipsum dolor sit amet consectetur
-                  adipisicing.
-                </li>
-                <li>ham bahut badiya hain Lorem ipsum dolor sit amet.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* skills section */}
-        <hr className="w-full mt-3 mb-1" />
-
-        <div className="w-full flex justify-start flex-col">
-          <h2 className="text-2xl font-bold">Skills : </h2>
-
-          <div className="ml-6 mt-2 flex justify-between flex-col">
-            <div className="w-full flex justify-start items-center">
-              <p className="font-bold text-xl">Technical Skills : </p>
-              <p className="text-md ml-4 font-bold">
-                HTML , CSS , Javascript , ReactJs , C++ , MongoDb , SQL , NodeJs
-              </p>
-            </div>
-
-            <div className="w-full flex justify-start items-center">
-              <p className="font-bold text-xl">Soft Skills : </p>
-              <p className="text-md ml-4 font-bold">
-                Team Player , Communication SKills , Fast Learner
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* education */}
-        <hr className="w-full mt-3 mb-1" />
-
-        <div className="w-full flex justify-start flex-col mb-10">
-          <h2 className="text-2xl font-bold">Education : </h2>
-
-          {/* belowe text can be copied for another company */}
-          <div className="ml-6 mt-2 flex justify-between flex-col">
-            <div className="w-full flex justify-between">
-              <p className="font-bold text-xl">GGSIPU</p>
-              <p>Nov 2022 - June 2026</p>
-            </div>
-
-            <div className="w-full flex justify-between">
-              <p className="">Bachelor of Technology</p>
-              <p>Cumulative GPA : 8.5</p>
-            </div>
-          </div>
-        </div>
-
-        {/* achievements  */}
-        {/* <hr className="w-full mt-1 mb-1" /> */}
-
-        {/* <div className="w-full flex justify-start flex-col">
-          <h2 className="text-2xl font-bold">Achievements : </h2>
-          <div className="ml-10 mt-2">
-            <ul className="list-disc">
-              <li>
-                Hello kaise hain aap tabahi macha de kya warna rage mode one is
-                the Lorem ipsum dolor sit amet.
-              </li>
-              <li>
-                badia hain Lorem ipsum dolor sit amet consectetur adipisicing
-                elit. Non, tempora?
-              </li>
-              <li>
-                aap kaise hain Lorem ipsum dolor sit amet consectetur
-                adipisicing.
-              </li>
-              <li>ham bahut badiya hain Lorem ipsum dolor sit amet.</li>
-            </ul>
-          </div>
-        </div> */}
-      </div>
+    <div className="h-screen w-full">
+      <PDFViewer width="100%" height="100%">
+        <MyDocument />
+      </PDFViewer>
     </div>
-  );
-};
+  )
+}
 
-export default ResumeTemplate;
+export default ResumeTemplate

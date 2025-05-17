@@ -15,6 +15,7 @@
     "axios": "^1.9.0",
     "html2pdf.js": "^0.10.3",
     "js-cookie": "^3.0.5",
+    "pdfmake": "^0.2.20",
     "react": "^19.0.0",
     "react-circular-progressbar": "^2.2.0",
     "react-dom": "^19.0.0",
