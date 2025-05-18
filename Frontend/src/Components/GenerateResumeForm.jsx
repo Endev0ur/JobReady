@@ -68,8 +68,13 @@ const GenerateResumeForm = () => {
 
     console.log("result is : " , result);
 
+    const {message , success} = result;
 
-    navigateTo("/resume");
+    localStorage.setItem("message" , JSON.stringify(message));;
+    
+    setTimeout(() => {
+      navigateTo("/resume");
+    }, 100);
   }
 
 
