@@ -84,9 +84,9 @@ const Achievement = ({achievementDetails , setAchievementsDetails , setSaveToBac
 
   return (
     <>
-      <div className="bg-gray-300 p-5 width-[100%] border rounded-2xl mt-10">
-          <h2 className="text-2xl font-bold">Achievements (Optional)</h2>
-          <button className={`border p-2 pl-5 pr-5 rounded-md ml-5 ${showSaveBtn ? "inline-block" : "hidden"}`} onClick={handleSaveChanges}>Save Changes</button>
+      <div className="bg-gray-300 p-5 width-[100%] border rounded-xl mt-10">
+          <h2 className="text-2xl font-bold inline-block">Achievements (Optional)</h2>
+          <button className={`p-2 pl-5 pr-5 bg-blue-500 text-white font-bold cursor-pointer rounded-md ml-5 ${showSaveBtn ? "inline-block" : "hidden"}`} onClick={handleSaveChanges}>Save Changes</button>
           <div className="mt-3">
             <div className="flex justify-around items-center text-xl font-bold w-[100%]  flex-wrap">
               <div className=" w-full mt-5">
@@ -95,7 +95,9 @@ const Achievement = ({achievementDetails , setAchievementsDetails , setSaveToBac
                 <div className="w-[100%] grid grid-cols-1">
                   {userAchievementDetails.map((item , index)=> {
                     return <div key={index} id={index} className="border m-2 flex justify-between items-center relative rounded-lg p-5">
+                      <div className="w-[80%] whitespace-nowrap pr-5 overflow-x-scroll no-scrollbar">
                       {index+1}. {item}
+                      </div>
                       <button className=" h-[100%] w-[20%] absolute right-0 flex justify-center items-center bg-red-500 rounded-r-lg cursor-pointer text-white" onClick={handleDeleteAchievement}>
                         X
                       </button>
@@ -103,9 +105,9 @@ const Achievement = ({achievementDetails , setAchievementsDetails , setSaveToBac
                   })} 
                 </div>
 
-                <div className="flex w-[50%] h-[50px] items-center mt-5 border">
-                  <input className="m-2 border w-[70%] h-[100%]" onChange={handleNewAchievementChange} value={addNewAchievement}/>
-                  <button className="border w-[25%] h-[100%]" type="submit"
+                <div className="flex w-[100%] xl:w-[50%] h-[50px] items-center mt-5 ">
+                  <input className="m-2 border w-[70%] h-[100%] rounded-lg pl-5 pr-5" placeholder="Enter the Achievement you want to add" onChange={handleNewAchievementChange} value={addNewAchievement}/>
+                  <button className="border-2 w-[25%] h-[100%] font-bold bg-green-500 rounded-lg cursor-pointer" type="submit"
                   onClick={handleAddNewAchievement}>ADD</button>
                 </div>
               </div>

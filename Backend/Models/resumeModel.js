@@ -57,10 +57,10 @@ const resumeSchema = new mongoose.Schema({
       type:Number,
     },
     startDate:{
-      type:Date,
+      type:String,
     },
     endDate:{
-      type:Date,
+      type:String,
     }
   },
 
@@ -105,6 +105,9 @@ const resumeSchema = new mongoose.Schema({
     },
     leavingDate:{
       type:Date,
+    },
+    location:{
+      type:String,
     },
     briefPoints:{
       type:[String],

@@ -201,6 +201,7 @@ const generateResume = async(req , res) => {
     // console.log(jobDescription);
 
     /* My Prompts Comes here */
+
     const prompt = `You are a professional resume generator. Based on the user's complete profile and the given job description, generate a one-page, ATS-optimized resume tailored specifically to that role.
 
     Instructions:
@@ -210,7 +211,7 @@ const generateResume = async(req , res) => {
       - Up to 2 projects (first project should be most impressive or based on today's relevent skills)
       - achievement array
 
-      most Important = Total = **exactly 3 items**. Prioritize by relevance with deep analysis of jobDescription and userDetails.
+      most Important = Total = **exactly 3 items** in highlights. Prioritize by relevance with deep analysis of jobDescription and userDetails.
 
     3. Rephrase and rewrite using **keywords and terminology from the job description** to align with ATS and hiring manager expectations,
     4. Format bullet points for clarity:
@@ -218,7 +219,9 @@ const generateResume = async(req , res) => {
       - Achievement → points (max 5),
 
       Note : Give me exactly top 3 most relevent;
-    Return strictly in the following JSON format:
+    
+    
+    Provide your response in the following format:
 
     {
       "userDetails": {
@@ -238,10 +241,11 @@ const generateResume = async(req , res) => {
             "position": "Job Title",
             "company": "Company Name",
             "duration": "Start Date - End Date",
+            "location":"location of the job"
             "bullets": [
               "Bullet 1 rephrased to match job requirements.",
               "Bullet 2...",
-              "Max 4 bullets."
+              "Max 4 bullets.(min 15 words per bullets)"
             ],
             
           }
@@ -249,12 +253,12 @@ const generateResume = async(req , res) => {
         "projects":[
           {
             "name": "Project Title",
-            "description":"project Description",
+            "description":" exactly 15 words for project Description",
             "techStack":[${userDetails.techStack}]
             "features": [
               "Implemented feature 1 using relevant stack/tech.(meaning should be the same but only formatting , keywords should be different",
               "Added functionality for X using Y.",
-              "Max 4 features."
+              "Max 4 features.(minimum 15 words per bullets)"
             ],
             "github": "Match the Project Title with ${userDetails.project} and then give me the github link",
             "deployed": ""
@@ -262,7 +266,7 @@ const generateResume = async(req , res) => {
 
         ],
         "achievements":[
-          All the achievement which are in ${userDetails.achievements}
+          same as the user provided + all achievement should mentioned
         ],
       ],
       "education": [
@@ -271,7 +275,8 @@ const generateResume = async(req , res) => {
           "Overall GPA":"overall GPA",
           "institution": "Institution Name",
           "startYear": "start Year",
-          "endYear:"end Year"
+          "endYear:"end Year",
+          "branch":"branch in college"
         }
       ],
       "why you don't choose other":[
@@ -292,11 +297,13 @@ const generateResume = async(req , res) => {
     JOB_DESCRIPTION:
     ${jobDescription};
 
-    Only return a valid JSON object. Do not include markdown, explanation, or extra formatting. Avoid any fillers and prembles.
+    avoid any prembles and fillers and stritly return a valid json object
     `
 
   // console.log(prompt);
 
+
+  
   // const prompt = `${userDetails} can you extract any links present in this`;
 
     /* From Here , The Result (AI) function Starts from here ..... */
@@ -311,10 +318,10 @@ const generateResume = async(req , res) => {
       const responseText = response.text;
 
       // // Step 2: Clean it
-      const cleanedText = responseText
-      .replace(/```json/g, '') // remove starting ```json
-      .replace(/```/g, '')      // remove ending ```
-      .trim();                  // remove extra spaces
+      const cleanedText = response.text
+        .replace(/```json/g, '')
+        .replace(/```/g, '')
+        .trim();                  // remove extra spaces
   
       // // // Step 3: Parse it
       const parsedText = JSON.parse(cleanedText);

@@ -9,8 +9,12 @@ const Home = () => {
 
   return (
     <div className="relative">
-      <div className="h-screen w-full flex justify-center items-center flex-col bg-gray-300">
-        <div className="h-[70%] w-[100%] p-5 sm:w-[80%] md:w-[60%] lg:w-[50%] xl:w-[40%] flex justify-start items-start flex-col bg-gray-300 pt-10 xl:pt-20 overflow-y-scroll no-scrollbar">
+      <div className="h-screen w-full flex justify-center items-center flex-col bg-[linear-gradient(to_right,#ff0000,#ffff00,#9333ea)]">
+        <div className="h-[70%] w-[100%] p-5 sm:w-[80%] md:w-[60%] lg:w-[50%] xl:w-[40%] flex justify-start items-start flex-col bg-transparent pt-10 xl:pt-20 overflow-y-scroll no-scrollbar">
+          <h1 className="text-3xl font-bold italic sm:text-3xl xl:text-4xl">
+            Welcome to <strong className="text-sky-800">JOB READY</strong> <span className="underline">( Your AI Powered Resume Generator and Analyser )</span> {" "}
+          </h1>
+          <br />
           <h1 className="text-2xl font-bold underline sm:text-3xl xl:text-4xl">
             How to Use the Product ?{" "}
           </h1>
@@ -21,7 +25,7 @@ const Home = () => {
           </p>
           <br className="hidden sm:block" />
           <p className="pl-6 text-lg font-bold sm:text-xl xl:text-2xl text-gray-700">
-            I. Click & then copy paste the job description and extract the
+            I. Paste the job description and extract the
             keywords for you resume
           </p>
           <br />
@@ -31,7 +35,7 @@ const Home = () => {
           </p>
           <br className="hidden sm:block" />
           <p className="pl-6 text-lg font-bold sm:text-xl xl:text-2xl text-gray-700">
-            I. Upload Your resume and check the ATS Score Based on Job
+            II. Upload Your resume and check the ATS Score Based on Job
             Description
           </p>
           <br />
@@ -41,8 +45,8 @@ const Home = () => {
           </p>
           <br className="hidden sm:block" />
           <p className="pl-6 text-lg font-bold sm:text-xl xl:text-2xl text-gray-700">
-            I. Generate the ATS Friendly resume based on job description <br />{" "}
-            (* different resume for different job description with one click)
+            III. Generate the ATS Friendly resume based on job description <br />{" "}
+            (* Different Resume's for different Job Description with just one click)
           </p>
         </div>
         <div className="h-[30%] w-[100%] flex items-center justify-center">

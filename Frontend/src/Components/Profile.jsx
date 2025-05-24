@@ -8,10 +8,10 @@ const Profile = () => {
 
   return (
      <>
-      {done ? (<div className="h-screen w-full hidden md:flex justify-around bg-gray-500 p-7">
+      <div className="h-[100%] xl:h-screen w-full flex flex-col xl:flex-row justify-around items-center bg-[linear-gradient(to_right,#3b82f6,#10b981,#9333ea)] p-2 md:p-3 lg:p-4 xl:p-7">
         <ProfileLeftBlock />
         <ProfileRightBlock />
-      </div>) : (<div className="h-screen text-2xl font-bold flex justify-center items-center">Under building ........</div>)}
+      </div>
      </>
     
   );

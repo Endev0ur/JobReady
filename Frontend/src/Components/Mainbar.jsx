@@ -31,34 +31,34 @@ const Mainbar = ({
   };
 
   return (
-      <div className="h-15 w-[95%] md:h-20 md:w-[80%] lg:w-[70%] xl:w-[60%] 2xl:w-[40%] border-3 md:border-5 rounded-[100px] bg-blue-500 flex justify-center items-center shadow-lg shadow-black">
+      <div className="h-15 w-[95%] md:h-20 md:w-[80%] lg:w-[70%] xl:w-[60%] 2xl:w-[40%] border-3 md:border-5 rounded-[100px] bg-sky-500 flex justify-center items-center shadow-lg shadow-black">
         <div
-          className="h-[100%] w-[17.5%]  bg-blue-400 hover:bg-blue-300  transition-all duration-500 rounded-l-[100px] flex justify-center items-center cursor-pointer"
+          className="h-[100%] w-[17.5%]  bg-sky-400 hover:bg-sky-600  transition-all duration-500 rounded-l-[100px] flex justify-center items-center cursor-pointer"
           onClick={() => handleOpenForm(1)}
         >
           <GiSandsOfTime className="text-2xl  xl:text-4xl " />
         </div>
         <div
-          className="h-[100%] w-[17.5%] bg-blue-400 hover:bg-blue-300 transition-all duration-500 flex justify-center items-center cursor-pointer"
+          className="h-[100%] w-[17.5%] bg-sky-400 hover:bg-sky-600 transition-all duration-500 flex justify-center items-center cursor-pointer"
           onClick={() => handleOpenForm(2)}
         >
           <h1 className="text-xl xl:text-3xl font-bold">ATS</h1>
         </div>
         <div
-          className="h-[100%] w-[30%]  bg-blue-400 hover:bg-blue-300  transition-all duration-500 relative flex justify-center items-center cursor-pointer"
+          className="h-[100%] w-[30%]  bg-sky-400 hover:bg-sky-600  transition-all duration-500 relative flex justify-center items-center cursor-pointer"
           onClick={() => handleOpenForm(3)}
         >
           <div
-            className="w-fit h-fit p-2 mb-10 md:mb-13 xl:mb-18 rounded-full bg-blue-300 hover:bg-blue-300 border-4 flex justify-center items-center cursor-pointer"
+            className="w-fit h-fit p-2 mb-10 md:mb-13 xl:mb-18 rounded-full bg-sky-300 hover:bg-sky-300 border-4 flex justify-center items-center cursor-pointer"
             onClick={() => handleOpenForm(3)}
           >
             <FiPlusCircle className="text-5xl md:text-7xl xl:text-8xl text-gray-700" />
           </div>
         </div>
-        <div className="h-[100%] w-[17.5%] bg-blue-400 hover:bg-blue-300  transition-all duration-500 flex justify-center items-center cursor-pointer" onClick={() => handleOpenForm(4)}>
+        <div className="h-[100%] w-[17.5%] bg-sky-400 hover:bg-sky-600  transition-all duration-500 flex justify-center items-center cursor-pointer" onClick={() => handleOpenForm(4)}>
           <h1 className="text-xl font-bold xl:text-3xl">US</h1>
         </div>
-        <div className="h-[100%] w-[17.5%] bg-blue-400 hover:bg-blue-300  transition-all duration-500 rounded-r-[100px] flex justify-center items-center cursor-pointer" onClick={() => handleOpenForm(5)}>
+        <div className="h-[100%] w-[17.5%] bg-sky-400 hover:bg-sky-600  transition-all duration-500 rounded-r-[100px] flex justify-center items-center cursor-pointer" onClick={() => handleOpenForm(5)}>
           <IoPersonOutline className="text-xl xl:text-3xl" />
         </div>
       </div>

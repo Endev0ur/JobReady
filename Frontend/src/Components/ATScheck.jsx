@@ -120,8 +120,8 @@ const ATScheck = () => {
  
 
   return (
-    <div className=" bg-white flex justify-around items-center flex-wrap">
-      <div className="bg-gray-800 h-screen w-[99%]  rounded-2xl p-5 max-w-[600px] max-h-[850px] shadow-2xl shadow-black mb-10 mt-10">
+    <div className="h-screen bg-sky-500 flex justify-around items-center flex-wrap">
+      <div className="bg-gray-800 h-screen w-[99%]  rounded-lg p-5 max-w-[600px] max-h-[850px] shadow-2xl shadow-white mb-10 mt-10">
         <h1 className="text-4xl font-bold text-white">ATS Check</h1>
         <form action="" className="h-[100%] w-[100%]" onSubmit={handleSubmit}>
           <div className="mt-6 h-[70%]  p-2">
@@ -131,7 +131,7 @@ const ATScheck = () => {
               id=""
               autoComplete="none"
               placeholder="Copy & Paste the Job Description Here ..."
-              className=" border-2 mt-2 h-[91%] w-[100%] resize-none p-3 outline-none rounded-2xl font-bold bg-gray-700 placeholder:text-gray-900 no-scrollbar text-gray-300"
+              className=" border-2 mt-2 h-[91%] w-[100%] resize-none p-3 outline-none rounded-lg font-bold bg-gray-700 placeholder:text-gray-900 no-scrollbar text-gray-300"
               onChange={handleChange}
             ></textarea>
           </div>
@@ -144,7 +144,7 @@ const ATScheck = () => {
             onChange={handleFileChange}
           />
           <br />
-          <button className="mt-6 border-3 text-xl pt-2 pb-2 p-4 rounded-xl cursor-pointer text-white font-bold bg-blue-700 outline-none">
+          <button className="mt-6 border-2 text-xl pt-2 pb-2 p-6 rounded-lg cursor-pointer text-white font-bold bg-blue-700 outline-none">
             Check
           </button>
         </form>
@@ -154,7 +154,7 @@ const ATScheck = () => {
       <div
         className={`${
           movingState ? "block" : "hidden"
-        } bg-gray-300 rounded-2xl p-5 pt-10 2xl:p-10 h-screen xl:h-[900px] xl:mt-10 w-[95%] 2xl:w-[55%] mb-10 transition-all duration-1000 shadow-xl shadow-black overflow-y-scroll no-scrollbar`}
+        } bg-gray-300 rounded-lg p-5 pt-10 2xl:p-10 h-screen xl:h-[900px] xl:mt-10 w-[95%] 2xl:w-[55%] mb-10 transition-all duration-1000 shadow-xl shadow-black overflow-y-scroll no-scrollbar`}
       >
         <h1 className="text-3xl 2xl:text-5xl font-bold">YOUR ATS REPORT : </h1>
 

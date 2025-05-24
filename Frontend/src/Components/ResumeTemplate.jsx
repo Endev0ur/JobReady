@@ -267,7 +267,7 @@ const MyDocument = ({data}) => {
             <View key={index} style={{ marginBottom: 10 }}>
               <View style={styles.heading}>
                 <Text style={styles.projectName}>{project.name}</Text>
-                <Text style={styles.links}><Link>Github</Link> | <Link>Deployed</Link></Text>
+                <Text style={styles.links}><Link><Text>Github</Text></Link> | <Link><Text>Github</Text></Link></Text>
               </View>
               <Text style={styles.techStack}>({project.techStack.map(tech => tech.trim()).join(' , ')})</Text>
               <Text style={styles.description}>{project.description}</Text>
@@ -326,11 +326,13 @@ const MyDocument = ({data}) => {
 
 const ResumeTemplate = () => {
 
-  const data = JSON.parse(localStorage.getItem("message"));
+  const data = JSON.parse(localStorage.getItem("message") || "{}");
 
   useEffect(()=>{
     console.log("data changed so page refresh")
+    console.log(data);
   } ,[data])
+
 
   return (
     <div className="h-screen w-full">

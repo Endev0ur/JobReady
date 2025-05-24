@@ -31,16 +31,6 @@ const AboutUs = ({ openForm, setOpenForm }) => {
             <a href="" className='text-3xl cursor-pointer xl:mr-10 mt-2 xl:mt-0 inline-block'><FaFacebookSquare /></a>
           </div>
 
-          <div className=' w-[100%] pl-0 md:p-4 flex flex-col md:flex-row mt-2  md:mt-10 justify-around items-start md:items-center'>
-            <button className='border-2 md:border-4 text-xl md:text-2xl pt-2 md:pt-3 pb-2 md:pb-3 pl-8 pr-8 rounded-2xl font-bold hover:scale-105 transition-all duration-1000 cursor-pointer bg-blue-700 text-white hover:bg-white hover:text-blue-700'>
-              Feedback
-            </button>
-            <button className='border-2 md:border-4 text-xl md:text-2xl pt-2 pb-2 md:pt-3 md:pb-3 pl-8 pr-8 rounded-2xl font-bold hover:scale-105 transition-all duration-1000 cursor-pointer bg-blue-700 text-white hover:bg-white hover:text-blue-700 mt-4 md:mt-0'>
-              Testimonials
-            </button>
-          </div>
-
-
           <div className='mt-10 text-xl 2xl:text-2xl font-bold pt-2 xl:pt-3 pb-2 xl:pb-3 pr-6 pl-6 bg-red-500 rounded-2xl border-3 flex justify-around items-center cursor-pointer' onClick={handleClose}>
             <button className='cursor-pointer'>Go Back</button>
             <FaArrowRightFromBracket className='ml-2'/>

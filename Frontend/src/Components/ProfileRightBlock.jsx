@@ -84,10 +84,12 @@ const ProfileRightBlock = () => {
   }
 
   return (
-    <div className="h-[100%] w-[70%] bg-white rounded-2xl shadow-2xl shadow-black p-10">
-      <h1 className="text-4xl font-bold inline-block">DETAILS : </h1>
-      {saveToBackend && <button className="pl-5 pr-5 p-2 border rounded-lg ml-10" onClick={handleFinalSave}>Final Save</button>}
-      <div className="h-[94%] w-[100%] border mt-4 rounded-3xl p-5 overflow-scroll no-scrollbar">
+    <div className="h-[100%] w-[99%] sm:w-[95%] md:w-[85%] lg:w-[70%] bg-gradient-to-r from-red-500 to-orange-500 rounded-lg shadow-2xl shadow-black p-1 sm:p-2 md:p-4 lg:p-6 xl:p-10 pt-10">
+      <div className="flex just-center items-center mb-5">
+      <h1 className="text-4xl font-bold inline-block pl-5">DETAILS : </h1>
+      {saveToBackend && <button className=" xl:pl-5 xl:pr-5 p-2  bg-lime-500 text-white rounded-lg ml-10 font-bold cursor-pointer" onClick={handleFinalSave}>Final Save</button>}
+      </div>
+      <div className="h-[94%] w-[100%] border-2 bg-gray-900 mt-4 rounded-lg p-2 xl:p-5 overflow-scroll no-scrollbar">
         {/* User Details */}
 
         <UserDetails
