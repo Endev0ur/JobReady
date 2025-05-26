@@ -12,7 +12,7 @@ const Mainbar = ({
 }) => {
   const navigateTo = useNavigate();
   const handleOpenForm = (num) => {
-    console.log(openForm);
+    // console.log(openForm);
     if (num == 1) {
       navigateTo("/summarizer")
     } else if (num == 2) {
@@ -42,7 +42,7 @@ const Mainbar = ({
           className="h-[100%] w-[17.5%] bg-sky-400 hover:bg-sky-600 transition-all duration-500 flex justify-center items-center cursor-pointer"
           onClick={() => handleOpenForm(2)}
         >
-          <h1 className="text-xl xl:text-3xl font-bold">ATS</h1>
+          <h1 className="text-xl xl:text-3xl font-bold text-shadow-md text-shadow-black italic text-white">ATS</h1>
         </div>
         <div
           className="h-[100%] w-[30%]  bg-sky-400 hover:bg-sky-600  transition-all duration-500 relative flex justify-center items-center cursor-pointer"
@@ -56,7 +56,7 @@ const Mainbar = ({
           </div>
         </div>
         <div className="h-[100%] w-[17.5%] bg-sky-400 hover:bg-sky-600  transition-all duration-500 flex justify-center items-center cursor-pointer" onClick={() => handleOpenForm(4)}>
-          <h1 className="text-xl font-bold xl:text-3xl">US</h1>
+          <h1 className="text-xl font-bold xl:text-3xl text-shadow-md text-shadow-black italic text-white">US</h1>
         </div>
         <div className="h-[100%] w-[17.5%] bg-sky-400 hover:bg-sky-600  transition-all duration-500 rounded-r-[100px] flex justify-center items-center cursor-pointer" onClick={() => handleOpenForm(5)}>
           <IoPersonOutline className="text-xl xl:text-3xl" />

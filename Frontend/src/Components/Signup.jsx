@@ -64,6 +64,7 @@ const Signup = () => {
     }
     catch(error){
       console.log("Error in signup Integration from fronend" , error);
+      toast.error("Error in Signup , Try again later !")
     }
   }
 
@@ -73,7 +74,7 @@ const Signup = () => {
   };
 
   return (
-    <div className={`h-screen w-full bg-[url('/Images/SignUpBackground.jpg')] bg-cover flex justify-center items-center`}>
+    <div className={`h-screen w-full bg-gradient-to-r from-black via-gray-500 to-black flex justify-center items-center`}>
       <div className="h-[600px] w-[350px] md:w-[400px] lg:w-[500px] xl:h-[750px] xl:w-[550px] text-white border-5 backdrop-blur-xl p-5 xl:p-10 rounded-xl flex flex-col items-center">
         <h1 className="text-3xl xl:text-5xl font-bold mb-2 xl:mb-4 ">Sign Up </h1>
         <form  onSubmit={handleSubmit}>
@@ -112,7 +113,7 @@ const Signup = () => {
 
           
 
-          <button className="text-xl ml-3 mt-3 p-2 xl:p-4 h-[60px] w-[70%] rounded-2xl  font-bold cursor-pointer bg-blue-600  hover:scale-105 duration-500 text-white flex justify-center items-center" type="submit">
+          <button className="text-xl ml-3 mt-3 p-2 xl:p-4 h-[60px] w-[70%] rounded-lg font-bold cursor-pointer bg-sky-500  hover:scale-105 duration-500 text-white flex justify-center items-center" type="submit">
             Signup
           </button>
           

@@ -26,9 +26,9 @@ const ATScheck = () => {
 
   const handleChange = (e) => {
     e.preventDefault();
-    console.log("helow");
+    // console.log("helow");
     setJobDescription(e.target.value);
-    console.log(jobDescription);
+    // console.log(jobDescription);
   };
 
   const handleFileChange = (e) => {
@@ -62,7 +62,7 @@ const ATScheck = () => {
         }
       );
 
-      console.log(response.data);
+      // console.log(response.data);
 
       const result = response.data;
 
@@ -74,7 +74,7 @@ const ATScheck = () => {
 
       const catScore = (result.message['Category Scores']);
 
-      console.log(catScore["Skills Match"]);
+      // console.log(catScore["Skills Match"]);
 
       setCategoryScore(catScore);
 
@@ -83,9 +83,9 @@ const ATScheck = () => {
       const explanation = result.message['Score Explanation'];
       setScoreExplanation(explanation);
 
-      console.log(explanation);
+      // console.log(explanation);
 
-      console.log(scoreExplanation);
+      // console.log(scoreExplanation);
 
 
       /* Now, Resume Improvement Suggestion */
@@ -97,13 +97,13 @@ const ATScheck = () => {
 
       const conclusion = result.message['Final_Suggestion'];
       setFinalSuggestion(conclusion);
-      console.log(finalSuggestion);
+      // console.log(finalSuggestion);
       setMovingState(true);
 
       // console.log(result);
       toast.success("Report Generated Successfully!")
     } catch (err) {
-      console.log("Error in ats check frontend", err);
+      // console.log("Error in ats check frontend", err);
       if(err.response.data.message==="The resume content seems invalid (only contains newlines), please provide a valid resume."){
         toast.error("Please Provide the Text Based Pdf");
         return;
@@ -120,9 +120,9 @@ const ATScheck = () => {
  
 
   return (
-    <div className="h-screen bg-sky-500 flex justify-around items-center flex-wrap">
+    <div className="h-[100%] bg-sky-500 flex justify-around items-center flex-wrap">
       <div className="bg-gray-800 h-screen w-[99%]  rounded-lg p-5 max-w-[600px] max-h-[850px] shadow-2xl shadow-white mb-10 mt-10">
-        <h1 className="text-4xl font-bold text-white">ATS Check</h1>
+        <h1 className="text-4xl font-bold text-white text-shadow-lg text-shadow-black">ATS Check</h1>
         <form action="" className="h-[100%] w-[100%]" onSubmit={handleSubmit}>
           <div className="mt-6 h-[70%]  p-2">
             <p className="text-xl font-bold text-white">Job Description : </p>
@@ -156,7 +156,7 @@ const ATScheck = () => {
           movingState ? "block" : "hidden"
         } bg-gray-300 rounded-lg p-5 pt-10 2xl:p-10 h-screen xl:h-[900px] xl:mt-10 w-[95%] 2xl:w-[55%] mb-10 transition-all duration-1000 shadow-xl shadow-black overflow-y-scroll no-scrollbar`}
       >
-        <h1 className="text-3xl 2xl:text-5xl font-bold">YOUR ATS REPORT : </h1>
+        <h1 className="text-3xl 2xl:text-5xl font-bold text-shadow-lg text-shadow-black italic text-white">YOUR ATS REPORT : </h1>
 
         {/* Overall Score */}
         <div className="mt-10  2xl:pl-10 flex justify-left items-center">

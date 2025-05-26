@@ -56,11 +56,12 @@ const Login = () => {
         navigateTo("/home");
         toast.success("Login Successfully");
       } else {
-        console.log("Error in signup");
+        // console.log("Error in signup");
         toast.error("Email or password is incorrect");
       }
     } catch (error) {
-      console.log("Error in login Integration from fronend", error);
+      // console.log("Error in login Integration from fronend", error);
+      toast.error("Error in login");
     }
   };
 
@@ -70,9 +71,9 @@ const Login = () => {
 
   return (
     <div
-      className={`h-screen w-full bg-[url('/Images/LoginBackground.jpg')] bg-cover flex justify-center items-center`}
+      className={`h-screen w-full bg-gradient-to-r from-black via-gray-500 to-black flex justify-center items-center`}
     >
-      <div className="h-[500px] w-[350px] md:w-[400px] lg:w-[500px] xl:h-[600px] border-5 xl:w-[550px] backdrop-blur-lg bg-transparent text-white p-10 rounded-xl flex flex-col items-center ">
+      <div className="h-[500px] w-[350px] md:w-[400px] lg:w-[500px] xl:h-[600px] border-5 xl:w-[550px] backdrop-blur-xl bg-transparent text-white p-10 rounded-xl flex flex-col items-center ">
         <h1 className="text-3xl xl:text-5xl font-bold mb-2 xl:mb-4 ">Login </h1>
 
         <form onSubmit={handleSubmit}>
@@ -82,8 +83,9 @@ const Login = () => {
               type="email"
               name="email"
               className="mt-1 h-[60%] w-[100%] rounded-xl text-xl pl-5 pr-5 outline-none font-bold border-1"
-              placeholder="Enter Your Name here"
+              placeholder="Enter Your Email here"
               onChange={handleChange}
+              autoComplete="off"
             />
           </div>
 
@@ -93,13 +95,14 @@ const Login = () => {
               type="password"
               name="password"
               className="mt-1 h-[60%] w-[100%] rounded-xl text-xl pl-5 pr-5 outline-none font-bold border-1"
-              placeholder="Enter Your Name here"
+              placeholder="Enter Your Password here"
               onChange={handleChange}
+              autoComplete="off"
             />
           </div>
 
           <button
-            className="text-xl mt-4 p-2 xl:p-4 h-[60px] w-[70%] rounded-2xl  font-bold cursor-pointer bg-black  hover:scale-105 duration-500 text-white flex justify-center items-center"
+            className="text-xl mt-4 p-2 xl:p-4 h-[60px] w-[70%] rounded-lg  font-bold cursor-pointer bg-sky-500  hover:scale-105 duration-500 text-white flex justify-center items-center"
             type="submit"
           >
             Login
@@ -107,7 +110,7 @@ const Login = () => {
         </form>
 
         <div className="mt-5 xl:mt-10 h-[70px] w-[100%] flex items-center">
-          <h2 className="text-md xl:text-xl text-black font-bold">
+          <h2 className="text-md xl:text-xl text-white font-bold">
             Don't Have an account ?{" "}
           </h2>
           <span

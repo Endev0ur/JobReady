@@ -28,7 +28,7 @@ const ProfileRightBlock = () => {
         withCredentials: true,
       });
 
-      console.log(response);
+      // console.log(response);
       const result = response.data;
       const { success } = result;
       if (success) {

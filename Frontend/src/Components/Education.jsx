@@ -35,7 +35,7 @@ const Education = ({educationDetails , setEducationDetails , setSaveToBackend}) 
   }, [educationDetails]);
   // console.log("user education details sins : " , userEducationDetails);
   
-  console.log("basic education Details are : " , educationDetails);
+  // console.log("basic education Details are : " , educationDetails);
 
   const handleChange = (e) => {
 

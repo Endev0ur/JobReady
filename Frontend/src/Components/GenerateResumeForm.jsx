@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import {toast} from 'react-toastify';
 
 const GenerateResumeForm = () => {
   const navigateTo = useNavigate();
@@ -22,7 +23,7 @@ const GenerateResumeForm = () => {
         withCredentials: true,
       });
 
-      console.log(response);
+      // console.log(response);
       const result = response.data;
       const { success } = result;
       if (success) {
@@ -51,28 +52,40 @@ const GenerateResumeForm = () => {
 
   const handleChange = (e) => {
     e.preventDefault();
-    console.log("helow");
+    // console.log("helow");
     setJobDescription(e.target.value);
-    console.log(jobDescription);
+    // console.log(jobDescription);
   };
 
   const handleGenerateResume = async (e) => {
-    const url = "http://localhost:3000/generate/resume";
+    try{
+      const url = "http://localhost:3000/generate/resume";
 
-    const response = await axios.post(url, jobDescription, {
-      withCredentials: true,
-    });
+      const response = await axios.post(url, jobDescription, {
+        withCredentials: true,
+      });
 
-    const result = response.data;
+      const result = response.data;
 
-    console.log("result is : ", result);
+      // console.log("result is : ", result);
 
-    const { message, success } = result;
+      const { message, success } = result;
 
-    localStorage.setItem("message", JSON.stringify(message));
+      if(!success){
+        toast.error("Try again after some time");
+        navigateTo("/");
+      }
 
-    
-    navigateTo("/resume");
+      localStorage.setItem("message", JSON.stringify(message));
+
+      
+      navigateTo("/resume");
+    }
+    catch(err){
+      toast.error("Error occurred !");
+      toast.error("Try again after some time");
+      navigateTo("/");
+    }
   };
 
   const handleDetailsEdit = () => {
@@ -86,7 +99,7 @@ const GenerateResumeForm = () => {
           <div className="flex justify-left items-center">
             <h1 className="text-4xl font-bold pl-2">Details : </h1>
             <button
-              className="border pl-10 pr-10 pt-2 pb-2 ml-10 rounded-lg cursor-pointer bg-green-500 font-bold"
+              className=" pl-10 pr-10 pt-2 pb-2 ml-10 rounded-lg cursor-pointer bg-green-500 font-bold"
               onClick={handleDetailsEdit}
             >
               EDIT
@@ -278,7 +291,7 @@ const GenerateResumeForm = () => {
             onChange={handleChange}
           ></textarea>
           <button
-            className="border pl-10 pr-10 p-3 mt-5 text-xl font-bold cursor-pointer rounded-lg bg-blue-500 text-white"
+            className="pl-10 pr-10 p-3 mt-5 text-xl font-bold cursor-pointer rounded-lg bg-blue-500 text-white"
             onClick={handleGenerateResume}
           >
             Generate

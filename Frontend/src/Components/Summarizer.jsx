@@ -20,14 +20,14 @@ const Summarizer = () => {
 
     setJobDescription(e.target.value);
 
-    console.log(jobDescription);
+    // console.log(jobDescription);
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
 
-    console.log(jobDescription);
+    // console.log(jobDescription);
 
     try{
 
@@ -44,7 +44,7 @@ const Summarizer = () => {
         withCredentials:true,
       })
 
-      console.log(response.data);
+      // console.log(response.data);
 
       setKeyWords(response.data.message.keywords);
       setKeypoints(response.data.message.keypoints);
@@ -56,7 +56,7 @@ const Summarizer = () => {
       // console.log("hellow" , response.data.message.keywords);
 
     }catch(err){
-      console.log("error in summarization of job description" , err);
+      // console.log("error in summarization of job description" , err);
       if(err.response.data.message==="No token is there!"){
         toast.error("Please Login first !");
         navigateTo("/login");
@@ -67,14 +67,14 @@ const Summarizer = () => {
   }
 
 
-  console.log(keypoints);
-  console.log(keywords);
+  // console.log(keypoints);
+  // console.log(keywords);
   
 
   return (
-    <div className="bg-sky-300 h-screen flex justify-around items-center flex-wrap">
+    <div className="bg-sky-300 h-[100%] flex justify-around items-center flex-wrap">
       <div className={`bg-gray-800 h-screen w-[99%]  rounded-lg p-5 max-w-[600px] max-h-[850px] shadow-2xl shadow-white mb-10 mt-10`}>
-        <h1 className="text-4xl font-bold text-white">Summarizer</h1>
+        <h1 className="text-4xl font-bold text-white text-shadow-lg text-shadow-black">Summarizer</h1>
         <form className="h-[100%] w-[100%]" onSubmit={handleSubmit}>
           <div className="mt-10 h-[70%]  p-2">
             <p className="text-xl font-bold text-white">Job Description : </p>

@@ -2,7 +2,6 @@
 import './App.css'
 import { Routes , Route ,Navigate} from 'react-router'
 import { ToastContainer } from 'react-toastify'
-import Auth from './Components/Auth'
 import Home from './Components/Home'
 import Profile from './Components/Profile'
 import Summarizer from './Components/Summarizer'

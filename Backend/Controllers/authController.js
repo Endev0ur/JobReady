@@ -110,6 +110,30 @@ const login = async (req , res) => {
   }
 }
 
+/* Logout functionality */
+const logout = (req ,res) => {
+
+  try{
+    res.clearCookie('token', {
+      httpOnly: true,
+      secure: false,       
+      sameSite: 'Strict',
+    });
+  
+    res.status(201).json({
+      success : true,
+      message : "Logged out successfully",
+    });
+  }
+  catch(err){
+    res.status(500).json({
+      success:false,
+      message:"No token is there",
+    })
+  }
+  
+}
 
 
-module.exports = {signup , login};
+
+module.exports = {signup , login , logout};

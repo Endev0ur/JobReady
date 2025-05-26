@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const Experience = ({experienceDetails , setExperienceDetails , index , setSaveToBackend}) => {
 
-  console.log("experience Details are : " , experienceDetails)
+  // console.log("experience Details are : " , experienceDetails)
 
   const [showSaveBtn , setShowSaveBtn] = useState(false);
 
@@ -29,7 +29,7 @@ const Experience = ({experienceDetails , setExperienceDetails , index , setSaveT
     }
   } , [experienceDetails])
 
-  console.log("user experience details i : " , userExperienceDetails);
+  // console.log("user experience details i : " , userExperienceDetails);
 
   const handleChange = (e) => {
     const {name , value} = e.target;

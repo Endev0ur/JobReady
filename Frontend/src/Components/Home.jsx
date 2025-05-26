@@ -12,7 +12,7 @@ const Home = () => {
       <div className="h-screen w-full flex justify-center items-center flex-col bg-[linear-gradient(to_right,#ff0000,#ffff00,#9333ea)]">
         <div className="h-[70%] w-[100%] p-5 sm:w-[80%] md:w-[60%] lg:w-[50%] xl:w-[40%] flex justify-start items-start flex-col bg-transparent pt-10 xl:pt-20 overflow-y-scroll no-scrollbar">
           <h1 className="text-3xl font-bold italic sm:text-3xl xl:text-4xl">
-            Welcome to <strong className="text-sky-800">JOB READY</strong> <span className="underline">( Your AI Powered Resume Generator and Analyser )</span> {" "}
+            Welcome to <strong className="text-5xl text-sky-500 text-shadow-lg text-shadow-black">JOB READY</strong> <span className="underline">( Your AI Powered Resume Generator and Analyser )</span> {" "}
           </h1>
           <br />
           <h1 className="text-2xl font-bold underline sm:text-3xl xl:text-4xl">
