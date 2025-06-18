@@ -23,7 +23,7 @@ const ProfileRightBlock = () => {
   /* This is for when profile page will load then it will fetch the user detail if possible */
   useEffect(() => {
     const getDetails = async () => {
-      let url = "http://localhost:3000/profile/get-details";
+      let url = `${import.meta.env.VITE_BACKEND_URL}/profile/get-details`;
       const response = await axios.get(url, {
         withCredentials: true,
       });
@@ -64,7 +64,7 @@ const ProfileRightBlock = () => {
 
     setSaveToBackend(false);
 
-    const url = "http://localhost:3000/profile/save";
+    const url = `${import.meta.env.VITE_BACKEND_URL}/profile/save`;
     const response = await axios.post(url , resumeDetails , {
       withCredentials:true
     });

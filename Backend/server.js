@@ -21,7 +21,7 @@ const protect = require('./Middlewares/authMiddleware');
 
 /* this is because we are using cookie in frontend and backend */
 const corsOptions = {
-  origin: 'http://localhost:5173',
+  origin: `${process.env.VITE_FRONTEND_URL}`,
   credentials: true,   
 };
 

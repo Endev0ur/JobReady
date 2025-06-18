@@ -37,7 +37,7 @@ const Summarizer = () => {
       }
 
 
-      const response = await axios.post("http://localhost:3000/resume/job-summarizer" , jobDescription , {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/resume/job-summarizer` , jobDescription , {
         headers : {
           'Content-Type':"text/plain",
         },

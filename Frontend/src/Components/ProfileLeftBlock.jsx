@@ -11,7 +11,7 @@ const ProfileLeftBlock = () => {
     // e.preventDefault();
 
     try{
-      const response = await axios.post("http://localhost:3000/auth/logout" ,"" , {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/logout` ,"" , {
         withCredentials:true,
       })
   
@@ -46,7 +46,7 @@ const ProfileLeftBlock = () => {
   /* This is for when profile page will load then it will fetch the user detail if possible */
   useEffect(() => {
     const getDetails = async () => {
-      let url = "http://localhost:3000/profile/get-details";
+      let url = `${import.meta.env.VITE_BACKEND_URL}/profile/get-details`;
       const response = await axios.get(url, {
         withCredentials: true,
       });

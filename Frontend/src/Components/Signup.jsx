@@ -41,7 +41,7 @@ const Signup = () => {
         return;
       }
 
-      const response = await axios.post("http://localhost:3000/auth/signup" , input , {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/signup` , input , {
         headers : {
           'Content-Type':"application/json",
         },

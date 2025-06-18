@@ -55,7 +55,7 @@ const ATScheck = () => {
       formData.append("resume", file);
 
       const response = await axios.post(
-        "http://localhost:3000/resume/ats-check",
+        `${import.meta.env.VITE_BACKEND_URL}/resume/ats-check`,
         formData,
         {
           withCredentials: true,

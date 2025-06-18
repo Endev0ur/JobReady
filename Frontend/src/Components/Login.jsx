@@ -12,18 +12,12 @@ const Login = () => {
   });
 
   const handleChange = (e) => {
-    /* this is for which part is changing in input field */
-    const targetName = e.target.name;
-
-    /* this is for track of values */
-    const value = e.target.value;
-
-    /* set newinput = input and then change the value in newinput and atlast set it into input */
-    const newInput = input;
-    newInput[targetName] = value;
-    setInput(newInput);
-
-    // console.log(input);
+    const { name, value } = e.target;
+    
+    setInput(prevInput => ({
+        ...prevInput,
+        [name]: value
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -38,7 +32,7 @@ const Login = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:3000/auth/login",
+        `${import.meta.env.VITE_BACKEND_URL}/auth/login`,
         input,
         {
           headers: {
@@ -82,6 +76,7 @@ const Login = () => {
             <input
               type="email"
               name="email"
+              value={input.email}
               className="mt-1 h-[60%] w-[100%] rounded-xl text-xl pl-5 pr-5 outline-none font-bold border-1"
               placeholder="Enter Your Email here"
               onChange={handleChange}
@@ -94,6 +89,7 @@ const Login = () => {
             <input
               type="password"
               name="password"
+              value={input.password}
               className="mt-1 h-[60%] w-[100%] rounded-xl text-xl pl-5 pr-5 outline-none font-bold border-1"
               placeholder="Enter Your Password here"
               onChange={handleChange}

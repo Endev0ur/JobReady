@@ -18,7 +18,7 @@ const GenerateResumeForm = () => {
   /* This is for when profile page will load then it will fetch the user detail if possible */
   useEffect(() => {
     const getDetails = async () => {
-      let url = "http://localhost:3000/profile/get-details";
+      let url = `${import.meta.env.VITE_BACKEND_URL}/profile/get-details`;
       const response = await axios.get(url, {
         withCredentials: true,
       });
@@ -59,7 +59,7 @@ const GenerateResumeForm = () => {
 
   const handleGenerateResume = async (e) => {
     try{
-      const url = "http://localhost:3000/generate/resume";
+      const url = `${import.meta.env.VITE_BACKEND_URL}/generate/resume`;
 
       const response = await axios.post(url, jobDescription, {
         withCredentials: true,
