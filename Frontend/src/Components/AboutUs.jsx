@@ -15,7 +15,7 @@ const AboutUs = ({ openForm, setOpenForm }) => {
   return (
     <div className="h-screen w-full flex justify-center items-center overflow-scroll no-scrollbar">
         <div className="h-[95%] w-[95%] md:w-[70%] lg:w-[50%] 2xl:w-[40%] shandow-2xl shadow-black rounded-3xl p-5 2xl:p-10 flex flex-col items-start relative">
-          <h1 className="text-2xl xl:text-5xl 2xl:text-[100px] font-bold text-violet-700 text-shadow-lg text-shadow-black">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-[100px] font-bold text-violet-700 text-shadow-lg text-shadow-black">
             ABOUT US
           </h1>
 

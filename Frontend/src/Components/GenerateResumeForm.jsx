@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import {toast} from 'react-toastify';
+import { Grid } from 'react-loader-spinner';
 
 const GenerateResumeForm = () => {
   const navigateTo = useNavigate();
+  const [loading , setLoading] = useState(false);
   const [jobDescription, setJobDescription] = useState("");
   let [resumeDetails, setResumeDetails] = useState({
     userDetails: {},
@@ -58,6 +60,9 @@ const GenerateResumeForm = () => {
   };
 
   const handleGenerateResume = async (e) => {
+
+    setLoading(true);
+
     try{
       const url = `${import.meta.env.VITE_BACKEND_URL}/generate/resume`;
 
@@ -86,11 +91,33 @@ const GenerateResumeForm = () => {
       toast.error("Try again after some time");
       navigateTo("/");
     }
+    finally{
+      setLoading(false);
+    }
   };
 
   const handleDetailsEdit = () => {
     navigateTo("/profile");
   };
+
+
+
+  // ====================== LOADING STATE SCREEN ======================
+  if (loading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-[#1f3f71] to-[#2e647d] text-white text-2xl font-bold">
+        <Grid
+          height="80"
+          width="80"
+          color="#fff"
+          ariaLabel="grid-loading"
+          visible={true}
+        />
+      </div>
+    );
+  }
+
+
 
   return (
     <>

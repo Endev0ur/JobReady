@@ -62,121 +62,127 @@ const Education = ({educationDetails , setEducationDetails , setSaveToBackend}) 
 
   return (
     <>
-      <div className="bg-gray-300 p-5 width-[100%] border rounded-xl mt-10">
-          <h2 className="text-2xl font-bold inline-block">Education Qualification</h2>
-          <button className={` p-2 pl-5 pr-5 bg-blue-500 cursor-pointer font-bold text-white rounded-md ml-5 ${showSaveBtn ? "inline-block" : "hidden"}`} onClick={handleSaveChanges}>Save Changes</button>
-          <form className="mt-3">
-            <div className="flex justify-around items-center text-xl font-bold w-[100%]  flex-wrap">
-              <div className=" w-full">
-                <span className="text-xl">College : </span>
-                <input
-                  type="text"
-                  name='collegeName'
-                  value={userEducationDetails.collegeName}
-                  placeholder='Enter your college name'
-                  className="bg-white p-2 xl:pl-5 xl:pr-5 rounded-xl outline-none ml-2 xl:ml-5 w-[64%]"
-                  onChange={handleChange}
-                />
-              </div>
+      <div className="bg-gradient-to-br from-indigo-100 to-purple-100 p-6 w-full border border-indigo-300 shadow-md rounded-2xl mt-5">
+        <h2 className="text-2xl font-bold text-indigo-800 inline-block">Education Qualification</h2>
+        <button
+          className={`ml-4 px-5 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-sm transition duration-200 hover:bg-indigo-700 ${showSaveBtn ? "inline-block" : "hidden"}`}
+          onClick={handleSaveChanges}
+        >
+          Save Changes
+        </button>
+        <form className="mt-6">
+          <div className="flex justify-around items-center text-lg w-full flex-wrap gap-5">
 
-              <div className=" w-full mt-5 flex justify-around items-center flex-wrap">
-                <div className="w-full">
-                  <span className="text-xl">City : </span>
-                  <input
-                    type="text"
-                    name='city'
-                    value={userEducationDetails.city}
-                    placeholder='Enter the city'
-                    className="bg-white p-2 rounded-xl outline-none ml-2 xl:ml-5 w-[77%]"
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="w-full">
-                  <span className="text-xl">Course : </span>
-                  <input
-                    type="text"
-                    name='course'
-                    value={userEducationDetails.course}
-                    placeholder='Course name'
-                    className="bg-white p-2 rounded-xl outline-none ml-2 mt-3 xl:ml-5 w-[67%]"
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="w-full">
-                  <span className="text-xl">Branch : </span>
-                  <input
-                    type="text"
-                    name='branch'
-                    value={userEducationDetails.branch}
-                    placeholder='Branch name'
-                    className="bg-white p-2 rounded-xl outline-none ml-2 mt-3 xl:ml-5 w-[67%]"
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="w-full">
-                  <span className="text-xl">Start Year : </span>
-                  <input
-                    type="text"
-                    name='startDate'
-                    value={userEducationDetails.startDate}
-                    placeholder='Branch name'
-                    className="bg-white p-2 rounded-xl outline-none ml-2 mt-3 xl:ml-5 w-[67%]"
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="w-full">
-                  <span className="text-xl">End Year : </span>
-                  <input
-                    type="text"
-                    name='endDate'
-                    value={userEducationDetails.endDate}
-                    placeholder='Branch name'
-                    className="bg-white p-2 rounded-xl outline-none ml-2 mt-3 xl:ml-5 w-[67%]"
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-
-              <div className=" w-full mt-5 flex justify-around items-center flex-wrap">
-                <div className="w-full">
-                    <span className="text-xl">backlogs : </span>
-                    <input
-                      type="text"
-                      name='backlogs'
-                      value={educationDetails.backlogs || 0}
-                      placeholder='Backlogs'
-                      className="bg-white p-2 rounded-xl outline-none ml-2 xl:ml-5 w-[59%]"
-                      onChange={handleChange}
-                    />
-                  </div>
-
-                <div className="w-full">
-                  <span className="text-xl">CurrentSem GPA : </span>
-                  <input
-                    type="text"
-                    name='currentSemGPA'
-                    value={userEducationDetails.currentSemGPA}
-                    placeholder='Enter your currentSem GPA'
-                    className="bg-white p-2 rounded-xl outline-none ml-2 mt-3 xl:ml-5 w-[32%]"
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="w-full">
-                  <span className="text-xl">Overall GPA: </span>
-                  <input
-                    type="text"
-                    name='overallGPA'
-                    value={userEducationDetails.overallGPA}
-                    placeholder='Enter your overall GPA'
-                    className="bg-white p-2 rounded-xl outline-none ml-2 mt-3 xl:ml-5 w-[50%]"
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
+            <div className="w-full">
+              <label className="block text-indigo-700 font-medium mb-1">College</label>
+              <input
+                type="text"
+                value={userEducationDetails.collegeName}
+                name="collegeName"
+                placeholder="Enter Your College Name"
+                className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                onChange={handleChange}
+              />
             </div>
-          </form>
-        </div>
+
+            <div className="w-full mt-5">
+              <label className="block text-indigo-700 font-medium mb-1">City</label>
+              <input
+                type="text"
+                value={userEducationDetails.city}
+                name="city"
+                placeholder="Enter Your City"
+                className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="w-full mt-5">
+              <label className="block text-indigo-700 font-medium mb-1">Course</label>
+              <input
+                type="text"
+                value={userEducationDetails.course}
+                name="course"
+                placeholder="Enter Your course"
+                className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="w-full mt-5">
+              <label className="block text-indigo-700 font-medium mb-1">Branch</label>
+              <input
+                type="text"
+                value={userEducationDetails.branch}
+                name="branch"
+                placeholder="Enter Your Branch"
+                className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="w-full mt-5">
+              <label className="block text-indigo-700 font-medium mb-1">Start Year</label>
+              <input
+                type="text"
+                value={userEducationDetails.startDate}
+                name="startDate"
+                placeholder="Enter Your Start Year"
+                className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="w-full mt-5">
+              <label className="block text-indigo-700 font-medium mb-1">End Year</label>
+              <input
+                type="text"
+                value={userEducationDetails.endDate}
+                name="endDate"
+                placeholder="Enter Your End Year"
+                className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="w-full mt-5">
+              <label className="block text-indigo-700 font-medium mb-1">Backlogs</label>
+              <input
+                type="number"
+                value={userEducationDetails.backlogs}
+                name="backlogs"
+                placeholder="Enter Your Backlogs"
+                className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="w-full mt-5">
+              <label className="block text-indigo-700 font-medium mb-1">Current Sem GPA</label>
+              <input
+                type="text"
+                value={userEducationDetails.currentSemGPA}
+                name="currentSemGPA"
+                placeholder="Enter Your Current Sem GPA"
+                className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="w-full mt-5">
+              <label className="block text-indigo-700 font-medium mb-1">Overall GPA</label>
+              <input
+                type="text"
+                value={userEducationDetails.overallGPA}
+                name="overallGPA"
+                placeholder="Enter Your Overall GPA"
+                className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+        </form>
+      </div>
     </>
   )
 }

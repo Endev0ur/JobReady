@@ -3,10 +3,14 @@ import { ImCross } from "react-icons/im";
 import axios from 'axios';
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
+import { Grid } from 'react-loader-spinner';
 
 const Summarizer = () => {
 
   const navigateTo = useNavigate();
+
+
+  const [loading , setLoading] = useState(false);
 
   const [movingState , setMovingState] = useState(false);
 
@@ -25,6 +29,8 @@ const Summarizer = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setLoading(true);
 
 
     // console.log(jobDescription);
@@ -64,37 +70,55 @@ const Summarizer = () => {
       }
       toast.error(" Error occur from our end , Please try again later !");
     }
+    finally{
+      setLoading(false);
+    }
   }
 
 
-  // console.log(keypoints);
-  // console.log(keywords);
+
+
+  // ====================== LOADING STATE SCREEN ======================
+  if (loading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-[#1f3f71] to-[#2e647d] text-white text-2xl font-bold">
+        <Grid
+          height="80"
+          width="80"
+          color="#fff"
+          ariaLabel="grid-loading"
+          visible={true}
+        />
+      </div>
+    );
+  }
   
 
   return (
-    <div className="bg-sky-300 h-[100%] flex justify-around items-center flex-wrap">
-      <div className={`bg-gray-800 h-screen w-[99%]  rounded-lg p-5 max-w-[600px] max-h-[850px] shadow-2xl shadow-white mb-10 mt-10`}>
-        <h1 className="text-4xl font-bold text-white text-shadow-lg text-shadow-black">Summarizer</h1>
+    <div className="bg-gradient-to-br from-[#1f3f71] to-[#2e647d] min-h-screen  flex justify-around items-center flex-wrap">
+      {!movingState ? (<div className={` h-screen w-[98%] bg-white/10 backdrop-blur-lg rounded-lg p-5 max-w-[600px] max-h-[850px] shadow-lg shadow-black mb-10 mt-10`}>
+        <h1 className="text-4xl font-semibold text-white text-shadow-lg text-shadow-black">Summarizer</h1>
         <form className="h-[100%] w-[100%]" onSubmit={handleSubmit}>
           <div className="mt-10 h-[70%]  p-2">
-            <p className="text-xl font-bold text-white">Job Description : </p>
+            <p className="text-xl font-medium">Job Description : </p>
             <textarea
               name=""
               id=""
               autoComplete="none"
               placeholder="Copy & Paste the Job Description Here ..."
-              className=" border-2 mt-2 h-[95%] w-[100%] resize-none p-3 outline-none rounded-lg font-bold bg-gray-700 placeholder:text-gray-900 no-scrollbar 2xl:text-xl text-gray-200"
+              className=" border-2 mt-2 h-[95%] w-[100%] resize-none p-3 outline-none rounded-lg font-bold  border-gray-300 bg-gray-300 bg-opacity-80 text-gray-800 placeholder:text-gray-900 no-scrollbar 2xl:text-xl"
               onChange={handleChange}
             ></textarea>
           </div>
 
           <br />
-          <button className="mt-8 border-3 text-xl pt-2 pb-2 p-4 rounded-lg text-white font-bold bg-blue-700 outline-none cursor-pointer" type="submit">Summarize</button>
+          <button className="mt-8 border-1 border-white text-xl pt-2 pb-2 p-4 rounded-lg text-white font-bold bg-gradient-to-r from-blue-500 to-blue-400 outline-none cursor-pointer" type="submit">Summarize</button>
         </form>
-      </div>
+      </div>) 
 
-      {/* Summarizer result start from here */}
-      <div className={`${movingState ? "block" :"hidden"} bg-gray-300 rounded-lg p-5 pt-10 2xl:p-10 h-screen xl:h-[850px] xl:ml-5 mt-10 w-[95%] xl:w-[50%] mb-10 transition-all duration-1000 shadow-xl shadow-black border overflow-y-scroll no-scrollbar`}>
+      : 
+
+      (<div className={`${movingState ? "block" :"hidden"} bg-gray-300 rounded-lg p-5 pt-10 2xl:p-10 h-screen xl:h-[850px] xl:ml-5 mt-10 w-[95%] xl:w-[50%] mb-10 transition-all duration-1000 shadow-xl shadow-black border overflow-y-scroll no-scrollbar`}>
         <p className="text-3xl 2xl:text-4xl font-bold ">Points and Word you can use in you resume that make your resume more <strong className="underline">ATS-Friendly</strong> and <strong className="underline">Attaractive</strong></p>
 
         {/* Keywords */}
@@ -113,7 +137,11 @@ const Summarizer = () => {
           ))}
         </ol> 
 
-      </div>
+      </div>)}
+      
+
+      
+      
     </div>
   );
 };

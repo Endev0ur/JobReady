@@ -42,12 +42,13 @@ const Login = () => {
         }
       );
 
+      console.log(response);
       const result = response.data;
 
       const { success, message } = result;
 
       if (success) {
-        navigateTo("/home");
+        navigateTo("/");
         toast.success("Login Successfully");
       } else {
         // console.log("Error in signup");
@@ -65,10 +66,10 @@ const Login = () => {
 
   return (
     <div
-      className={`h-screen w-full bg-gradient-to-r from-black via-gray-500 to-black flex justify-center items-center`}
+      className={`h-screen w-full  bg-gradient-to-br from-indigo-600 to-purple-600 flex justify-center items-center`}
     >
-      <div className="h-[500px] w-[350px] md:w-[400px] lg:w-[500px] xl:h-[600px] border-5 xl:w-[550px] backdrop-blur-xl bg-transparent text-white p-10 rounded-xl flex flex-col items-center ">
-        <h1 className="text-3xl xl:text-5xl font-bold mb-2 xl:mb-4 ">Login </h1>
+      <div className="h-[500px] w-[350px] md:w-[400px] lg:w-[500px] xl:h-[600px] border-5 xl:w-[550px] bg-white/10 backdrop-blur-lg text-white p-10 rounded-xl flex flex-col items-center border-white/20">
+        <h1 className="text-3xl xl:text-5xl font-bold mb-2 xl:mb-4 ">LOGIN </h1>
 
         <form onSubmit={handleSubmit}>
           <div className="p-2 h-[120px] w-[100%] rounded-xl mt-3 ">
@@ -77,7 +78,7 @@ const Login = () => {
               type="email"
               name="email"
               value={input.email}
-              className="mt-1 h-[60%] w-[100%] rounded-xl text-xl pl-5 pr-5 outline-none font-bold border-1"
+              className="mt-1 h-[60%] w-[100%] rounded-xl text-xl pl-5 pr-5 outline-none font-bold bg-white/20 text-white placeholder-white/70 border border-white/30 focus:outline-none focus:ring-2 focus:ring-white"
               placeholder="Enter Your Email here"
               onChange={handleChange}
               autoComplete="off"
@@ -90,7 +91,7 @@ const Login = () => {
               type="password"
               name="password"
               value={input.password}
-              className="mt-1 h-[60%] w-[100%] rounded-xl text-xl pl-5 pr-5 outline-none font-bold border-1"
+              className="mt-1 h-[60%] w-[100%] rounded-xl text-xl pl-5 pr-5 outline-none font-bold bg-white/20 text-white placeholder-white/70 border border-white/30 focus:outline-none focus:ring-2 focus:ring-white"
               placeholder="Enter Your Password here"
               onChange={handleChange}
               autoComplete="off"
@@ -98,7 +99,7 @@ const Login = () => {
           </div>
 
           <button
-            className="text-xl mt-4 p-2 xl:p-4 h-[60px] w-[70%] rounded-lg  font-bold cursor-pointer bg-sky-500  hover:scale-105 duration-500 text-white flex justify-center items-center"
+            className="text-xl mt-4 p-2 xl:p-4 h-[60px] cursor-pointer bg-sky-500 duration-500 flex justify-center items-center w-full bg-gradient-to-r from-pink-500 to-yellow-500 text-white py-2 rounded-xl font-semibold transition-transform"
             type="submit"
           >
             Login
@@ -110,7 +111,7 @@ const Login = () => {
             Don't Have an account ?{" "}
           </h2>
           <span
-            className="ml-2 text-xl font-bold text-blue-500 underline cursor-pointer"
+            className="ml-2 text-xl font-bold text-blue-200 underline cursor-pointer"
             onClick={handleNavigate}
           >
             Signup

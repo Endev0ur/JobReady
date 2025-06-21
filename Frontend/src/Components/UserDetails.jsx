@@ -54,76 +54,79 @@ const UserDetails = ({basicDetails , setBasicDetails , setSaveToBackend}) => {
 
   return (
     <>
-      <div className="bg-gray-300 p-5 width-[100%] border rounded-xl">
-        <h2 className="text-2xl font-bold inline-block">User Details : </h2>
-        <button className={`border-0 p-2 pl-5 pr-5 bg-blue-500 font-bold text-white cursor-pointer rounded-md ml-1 xl:ml-5 ${showSaveBtn ? "inline-block" : "hidden"}`} onClick={handleSaveChanges}>Save Changes</button>
-        <form className="mt-3">
-          <div className="flex justify-around items-center text-xl font-bold w-[100%] flex-wrap">
-            <div className=" w-full">
-              <span className="text-xl">Name : </span>
+      <div className="bg-gradient-to-br from-indigo-100 to-purple-100 p-6 w-full border border-indigo-300 shadow-md rounded-2xl">
+        <h2 className="text-3xl font-semibold text-indigo-800 inline-block">User Details</h2>
+        <button
+          className={`ml-3 xl:ml-6 px-5 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-sm transition duration-200 hover:bg-indigo-700 ${showSaveBtn ? "inline-block" : "hidden"}`}
+          onClick={handleSaveChanges}
+        >
+          Save Changes
+        </button>
+        <form className="mt-6">
+          <div className="flex justify-around items-center text-lg w-full flex-wrap gap-4">
+            <div className="w-full">
+              <label className="block text-indigo-700 font-medium mb-1">Name</label>
               <input
                 type="text"
-                value={userDetails.name}
                 name="name"
-                placeholder="Enter Your Name "
-                className="bg-white p-2 pl-5 pr-5 rounded-xl outline-none ml-2 xl:ml-5 w-[67%]"
+                value={userDetails.name}
+                placeholder="Enter Your Name"
+                className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 onChange={handleChange}
               />
             </div>
 
-            <div className=" w-full mt-5 flex justify-around items-center flex-wrap mb-2">
-              <div className="w-full">
-                <span className="text-xl">Email : </span>
-                <input
-                  type="email"
-                  value={userDetails.email}
-                  name="email"
-                  placeholder="Enter Your Email"
-                  className="bg-white p-2 pl-5 pr-5  rounded-xl outline-none ml-2 xl:ml-5 w-[67%]"
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="w-full">
-                <span className="text-xl">Phone No. : </span>
-                <input
-                  type="text"
-                  name = "phoneNo"
-                  value={userDetails.phoneNo}
-                  placeholder="Enter Your Password"
-                  className="bg-white p-2 xl:pl-5 xl:pr-5 rounded-xl outline-none ml-2 mt-3 xl:ml-5 w-[50%]"
-                  onChange={handleChange}
-                />
-              </div>
+            <div className="w-full mt-5">
+              <label className="block text-indigo-700 font-medium mb-1">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={userDetails.email}
+                placeholder="Enter Your Email"
+                className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                onChange={handleChange}
+              />
             </div>
 
-            <div className=" w-full mt-3 flex justify-around items-center flex-wrap">
-              <div className="w-full">
-                <span className="text-xl">LinkedIn : </span>
-                <input
-                  type="text"
-                  value={userDetails.linkedIn}
-                  name="linkedIn"
-                  placeholder="Enter your LinkedIn profile link"
-                  className="bg-white p-2 xl:pl-5 xl:pr-5 rounded-xl outline-none ml-2 xl:ml-5 w-[55%]"
-                  onChange={handleChange}
-                />
-              </div>
+            <div className="w-full mt-5">
+              <label className="block text-indigo-700 font-medium mb-1">Phone Number</label>
+              <input
+                type="text"
+                name="phoneNo"
+                value={userDetails.phoneNo}
+                placeholder="Enter Your Phone Number"
+                className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                onChange={handleChange}
+              />
+            </div>
 
-              <div className="w-full">
-                <span className="text-xl">github : </span>
-                <input
-                  type="text"
-                  value={userDetails.github}
-                  name="github"
-                  placeholder="Enter your Github profile link"
-                  className="bg-white p-2 xl:pl-5 xl:pr-5 rounded-xl outline-none mt-3 ml-2 xl:ml-5 w-[65%]"
-                  onChange={handleChange}
-                />
-              </div>
+            <div className="w-full mt-5">
+              <label className="block text-indigo-700 font-medium mb-1">LinkedIn</label>
+              <input
+                type="text"
+                name="linkedIn"
+                value={userDetails.linkedIn}
+                placeholder="Enter Your LinkedIn Profile"
+                className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="w-full mt-5">
+              <label className="block text-indigo-700 font-medium mb-1">GitHub</label>
+              <input
+                type="text"
+                name="github"
+                value={userDetails.github}
+                placeholder="Enter Your GitHub Profile"
+                className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                onChange={handleChange}
+              />
             </div>
           </div>
         </form>
       </div>
+
     </>
   );
 };

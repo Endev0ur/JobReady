@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <div className="relative">
-      <div className="h-screen w-full flex justify-center items-center flex-col bg-gradient-to-r from-green-300 via-white to-orange-300">
+      <div className="h-screen w-full flex justify-center items-center flex-col bg-gradient-to-br from-[#dbeafe] via-[#bfdbfe] to-[#93c5fd]">
         <div className="h-[70%] w-[100%] p-5 sm:w-[80%] md:w-[60%] lg:w-[50%] xl:w-[40%] flex justify-start items-start flex-col bg-transparent pt-10 xl:pt-20 overflow-y-scroll no-scrollbar">
           <h1 className="text-3xl font-bold italic sm:text-3xl xl:text-4xl">
             Welcome to <strong className="text-5xl text-sky-500 text-shadow-lg text-shadow-black">JOB READY</strong> <span className="underline">( Your AI Powered Resume Generator and Analyser )</span> {" "}
@@ -26,7 +26,7 @@ const Home = () => {
           <br className="hidden sm:block" />
           <p className="pl-6 text-lg font-bold sm:text-xl xl:text-2xl text-gray-700">
             I. Paste the job description and extract the
-            keywords for you resume
+            keywords for your resume
           </p>
           <br />
           <br className="hidden sm:block" />

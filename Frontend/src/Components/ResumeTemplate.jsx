@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet , Link } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet , Link , PDFDownloadLink } from '@react-pdf/renderer';
 import { PDFViewer } from '@react-pdf/renderer';
 import { useEffect } from 'react';
 
@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 const styles = StyleSheet.create({
   page: {
     backgroundColor: 'white',
-    padding:10,
+    padding:5,
     fontFamily:"Times-Roman",
   },
   section: {
@@ -19,15 +19,13 @@ const styles = StyleSheet.create({
     alignItems:"center"
   },
   pName:{
-    fontSize:"25",
+    fontSize:"22",
     fontFamily:"Times-Roman",
-    fontWeight:"bold"
+    fontWeight:"bold",
+    textTransform:"uppercase"
   },
   extras:{
     fontSize:"12",
-  },
-  projectContainer:{
-
   },
   projects:{
     fontSize:16,
@@ -41,7 +39,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   projectName:{
-    fontSize:15,
+    fontSize:13,
     fontWeight:"bold",
     flexDirection:"row"
   },
@@ -58,11 +56,11 @@ const styles = StyleSheet.create({
     marginLeft:5,
   },
   bulletPoints:{
-    fontSize:15,
+    fontSize:14,
     marginLeft:10,
   },
   experiences:{
-    fontSize:16,
+    fontSize:15,
     fontWeight:"bold",
     alignItems:"flex-start"
   },
@@ -75,7 +73,7 @@ const styles = StyleSheet.create({
   },
   companyName: {
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 14,
   },
   
   date: {
@@ -109,6 +107,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginVertical: 8,
+    fontWeight:"bold"
   },
   listItem: {
     width: '20%', 
@@ -236,7 +235,7 @@ const MyDocument = ({data}) => {
 
 
       {/* Experience */}
-      {Experience.length!== 0 && <View style={styles.experienceContainer}>
+      {Experience.length!== 0 && <View style={{ break:'avoid'}}>
           <Text style={styles.experiences}>EXPERIENCE</Text>
           <View style={styles.horizontalLine} />
           <View>
@@ -259,12 +258,12 @@ const MyDocument = ({data}) => {
       </View>}
       
       {/* Projects */}
-      {projects.length!==0 && <View style={styles.projectContainer}>
+      {projects.length!==0 && <View style={{break:'avoid'}}>
           <Text style={styles.projects}>PROJECTS</Text>
           <View style={styles.horizontalLine} />
           <View>
           {projects.map((project, index) => (
-            <View key={index} style={{ marginBottom: 10 }}>
+            <View key={index} style={{ marginBottom:5 }}>
               <View style={styles.heading}>
                 <Text style={styles.projectName}>{project.name}</Text>
                 <Text style={styles.links}><Link><Text>Github</Text></Link> | <Link><Text>Github</Text></Link></Text>
@@ -280,8 +279,8 @@ const MyDocument = ({data}) => {
       </View>}
 
       {/* Achievements */}
-      {achievements.length!==0 && <View style={styles.projectContainer}>
-          <Text style={styles.projects}>Achievements</Text>
+      {achievements.length!==0 && <View style={{marginBottom:5 , break:'avoid'}}>
+          <Text style={styles.projects}>ACHIEVEMENTS</Text>
           <View style={styles.horizontalLine} />
           <View>
             {achievements.map((point, i) => (
@@ -292,8 +291,8 @@ const MyDocument = ({data}) => {
       }
 
       {/* Education */}
-      {education.length!==0 && <View style={styles.projectContainer}>
-        <Text style={styles.projects}>Education</Text>
+      {education.length!==0 && <View style={{ break:'avoid'}}>
+        <Text style={styles.projects}>EDUCATION</Text>
         <View style={styles.horizontalLine} />
         <View style={styles.heading}>
           <Text style={styles.projectName}>{education[0]["institution"]}</Text>
@@ -308,7 +307,7 @@ const MyDocument = ({data}) => {
 
 
       {/*  */}
-      {skills.length!==0 && <View style={styles.projectContainer}>
+      {skills.length!==0 && <View style={{ break:'avoid'}}>
         <Text style={styles.projects}>SKILLS</Text>
         <View style={styles.horizontalLine} />
         <View style={styles.listContainer}>
@@ -326,6 +325,7 @@ const MyDocument = ({data}) => {
 
 const ResumeTemplate = () => {
 
+  console.log(localStorage.getItem("message"));
   const data = JSON.parse(localStorage.getItem("message") || "{}");
 
   useEffect(()=>{
@@ -333,13 +333,30 @@ const ResumeTemplate = () => {
     console.log(data);
   } ,[data])
 
+  
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+
+  const fileNamez = `${data.userDetails.name}_${hours}${minutes}${seconds}.pdf`;
 
   return (
     <div className="h-screen w-full">
-      <PDFViewer width="100%" height="100%">
-        <MyDocument data={data}/>
-      </PDFViewer>
+    <div className="flex justify-end p-2 bg-zinc-800">
+      <PDFDownloadLink
+        document={<MyDocument data={data} />}
+        fileName={fileNamez}
+      >
+        {({ loading }) =>
+          loading ? 'Loading...' : <button className="px-4 py-2 bg-blue-500 text-white rounded">Download</button>
+        }
+      </PDFDownloadLink>
     </div>
+    <PDFViewer width="100%" height="95%">
+      <MyDocument data={data} />
+    </PDFViewer>
+  </div>
   )
 }
 

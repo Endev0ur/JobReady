@@ -136,123 +136,106 @@ const ProjectDetails = ({ projectDetails , setProjectDetails , index , setSaveTo
     <>
     {/* Project Details */}
 
-      <div className="bg-gray-300 p-5 width-[100%] border rounded-2xl mt-10">
-          <h2 className="text-2xl font-bold inline-bold inline-block">Project Details : </h2>
-          <button className={` p-2 pl-5 pr-5 bg-blue-500 font-bold text-white cursor-pointer rounded-md ml-5 ${showSaveBtn ? "inline-block" : "hidden"}`} onClick={handleSaveChanges}>Save Changes</button>
-          {/* <button className="border p-2 rounded-lg ml-3" onClick={handleDeleteProject}>Delete This Project</button> */}
-          <div className="mt-3">
-            <div className="flex justify-around items-center text-xl font-bold w-[100%]  flex-wrap">
-              <div className=" w-full">
-                <span className="text-xl">Name of the Project : </span>
-                <input
-                  type="text"
-                  value={userProjectDetails.projectName}
-                  name="projectName"
-                  placeholder="Enter the Project name"
-                  className="bg-white p-2  pl-5 pr-5 mt-2 xl:mt-0 rounded-xl outline-none ml-5 w-[75%]"
-                  onChange={handleChange}
-                />
-              </div>
+      <div className="bg-gradient-to-br from-[#b1bfff] to-[#cad5ff] p-5 w-full border rounded-2xl mt-10">
+        <h2 className="text-2xl font-bold inline-block text-indigo-800">Project Details :</h2>
+        <button className={`p-2 px-5 bg-blue-600 font-bold text-white cursor-pointer rounded-md ml-5 ${showSaveBtn ? "inline-block" : "hidden"}`} onClick={handleSaveChanges}>
+          Save Changes
+        </button>
 
-              <textarea
-                name="projectDescription"
-                id=""
-                value={userProjectDetails.projectDescription}
-                className="w-[100%] mt-6 bg-gray-500 h-[100px] resize-none p-5 rounded-xl no-scrollbar"
-                placeholder="Write Something about project "
+        <div className="mt-3">
+          <div className="flex flex-wrap justify-around items-center text-xl w-full">
+            <div className="flex items-center w-full">
+              <span className="text-xl mr-5 text-indigo-700">ProjectName:</span>
+              <input
+                type="text"
+                value={userProjectDetails.projectName}
+                name="projectName"
+                placeholder="Enter Your projectName"
+                className="bg-white p-2 px-5 rounded-xl outline-none w-full"
                 onChange={handleChange}
-              ></textarea>
+              />
+            </div>
 
-              <div className=" w-full mt-5">
-                <span className="text-xl">Tech Stack Used : </span>
-                <div className="w-[100%] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-                  {userProjectDetails.techStack.map((item , index)=> {
-                    return <div key={index} id={index} className="border m-2 pr-[5%] pl-[10%] flex justify-between items-center relative rounded-lg">
-                      <div className="whitespace-nowrap w-[80%] overflow-x-scroll h-[100%] no-scrollbar p-2">
-                      {item}  
-                      </div>
-                      
-                      <button className=" h-[100%] w-[20%] absolute right-0 flex justify-center items-center bg-red-500 rounded-r-lg cursor-pointer " onClick={(e)=>handleDeleteTechStack(e , index)}>
-                        <RxCross2 className="text-white"></RxCross2>
-                      </button>
-                    </div>
-                  })} 
-                </div>
+            <textarea
+              name="projectDescription"
+              value={userProjectDetails.projectDescription}
+              className="w-full mt-6 bg-slate-100 h-[100px] resize-none p-5 rounded-xl no-scrollbar"
+              placeholder="Write Something about project"
+              onChange={handleChange}
+            ></textarea>
 
-                <form className="flex w-[100%] xl:w-[50%] h-[50px] items-center mt-5" onSubmit={handleAddTechStack}>
-                  <input className="m-2 border-2 w-[70%] h-[100%] pl-3 pr-3 outline-none rounded-xl bg-white" placeholder="Enter the stack you want to add" name="addSkills" onChange={handleTechStackChange} value={addNewTechStack}/>
-                  <button className="border-3 w-[25%] h-[100%] rounded-xl font-bold bg-green-500 cursor-pointer"
-                  type="submit">ADD</button>
-                </form>
-                
+            <div className="w-full mt-5">
+              <span className="text-xl font-bold text-indigo-800">Tech Stack Used:</span>
+              <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                {userProjectDetails.techStack.map((item, index) => (
+                  <div key={index} className="border m-2 pr-[5%] pl-[10%] flex justify-between items-center relative rounded-lg border-purple-200 bg-white">
+                    <div className="whitespace-nowrap w-[80%] overflow-x-scroll no-scrollbar p-2 ">{item}</div>
+                    <button
+                      className="absolute right-0 w-[20%] h-[100%] flex justify-center items-center bg-red-500 rounded-r-lg cursor-pointer "
+                      onClick={(e) => handleDeleteTechStack(e, index)}
+                    >
+                      <RxCross2 className="text-white" />
+                    </button>
+                  </div>
+                ))}
               </div>
 
+              <form className="flex flex-wrap w-full xl:w-1/2 h-[50px] items-center mt-5" onSubmit={handleAddTechStack}>
+                <input
+                  className="m-2 border-2 w-[70%] h-full pl-3 pr-3 outline-none rounded-xl bg-white"
+                  placeholder="Enter the stack you want to add"
+                  name="addSkills"
+                  onChange={handleTechStackChange}
+                  value={addNewTechStack}
+                />
+                <button className="w-[25%] h-full rounded-xl font-bold bg-green-600 text-white cursor-pointer" type="submit">
+                  ADD
+                </button>
+              </form>
+            </div>
 
-
-
-              <div className=" w-full mt-5 flex justify-around items-center flex-wrap">
-              <div className="w-full">
-                <h1 className="text-2xl mb-2">Links : </h1>
-                <span className="text-xl">Github : </span>
+            <div className="w-full mt-5">
+              <h1 className="text-2xl mb-2 font-bold text-indigo-800">Links:</h1>
+              <div className="flex items-center w-full">
+                <span className="text-xl mr-5 text-indigo-700">Github:</span>
                 <input
                   type="text"
-                  name="github"
                   value={userProjectDetails.github}
-                  className="bg-white p-2 pl-5 rounded-xl outline-none ml-2 xl:ml-5 w-[67%]"
+                  name="github"
                   placeholder="Project Github Link"
+                  className="bg-white p-2 px-5 rounded-xl outline-none w-full"
                   onChange={handleChange}
                 />
               </div>
-              <div className="w-full">
-                <span className="text-xl">Deployed : </span>
+              <div className="flex items-center w-full mt-5">
+                <span className="text-xl mr-5 text-indigo-700">Deployed:</span>
                 <input
                   type="text"
-                  name = "deployed"
                   value={userProjectDetails.deployed}
-                  className="bg-white p-2 pl-5 rounded-xl outline-none ml-2 mt-3 xl:ml-5 w-[58%] "
+                  name="deployed"
                   placeholder="Project Deployed Link"
+                  className="bg-white p-2 px-5 rounded-xl outline-none w-full"
                   onChange={handleChange}
                 />
               </div>
             </div>
 
-              <div className=" w-full mt-5">
-                <h1 className="block">Brifely About Project (in 4 Points) : </h1>
+            <div className="w-full mt-5">
+              <h1 className="font-bold text-indigo-800">Briefly About Project:</h1>
+              {[0, 1, 2, 3].map((i) => (
                 <textarea
-                name="briefPoints[0]"
-                value={userProjectDetails.briefPoints[0]}
-                className="w-[100%] mt-6 bg-gray-500 h-[100px] resize-none p-5 rounded-xl no-scrollbar placeholder-gray-900"
-                placeholder="Point No. 1 : "
-                onChange={(e)=>handleBriefPointsChange(e , 0)}
-              ></textarea>
-
-              <textarea
-                name="briefPoints[1]"
-                value={userProjectDetails.briefPoints[1]}
-                className="w-[100%] mt-6 bg-gray-500 h-[100px] resize-none p-5 rounded-xl no-scrollbar placeholder-gray-900"
-                placeholder="Point No. 2 : "
-                onChange={(e)=>handleBriefPointsChange(e , 1)}
-              ></textarea>
-
-              <textarea
-                name="briefPoints[2]"
-                value={userProjectDetails.briefPoints[2]}
-                className="w-[100%] mt-6 bg-gray-500 h-[100px] resize-none p-5 rounded-xl no-scrollbar placeholder-gray-900"
-                placeholder="Point No. 3 : "
-                onChange={(e)=>handleBriefPointsChange(e , 2)}
-              ></textarea>
-
-              <textarea
-                name="briefPoints[3]"
-                value={userProjectDetails.briefPoints[3]}
-                className="w-[100%] mt-6 bg-gray-500 h-[100px] resize-none p-5 rounded-xl no-scrollbar placeholder-gray-900"
-                placeholder="Point No. 4 : "
-                onChange={(e)=>handleBriefPointsChange(e , 3)}
-              ></textarea>
-              </div>
+                  key={i}
+                  name={`briefPoints[${i}]`}
+                  value={userProjectDetails.briefPoints[i] || ""}
+                  className="w-full mt-6 bg-slate-100 h-[100px] resize-none p-5 rounded-xl no-scrollbar placeholder-gray-900"
+                  placeholder={`Point No. ${i + 1} : `}
+                  onChange={(e) => handleBriefPointsChange(e, i)}
+                ></textarea>
+              ))}
             </div>
           </div>
         </div>
+      </div>
     </>
   )
 }
