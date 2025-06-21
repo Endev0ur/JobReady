@@ -18,6 +18,7 @@ const resumeRouter = require('./Routes/resumeRouter');
 const profileRouter = require("./Routes/profileRouter");
 const generateRouter = require("./Routes/generateRouter");
 const protect = require('./Middlewares/authMiddleware');
+const checkRouter = require("./Routes/checkRouter");
 
 /* this is because we are using cookie in frontend and backend */
 const corsOptions = {
@@ -37,6 +38,7 @@ const storage = multer.memoryStorage();
 /* m3 : initialize the multer */
 const upload = multer({storage:storage});
 
+app.use("/check" , checkRouter);
 app.use("/auth" , authRouter);
 app.use("/resume" , protect , upload.single('resume') , resumeRouter);
 app.use("/profile" , protect , profileRouter);

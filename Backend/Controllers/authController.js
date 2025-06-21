@@ -111,7 +111,7 @@ const login = async (req , res) => {
   }
 }
 
-/* Logout functionality */
+/* Logout functionality */ 
 const logout = (req ,res) => {
 
   try{
@@ -136,6 +136,31 @@ const logout = (req ,res) => {
   
 }
 
+const getUserDetails = async (req , res) => {
+  try{
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token , process.env.SECRET_TOKEN);
+    const userId = decoded.id;
+
+    const userDetails = await User.findOne({_id : userId});
+
+    if(userDetails){
+      return res.status(201).json({
+        success:true,
+        message:userDetails,
+      })
+    }
+    console.log("Not user");
+  }
+  catch(err){
+    response.status(500).json({
+      message:"Server Error in finding user Details",
+      success : false,
+    })
+  }
+}
 
 
-module.exports = {signup , login , logout};
+
+
+module.exports = {signup , login , logout , getUserDetails};

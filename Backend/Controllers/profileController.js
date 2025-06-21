@@ -8,7 +8,7 @@ const profileSave = async (req, res) => {
   const token = req.cookies.token
   const decoded = jwt.verify(token , process.env.SECRET_TOKEN);
   const userId = decoded.id;
-  console.log("id is : " , userId);
+  // console.log("id is : " , userId);
 
   /* this is for any required condition can't be empty */
   if(!userDetails?.name || !userDetails?.email || !userDetails?.phoneNo || !userDetails?.linkedIn || !userDetails?.github ||!project[0]?.projectName ||!project[0]?.projectDescription || !project[0]?.techStack?.length || !project[0]?.github || !project[1]?.github || !project[0]?.briefPoints?.length || !project[1]?.projectName ||!project[1]?.projectDescription || !project[1]?.techStack?.length || !project[0]?.deployed ||!project[1]?.deployed || !project[1]?.briefPoints?.length ){
@@ -20,7 +20,7 @@ const profileSave = async (req, res) => {
 
   try{
 
-    console.log(req.body);
+    // console.log(req.body);
     const existingResume = await Resume.findOne({userId});
 
     /* user come again so update the resume */
@@ -80,4 +80,4 @@ const getDetails = async(req , res) => {
   }
 }
 
-module.exports = {profileSave , getDetails};
+module.exports = {profileSave , getDetails}; 

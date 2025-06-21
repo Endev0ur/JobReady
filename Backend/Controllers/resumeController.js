@@ -2,6 +2,7 @@ const {GoogleGenAI} = require('@google/genai')
 const pdfParse = require('pdf-parse');
 const resumeDetails = require('../Models/resumeModel');
 const jwt = require("jsonwebtoken");
+const {jsonrepair} = require('jsonrepair')
 
 
 
@@ -14,18 +15,26 @@ const jobSummarizer = async (req , res) => {
   const jobDescription = req.body;
 
   const prompt = `f"""
-  You are an expert at analyzing job descriptions. Please read the following job description and identify the most relevant 10 keywords (full words) and 5-6 key responsibilities or qualifications. Return your answer as a JSON object with two keys: "keywords" and "keypoints". The value for "keywords" should be a list of relevant terms with each word as a separate string. The value for "keypoints" should be a list of the most important responsibilities or qualifications, with each point as a separate string in the list. no filler or preambles.
-  
-  Job Description:
-  ${jobDescription}
-  """`
+You are an expert at analyzing job descriptions. Your task is to extract technical insights from the given job description.
+
+Please carefully read the job description provided below and return a JSON object with two keys: "keywords" and "keypoints".
+
+1. "keywords" should be a list of 10 highly relevant, domain-specific terms, such as programming languages, libraries, frameworks, databases, platforms, or tools that are directly or implicitly related to the role (e.g., for a Web Developer role, use terms like React, Node.js, MongoDB, SQL, REST API, etc.).
+
+2. "keypoints" should be a list of 5–6 critical responsibilities or qualifications from the description, phrased clearly. These should focus on what the candidate is expected to do or know.
+
+Avoid generic buzzwords or filler. Only extract concrete and technically useful information.
+
+Job Description:
+${jobDescription} 
+"""`
 
   async function main() {
     const response = await ai.models.generateContent({
       model: "gemini-2.0-flash",
       contents: prompt,
     });
-    console.log(response.text);
+    // console.log(response.text);
 
     const responseText = response.text;
 
@@ -66,7 +75,7 @@ const AtsCheck = async(req , res)=>{
   const resumeFile = req.file;
 
   const bufferResumeFile = resumeFile.buffer;
-  console.log(resumeFile);
+  // console.log(resumeFile);
 
   // const text = await extractTextSmart(bufferResumeFile);
 
@@ -149,7 +158,7 @@ avoid any prembles and fillers and stritly return a valid json object
       model: "gemini-2.0-flash",
       contents: prompt,
     });
-    console.log(response.text);
+    // console.log(response.text);
 
     const responseText = response.text;
 
@@ -162,7 +171,7 @@ avoid any prembles and fillers and stritly return a valid json object
     // // Step 3: Parse it
     const parsedText = JSON.parse(cleanedText);
 
-    console.log(parsedText);
+    // console.log(parsedText);
 
     
 
@@ -188,12 +197,12 @@ const generateResume = async(req , res) => {
     const decoded = jwt.verify(token , process.env.SECRET_TOKEN);
     const userId = decoded.id;
 
-    console.log("User id is : " , userId);
+    // console.log("User id is : " , userId);
     
     /* With the help of userId , Find the userDetails */
     const userDetails = await resumeDetails.findOne({userId});
 
-    console.log(userDetails);
+    // console.log(userDetails);
 
     /* Job Description comes here */
     const jobDescription = req.body;
@@ -254,7 +263,7 @@ const generateResume = async(req , res) => {
           {
             "name": "Project Title",
             "description":" exactly 15 words for project Description",
-            "techStack":[${userDetails.techStack}]
+            "techStack":[${userDetails.techStack}]|| give the tech stack which user provided for this project
             "features": [
               "Implemented feature 1 using relevant stack/tech.(meaning should be the same but only formatting , keywords should be different",
               "Added functionality for X using Y.",
@@ -313,22 +322,32 @@ const generateResume = async(req , res) => {
         model: "gemini-2.0-flash",
         contents: prompt,
       });
-      console.log(response.text);
+      // console.log(response.text);
   
       const responseText = response.text;
 
-      // // Step 2: Clean it
-      const cleanedText = response.text
+     
+      const cleanedText = responseText
         .replace(/```json/g, '')
         .replace(/```/g, '')
-        .trim();                  // remove extra spaces
-  
-      // // // Step 3: Parse it
-      const parsedText = JSON.parse(cleanedText);
-  
-      // console.log(parsedText);
-  
+        .trim(); 
+        
+      // console.log("cleanded TExt : " , cleanedText);
+        
+      const repairedText = jsonrepair(cleanedText)
+
+      // console.log("repaired Text : " , repairedText);
       
+  
+      // const parsedText = JSON.parse(cleanedText);
+
+
+      const parsedText = JSON.parse(repairedText);
+
+
+      // console.log(parsedText);
+
+
   
       res.status(201).json({
         success : true,
@@ -336,7 +355,7 @@ const generateResume = async(req , res) => {
       })
   
     }
-    console.log("Hello world");
+    // console.log("Hello world");
     await main();
 
 
@@ -359,3 +378,22 @@ const generateResume = async(req , res) => {
 
 
 module.exports = {jobSummarizer , AtsCheck , generateResume}; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
