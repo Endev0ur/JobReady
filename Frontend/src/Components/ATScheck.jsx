@@ -24,6 +24,7 @@ const ATScheck = () => {
   const [finalSuggestion , setFinalSuggestion] = useState({});
 
 
+  const [loading , setLoading] = useState(false);
 
   /* ================================================================================================================================== */
 
@@ -120,12 +121,27 @@ const ATScheck = () => {
       }
       toast.error("Please provide a valid resume format pdf (Text Based pdf) !");
     }
+    finally{
+      setLoading(false);
+    }
 
     
   };
 
 
-  
+  if(loading){
+    return (
+    <div className='h-screen w-full flex justify-center items-center text-bold text-2xl'>
+      <Grid
+        height="80"
+        width="80"
+        color="#000000"
+        ariaLabel="grid-loading"
+        visible={true}
+      />
+    </div>
+    )
+  }
 
  
 

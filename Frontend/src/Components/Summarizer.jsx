@@ -9,7 +9,7 @@ const Summarizer = () => {
 
   const navigateTo = useNavigate();
 
-
+  const [loading , setLoading] = useState(false);
 
   const [movingState , setMovingState] = useState(false);
 
@@ -69,10 +69,27 @@ const Summarizer = () => {
       }
       toast.error(" Error occur from our end , Please try again later !");
     }
+    finally{
+      setLoading(false);
+    }
   }
 
 
 
+
+  if(loading){
+    return (
+    <div className='h-screen w-full flex justify-center items-center text-bold text-2xl'>
+      <Grid
+        height="80"
+        width="80"
+        color="#000000"
+        ariaLabel="grid-loading"
+        visible={true}
+      />
+    </div>
+    )
+  }
 
   
   

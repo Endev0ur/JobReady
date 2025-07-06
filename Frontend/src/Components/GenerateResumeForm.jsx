@@ -7,6 +7,8 @@ import { Grid } from 'react-loader-spinner';
 const GenerateResumeForm = () => {
   const navigateTo = useNavigate();
 
+  const [loading , setLoading] = useState(false);
+
   const [jobDescription, setJobDescription] = useState("");
   let [resumeDetails, setResumeDetails] = useState({
     userDetails: {},
@@ -91,11 +93,28 @@ const GenerateResumeForm = () => {
       toast.error("Try again after some time");
       navigateTo("/");
     }
+    finally{
+      setLoading(false);
+    }
   };
 
   const handleDetailsEdit = () => {
     navigateTo("/profile");
   };
+
+  if(loading){
+    return (
+    <div className='h-screen w-full flex justify-center items-center text-bold text-2xl'>
+      <Grid
+        height="80"
+        width="80"
+        color="#000000"
+        ariaLabel="grid-loading"
+        visible={true}
+      />
+    </div>
+    )
+  }
 
 
 
