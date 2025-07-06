@@ -13,17 +13,17 @@ const AboutUs = ({ openForm, setOpenForm }) => {
   };
 
   return (
-    <div className="h-screen w-full flex justify-center items-center overflow-scroll no-scrollbar">
+    <div className="h-screen w-full flex justify-center items-center bg-black overflow-scroll no-scrollbar">
         <div className="h-[95%] w-[95%] md:w-[70%] lg:w-[50%] 2xl:w-[40%] shandow-2xl shadow-black rounded-3xl p-5 2xl:p-10 flex flex-col items-start relative">
-          <h1 className="text-[60px] md:text-[70px] lg:text-[80px] xl:text-[90px] 2xl:text-[100px] font-bold text-violet-700 text-shadow-lg text-shadow-black">
+          <h1 className="text-[60px] md:text-[70px] lg:text-[80px] xl:text-[90px] 2xl:text-[100px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-red-500 to-blue-500 ">
             ABOUT US
           </h1>
 
-          <p className='text-xl xl:text-2xl 2xl:text-4xl font-bold mt-4'> <strong className='text-3xl 2xl:text-5xl'>Welcome To <span className='text-white text-shadow-lg text-shadow-black'>JOB READY</span></strong> : Your one way to build ATS friendly resume based on Job Description</p>
+          <p className='text-xl xl:text-2xl 2xl:text-4xl font-bold mt-4 text-white'> <strong className='text-3xl 2xl:text-5xl'>Welcome To <span className='text-purple-500'>JOB READY</span></strong> : Your one way to build ATS friendly resume based on Job Description</p>
 
-          <p className='text-lg xl:text-2xl 2xl:text-4xl mt-2 xl:mt-10 font-bold'>Created By : <strong className='text-gray-100 text-3xl text-shadow-lg text-shadow-black'>SHUBHAM RAWAT</strong></p>
+          <p className='text-lg xl:text-2xl 2xl:text-4xl mt-2 xl:mt-10 font-bold text-white'>Created By : <strong className='text-blue-500 text-3xl text-shadow-lg text-shadow-black'>SHUBHAM RAWAT</strong></p>
 
-          <div className='w-[100%] pl-0 p-4 xl:flex mt-1 xl:mt-10  items-center'>
+          <div className='w-[100%] pl-0 p-4 xl:flex mt-1 xl:mt-10  items-center text-white'>
             <p className=' text-2xl 2xl:text-3xl font-bold '>Connect With Us : </p>
             <a href='' className='text-3xl cursor-pointer mr-10 ml-5 inline-block mt-2 xl:mt-0'><FaLinkedin /></a>
             <a href='' className='text-3xl cursor-pointer mr-10 inline-block mt-2 xl:mt-0'><FaSquareInstagram /></a>

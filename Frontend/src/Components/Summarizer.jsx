@@ -10,7 +10,6 @@ const Summarizer = () => {
   const navigateTo = useNavigate();
 
 
-  const [loading , setLoading] = useState(false);
 
   const [movingState , setMovingState] = useState(false);
 
@@ -70,33 +69,17 @@ const Summarizer = () => {
       }
       toast.error(" Error occur from our end , Please try again later !");
     }
-    finally{
-      setLoading(false);
-    }
   }
 
 
 
 
-  // ====================== LOADING STATE SCREEN ======================
-  if (loading) {
-    return (
-      <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-[#1f3f71] to-[#2e647d] text-white text-2xl font-bold">
-        <Grid
-          height="80"
-          width="80"
-          color="#fff"
-          ariaLabel="grid-loading"
-          visible={true}
-        />
-      </div>
-    );
-  }
+  
   
 
   return (
-    <div className="bg-gradient-to-br from-[#1f3f71] to-[#2e647d] min-h-screen  flex justify-around items-center flex-wrap">
-      {!movingState ? (<div className={` h-screen w-[98%] bg-white/10 backdrop-blur-lg rounded-lg p-5 max-w-[600px] max-h-[850px] shadow-lg shadow-black mb-10 mt-10`}>
+    <div className="bg-gradient-to-br from-gray-900 via-indigo-900 to-black min-h-screen  flex justify-around items-center flex-wrap">
+      {!movingState ? (<div className={` h-screen w-[98%] bg-white/10 backdrop-blur-xl rounded-lg p-5 max-w-[600px] max-h-[850px] shadow-lg shadow-black mb-10 mt-10 bg-clip-border bg-gradient-to-bl from-blue-500 via-red-500 to-blue-500`}>
         <h1 className="text-4xl font-semibold text-white text-shadow-lg text-shadow-black">Summarizer</h1>
         <form className="h-[100%] w-[100%]" onSubmit={handleSubmit}>
           <div className="mt-10 h-[70%]  p-2">

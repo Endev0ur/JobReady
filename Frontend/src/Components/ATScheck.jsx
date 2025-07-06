@@ -24,7 +24,6 @@ const ATScheck = () => {
   const [finalSuggestion , setFinalSuggestion] = useState({});
 
 
-  const [loading , setLoading] = useState(false);
 
   /* ================================================================================================================================== */
 
@@ -121,39 +120,23 @@ const ATScheck = () => {
       }
       toast.error("Please provide a valid resume format pdf (Text Based pdf) !");
     }
-    finally{
-      setLoading(false);
-    }
 
     
   };
 
 
-  // ====================== LOADING STATE SCREEN ======================
-  if (loading) {
-    return (
-      <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-[#1f3f71] to-[#2e647d] text-white text-2xl font-bold">
-        <Grid
-          height="80"
-          width="80"
-          color="#fff"
-          ariaLabel="grid-loading"
-          visible={true}
-        />
-      </div>
-    );
-  }
+  
 
  
 
   return (
     
-    <div className="min-h-screen bg-gradient-to-br from-[#1f3f71] to-[#2e647d] flex justify-around items-center flex-wrap">
-      {!movingState ? (<div className="bg-white/10 backdrop-blur-lg rounded-lg h-screen w-[98%] p-5 max-w-[600px] max-h-[850px] shadow-2xl shadow-black mb-10 mt-10">
+    <div className="min-h-screen bg-gradient-to-br from-green-600 via-red-400 to-green-600 flex justify-around items-center flex-wrap">
+      {!movingState ? (<div className="bg-white/10 backdrop-blur-lg rounded-lg h-screen w-[98%] p-5 max-w-[600px] max-h-[850px] shadow-2xl shadow-black mb-10 mt-10 bg-clip-border bg-gradient-to-bl from-gray-900 via-indigo-900 to-gray-900 ">
         <h1 className="text-4xl font-bold text-white text-shadow-lg text-shadow-black">ATS Check</h1>
         <form action="" className="h-[100%] w-[100%]" onSubmit={handleSubmit}>
           <div className="mt-6 h-[70%]  p-2">
-            <p className="text-xl font-bold text-black">Job Description : </p>
+            <p className="text-xl font-bold text-white">Job Description : </p>
             <textarea
               name=""
               id=""

@@ -182,7 +182,7 @@ const ProjectDetails = ({ projectDetails , setProjectDetails , index , setSaveTo
 
               <form className="flex flex-wrap w-full xl:w-1/2 h-[50px] items-center mt-5" onSubmit={handleAddTechStack}>
                 <input
-                  className="m-2 border-2 w-[70%] h-full pl-3 pr-3 outline-none rounded-xl bg-white"
+                  className="m-2 border-2 w-[65%] h-full pl-3 pr-3 outline-none rounded-xl bg-white"
                   placeholder="Enter the stack you want to add"
                   name="addSkills"
                   onChange={handleTechStackChange}

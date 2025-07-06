@@ -6,7 +6,7 @@ import { Grid } from 'react-loader-spinner';
 
 const GenerateResumeForm = () => {
   const navigateTo = useNavigate();
-  const [loading , setLoading] = useState(false);
+
   const [jobDescription, setJobDescription] = useState("");
   let [resumeDetails, setResumeDetails] = useState({
     userDetails: {},
@@ -91,9 +91,6 @@ const GenerateResumeForm = () => {
       toast.error("Try again after some time");
       navigateTo("/");
     }
-    finally{
-      setLoading(false);
-    }
   };
 
   const handleDetailsEdit = () => {
@@ -102,26 +99,9 @@ const GenerateResumeForm = () => {
 
 
 
-  // ====================== LOADING STATE SCREEN ======================
-  if (loading) {
-    return (
-      <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-[#1f3f71] to-[#2e647d] text-white text-2xl font-bold">
-        <Grid
-          height="80"
-          width="80"
-          color="#fff"
-          ariaLabel="grid-loading"
-          visible={true}
-        />
-      </div>
-    );
-  }
-
-
-
   return (
     <>
-      <div className="h-[100%] xl:h-screen w-full mx-auto flex flex-col xl:flex-row items-center justify-center bg-[linear-gradient(to_right,#ff0000,#ffff00,#9333ea)] p-7 xl:p-10 2xl:pl-15 2xl:pr-15">
+      <div className="min-h-screen xl:h-screen w-full mx-auto flex flex-col xl:flex-row items-center justify-center bg-[linear-gradient(to_right,#ff0000,#ffff00,#9333ea)] p-7 xl:p-10 2xl:pl-15 2xl:pr-15">
         <div className="bg-gray-900 text-white max-h-[800px]  xl:h-[99%] xl:max-h-none min-w-[340px] sm:w-[95%] md:w-[90%] xl:w-[50%] p-1 pt-10 md:p-6 lg:p-10 overflow-y-scroll rounded-t-lg xl:rounded-t-none xl:rounded-l-lg shadow-2xl shadow-black">
           <div className="flex justify-left items-center">
             <h1 className="text-4xl font-bold pl-2">Details : </h1>

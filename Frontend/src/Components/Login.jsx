@@ -64,11 +64,19 @@ const Login = () => {
     navigateTo("/signup");
   };
 
+  const handleDummyData = () => {
+    setInput({
+      email:"user1email@email.com",
+      password:"user1password",
+    })
+  }
+
+
   return (
     <div
       className={`h-screen w-full  bg-gradient-to-br from-indigo-600 to-purple-600 flex justify-center items-center`}
     >
-      <div className="h-[500px] w-[350px] md:w-[400px] lg:w-[500px] xl:h-[600px] border-5 xl:w-[550px] bg-white/10 backdrop-blur-lg text-white p-10 rounded-xl flex flex-col items-center border-white/20">
+      <div className="h-[600px] w-[350px] md:w-[400px] lg:w-[500px] xl:h-[630px] border-5 xl:w-[550px] bg-white/10 backdrop-blur-lg text-white p-10 rounded-xl flex flex-col items-center border-white/20">
         <h1 className="text-3xl xl:text-5xl font-bold mb-2 xl:mb-4 ">LOGIN </h1>
 
         <form onSubmit={handleSubmit}>
@@ -104,6 +112,8 @@ const Login = () => {
           >
             Login
           </button>
+
+          <button className="mt-4 text-center pt-2 pb-2 w-full bg-gradient-to-r from bg-blue-500 via-green-500 to-blue-500  font-bold rounded-md cursor-pointer" onClick={handleDummyData}>Open With Dummy Account</button>
         </form>
 
         <div className="mt-5 xl:mt-10 h-[70px] w-[100%] flex items-center">
