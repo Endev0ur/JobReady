@@ -20,7 +20,7 @@ const Home = () => {
 
           <div className="bg-transparent h-[75%] flex justify-center flex-wrap p-3 overflow-scroll no-scrollbar">
 
-            <div className='2xl:h-[60%] w-full   2xl:w-[70%] mb-5 bg-white shadow-md shadow-gray-500 p-4 sm:p-10 flex justify-center items-center flex-col text-center rounded-xl'>
+            <div className='2xl:h-[70%] w-full   2xl:w-[70%] mb-5 bg-white shadow-md shadow-gray-500 p-4 sm:p-10 flex justify-center items-center flex-col text-center rounded-xl'>
               <div className=" p-3 rounded-lg bg-sky-500">
                <GiSandsOfTime className="text-4xl " />
               </div>
@@ -29,7 +29,7 @@ const Home = () => {
               
             </div>
 
-            <div className='2xl:h-[60%] w-full 2xl:w-[70%] mb-5 bg-white shadow-md shadow-gray-500 p-4 sm:p-10 flex justify-center items-center flex-col text-center rounded-xl'>
+            <div className='2xl:h-[70%] w-full 2xl:w-[70%] mb-5 bg-white shadow-md shadow-gray-500 p-4 sm:p-10 flex justify-center items-center flex-col text-center rounded-xl'>
               <div className=" p-3 rounded-lg bg-lime-500">
                 <h1 className="text-2xl font-bold text-shadow-md text-shadow-black text-white">ATS</h1>
               </div>
@@ -37,7 +37,7 @@ const Home = () => {
               <p className="text-xl font-bold mt-4 text-gray-500">Our AI checks your resume against job requirements and tells you exactly what recruiters and ATS systems see — so you can fix gaps before applying.</p>
             </div>
 
-            <div className='2xl:h-[60%] w-full 2xl:w-[70%] shadow-md bg-white shadow-gray-500 p-4 sm:p-10 flex justify-center items-center flex-col text-center rounded-xl'>
+            <div className='2xl:h-[70%] w-full 2xl:w-[70%] shadow-md bg-white shadow-gray-500 p-4 sm:p-10 flex justify-center items-center flex-col text-center rounded-xl'>
               <div className=" p-3 rounded-lg bg-violet-500">
                 <FiPlusCircle className="text-4xl text-black" />
               </div>

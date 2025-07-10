@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors')
 /* m1 : importing multer */
@@ -39,9 +38,15 @@ const storage = multer.memoryStorage();
 const upload = multer({storage:storage});
 
 app.use("/check" , checkRouter);
+
+/* This is a route for user authentication */
 app.use("/auth" , authRouter);
+
+
 app.use("/resume" , protect , upload.single('resume') , resumeRouter);
+
 app.use("/profile" , protect , profileRouter);
+
 app.use("/generate" , protect , generateRouter);
 
 app.get("/" , (req , res)=>{

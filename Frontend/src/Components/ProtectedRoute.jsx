@@ -12,8 +12,8 @@ const ProtectedRoute = ({children}) => {
   useEffect(() => {
     const method = async () => {
       try{
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/check`, {
-          withCredentials: true, // Very important for cookies
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/check/`, {
+          withCredentials: true,
         })
   
         // console.log(response);

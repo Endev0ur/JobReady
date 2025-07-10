@@ -31,7 +31,7 @@ const Mainbar = ({
   };
 
   return (
-      <div className="h-15 w-[95%] md:h-20 md:w-[80%] lg:w-[70%] xl:w-[60%] 2xl:w-[40%] border-3 md:border-5 rounded-[100px] bg-gradient-to-r from-blue-500 via-sky-900 to-blue-400 backdrop-blur-md shadow-xl flex justify-center items-center  shadow-black">
+      <div className="h-15 w-[95%] md:h-20 md:w-[80%] lg:w-[70%] xl:w-[60%] 2xl:h-[50%] 2xl:w-[40%] border-3 md:border-5 rounded-[100px] bg-gradient-to-r from-blue-500 via-sky-900 to-blue-400 backdrop-blur-md shadow-xl flex justify-center items-center  shadow-black">
         <div
           className="h-[100%] w-[17.5%]  bg-transparent hover:bg-sky-500  transition-all duration-500 rounded-l-[100px] flex justify-center items-center cursor-pointer"
           onClick={() => handleOpenForm(1)}
